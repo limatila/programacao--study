@@ -1,0 +1,112 @@
+<!DOCTYPE html> <!-- table elements! -->
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Sub Page 1</title>
+        <link rel="icon" type="image/x-icon" href="../images/uiui udy.ico"> 
+        <link rel="stylesheet" href="../configs.css">
+    </head>
+
+    <body>
+        <h1 id="welcome" style="margin: 10cm; margin-top: 0;" >Welcome to my page -- sub page 1!</h1>
+        <nav aria-labelledby="secondary-nav">
+            <h2 id="secondary-nav">Navigate trough Pages:</h2>
+            <h4><a href="../page.html">Back to the major page</a></h4> <!-- ../ gets back in folders-->
+            <a href="subp2.html">go to subp2</a>
+            <a href="subp3.html">go to subp3</a>
+            <a href="subp3.html">go to subp4</a>
+        </nav>
+
+        <h2>Uma pequena tabela de <b>vars</b></h2>
+        <table id="var-t" style="font-family: Arial; margin: auto;">
+            <thead>
+                <th colspan="3">Vars types and Uses</th> <!-- makes a th to be in the set columns number-->
+                <tr>
+                    <th>Vars</th> <!-- must think of table headers as table number of columns! -->
+                    <th>Example</th>
+                    <th>Definition</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>String</td>
+                    <td><i>"Hi i like u 2!"</i></td>
+                    <td>A set of characters in a defined order</td>
+                </tr>
+                <tr> 
+                    <td>Int</td>
+                    <td><i>420</i></td>
+                    <td>number</td>
+                </tr>
+                <tr>
+                    <td>Boolean</td>
+                    <td><i>false</i></td>
+                    <td>A duality, using only one space(bit), 1 or 0 for True and False</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="lef-table">
+            <thead>
+                <tr>
+                    <th colspan="2">cheeks</th> <!-- makes a th to be in the set columns number-->
+                    <th>chicks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>first</td>
+                    <td>second</td>
+                    <td>1</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Minha rotina padrão:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2" style="font-size: xx-large;">Minha Rotina</th>
+                </tr>
+                <tr>
+                    <th>Meus horários</th>
+                    <th>Minhas atividades</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th><time datetime="09:00">9am</time> - <time datetime="11:30">11h30am</time></th>
+                    <td>Tempo variado que eu acordo</td>
+                </tr>
+                <tr>
+                    <th><time datetime="12:00">12pm</time> - <time datetime="17:30">5h30pm</time></th>
+                    <td>Estudo programação</td>
+                </tr>
+                <tr>
+                    <th rowspan="2"><time datetime="17:30">5h30pm</time> - <time datetime="20:00">8pm</time></th>
+                    <td>Tomo banho</td>
+                </tr>
+                <tr>
+                    <td>Puxo pesinhos na academia</td>
+                </tr>
+                <tr>
+                    <th><time datetime="20:00">8pm</time> - <time datetime="22:30">10h30pm</time></th>
+                    <td>Streamo joguinhos massa</td>
+                </tr>
+                <tr>
+                    <th><time datetime="22:30">10pm</time> - <time datetime="01:00">01am</time></th>
+                    <td>Tempo variado que eu durmo</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br>
+        <textarea name="text here" id="input1" cols="50" rows="7" placeholder="random text input" 
+        spellcheck="false" style="font-family: FixedSys; font-size: x-large;"></textarea>
+        
+        <figure>
+            <img src="../images/susexo.png" alt="keyson" title="sucesso lindo" height="160">
+        </figure>
+    </body>
+
+</html>

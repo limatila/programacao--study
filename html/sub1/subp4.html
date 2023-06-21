@@ -1,0 +1,92 @@
+<!DOCTYPE html> <!-- Inputs! there are several types, and they are divided in divs(forms, sections...); and buttons.-->
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Sub Page 4</title>
+        <link rel="icon" type="image/x-icon" href="../images/uiui udy.ico">
+        <link rel="stylesheet" href="/html/configs.css">
+        <script src="../coding.js"></script>
+        <style>
+            @font-face { font-family: fixedsys; src: url('../fonts/Fixedsys\ Excelsior\ 3.01\ Regular.ttf'); } 
+        </style>
+    </head>
+
+    <body style="font-family: Verdana">
+        <h1 id="welcome" style="margin: 10cm; margin-top: 0;" >Welcome to my page -- sub page 4!</h1>
+        <nav aria-labelledby="secondary-nav">
+            <h2 id="secondary-nav">Navigate trough Pages:</h2>
+            <h4><a href="../page.html">Back to the major page</a></h4>
+            <a href="subp1.html">go to subp1</a>
+            <a href="subp2.html">go to subp2</a>
+            <a href="subp3.html">go to subp3</a>
+        </nav>
+
+        <figure>
+            <img src="../input-elements-Types.jpg" alt="input elements" 
+            title="some of the input elements" loading="eager" height="470">
+        </figure>
+        
+        <section> 
+            <h1 style="font-size: xx-large"><i>Some Inputs!</i></h1>
+            <form action="subp3.html" method="get"> <!-- a text(email) input --> <!-- action te leva pra outra pagina! -->
+                <label for="email">Your email: </label>
+                <input id="email" type="email" name="email" pattern=".+@gmail.com" placeholder="Email here" required>
+                <input type="submit" value="Sign"> <!-- only for forms button. -->
+            </form>
+            <p> </p>
+
+            <form>
+                <label for="range">a range: </label> <!-- a range input -->
+                <input type="range" id="range" min="0" max="100" value="50" step="20">
+                <input type="submit" value="Send">
+            </form>
+            <p> </p>
+
+            <form style="font-family: fixedsys;" action="../page.html"> <!-- a radio type input -->
+                <h2>This is a radio input:</h2>
+                <label >choose one: </label>
+
+                <input type="radio" id="batata" name="choice"> 
+                <label for="batata">batata</label>
+
+                <input type="radio" id="pica" name="choice"> 
+                <label for="pica">PICA!</label>
+
+                <input type="radio" id="Other" name="choice" checked> <!-- they need all to be in the same 'name' attribute-->
+                <label for="Other">Outro..</label>
+
+                <input type="submit" value="Done">
+            </form>
+            <p> </p>
+
+            <form>
+                <h2>Select one:</h2>
+                <label for="selection">pick one (confirming will run):</label> <!-- what about some .js coding, shall we? -->
+                <select id="selection" style="font-family: Consolas;">
+                    <option value="" selected>--Choose One!👇</option> <!-- 'selected' will select the default opt -->
+                    <option value="Mine">Minecraft</option>
+                    <option value="lol" >League of Legends</option>
+                    <option value="CsGo">Counter Strike: Global Offensive</option>
+                    <option value="Hollow Knight">Hollow Knight</option>
+                </select>
+                <input type="submit" value="Open">
+            </form>
+        </section>
+
+        <br><br>
+        <button action="../page.html">
+            <input type="submit">click</input> <!-- UM BOTAO DE OUTRO BOTAO -->
+        </button>
+
+        <br>
+        <button id="botao1">
+            <label for="botao1">main</label>
+        </button>
+
+        <hr>
+        <footer>
+            <a href="#welcome"><p>Return to the top</p></a>
+        </footer>
+
+    </body>
+</html>
