@@ -1,0 +1,13 @@
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.costumText {
+    font-family: Impact;
+    font-size: xx-large;
+}
+
+.totem {
+    float: right;
+}
