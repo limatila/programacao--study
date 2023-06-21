@@ -1,0 +1,2 @@
+open this not as 'pythona' in workspace, it wont work that way
+open it separetely(select only this folder)
