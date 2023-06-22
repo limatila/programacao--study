@@ -18,7 +18,7 @@ for(i = 0; i<=5; i++){
         console.log(i)
     }
 }
-
+a
 console.log('')
 i = 0//execute loop once before checking again
 do {
