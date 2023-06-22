@@ -32,7 +32,4 @@ b = np.random.randint(0,10,3)#start, end(excluded), size(can be tuple to make gr
 #random.shuflle, random.seed
 
 
-
-
-
 endCode()

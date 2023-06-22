@@ -35,7 +35,7 @@ time.sleep(7)
 
 pag.click(x=116, y=201)
 time.sleep(1)
-corpoText = f"Cotacoes do ultimo mes da PETR4(Petrobras):\n A atual: {atual};\n A maior: {minmax_1month.max} e a menor: {minmax_1month.max}\n\n BY SAPINHO CLIPSZSSZ QUEIMA XERECA ME DA UM FININ AI"
+corpoText = f"Cotacoes do ultimo mes da PETR4(Petrobras):\n A atual: {atual};\n A maior: {minmax_1month.max} e a menor: {minmax_1month.max}\n\n By Atila Lima"
 emai = "atilalimade@gmail.com"
 assun = "pyautogui programmed"
 pag.typewrite(emai)

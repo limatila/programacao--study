@@ -24,11 +24,11 @@ foo(1, 2, c=1)
 
 tspac(); line(26)
 def fe(myVar):
-    *last, final = myVar
-    return last
+    *firs, final = myVar
+    return firs
 
 names = ['well', 'gabu', 'yume']
 print(fe(names)) #can be assigned to var
-# print(last) will error, last is in local scope
+# print(firs) will error, firs is in local scope
 
 endCode()

@@ -64,7 +64,7 @@ tspac()
 ###create an err class: -------------------------------------
 class myPipiSmol(Exception): 
     pass  #passa a exception
-#raise myPipiSmol("han") #remove tag
+#raise myMetric("han") #remove tag
 
 #call it in some code
 def checkErr(x):

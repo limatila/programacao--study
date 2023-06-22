@@ -11,7 +11,7 @@ myListAdd = myList + myList2
 print(type(myListAdd))#list
 
 #tuple: tuple()
-myTuple = ("okabit",)#only usable, imutable
+myTuple = ("okBit",)#only usable, imutable
 print(type(myTuple))#tuple
 #ARRAYS USE MORE MEMORY AND TIME
 tspac(); line(18)
@@ -135,11 +135,11 @@ else:
 #timeit import default_timer, 
 
 tspac(); line(138)
-twarra= [d[5], d[3], 1, 58]
-print(twarra)
-onarra= ["ok", "NO"]
-twarra.append(onarra)#if inserted an array, will go entirely. if +=, will only add vars (clean)
-print(twarra)
+twArra= [d[5], d[3], 1, 58]
+print(twArra)
+onArra= ["ok", "NO"]
+twArra.append(onArra)#if inserted an array, will go entirely. if +=, will only add vars (clean)
+print(twArra)
 
 tspac(); line(145)
 def timing(dat):

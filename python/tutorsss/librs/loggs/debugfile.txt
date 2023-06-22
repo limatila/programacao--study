@@ -1,4 +1,4 @@
 03/2023/21 13:09:02 - root - DEBUG - debug msg
-03/2023/21 13:09:02 - root - DEBUG - FUK YU
+03/2023/21 13:09:02 - root - DEBUG - OK DEBUGGED
 03/2023/21 13:09:02 - root - WARNING - input not ideal: see documentationa
 03/2023/21 13:09:02 - loghelper - WARNING - LogHelper

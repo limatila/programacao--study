@@ -1,4 +1,4 @@
-from fcts0 import endCode, tspac, line
+from fcts5 import endCode, tspac, line
 from itertools import permutations, combinations, product, accumulate, groupby, count, cycle, repeat
 from itertools import combinations_with_replacement
 import operator
@@ -68,5 +68,6 @@ for i in cycle(a):
 print("")
 for i in repeat(a, 3): #repeat given value, second arg stops it
     print(i)
+print('finished repeating')
 
 endCode()

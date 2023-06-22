@@ -1,3 +1,6 @@
+#a code to check different connections with different URL prefixes.
+
+
 from fcts2 import tspac, endCode
 import requests as rq
 #https://

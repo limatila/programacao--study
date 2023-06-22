@@ -75,7 +75,7 @@ def set_data(dat):
 x = "abcde" * 10_000_00
 print(set_data(x), type(x))
 
-#HOW TO MAKE IT A FCT NOT JUST A PRINT? dude make it practical please...
+#HOW TO MAKE IT A DEF NOT JUST A PRINT? dude make it practical please...
 # @set_data           
 # def formatTimingProcess(x): 
 #     print(set_data(x), type(x))

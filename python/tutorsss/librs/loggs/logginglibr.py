@@ -26,7 +26,7 @@ logging.basicConfig(level = DEBUG, encoding='UTF-8',
 
 
 logging.debug("debug msg")
-logging.debug('FUK YU')
+logging.debug('OK DEBUGGED')
 logging.warning("input not ideal: see documentationa")
 
 import loghelper
@@ -41,7 +41,7 @@ logging.basicConfig(level= INFO, datefmt= formate_ENdate)
 
 
 logging.debug("debug msg")
-logging.debug('FUK YU')
+logging.debug('OK DEBUGGED')
 logging.warning("input not ideal: see documentationa")
 """
 
