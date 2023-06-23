@@ -7,6 +7,7 @@ const this_Var_cannot_change = "it's really unmodifiable."
 
 const this_Array_can_be_changed = [3, 2, 1]//with bracket notation
 this_Array_can_be_changed[2] = "can"
+Object.freeze(this_Array_can_be_changed)//prevent mutation in all cases. won't raise error
 
 //don't declare varNames like this, plz
 //use CAPSLOCK for constants.
