@@ -9,7 +9,7 @@ var anArrow = () => "THIS"
 //can do commands with it
 var anArrow = (a) => console.log("wow " + a)
 
-var integratingIt = () => {
+const integratingIt = () => { //should be const all times
     anArrow('atila')
     console.log(1+1)
 }//a better way to write functions quickly
