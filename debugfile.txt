@@ -1,0 +1,25 @@
+2023-03-25 17:23:33,054 - root - DEBUG - debug msg; 4 times used
+2023-03-25 17:23:33,056 - root - DEBUG - FUK YU; 4 times used
+2023-03-25 17:23:33,058 - root - WARNING - input not ideal: see documentationa; 4 times used
+2023-03-25 17:23:33,058 - loghelper - INFO - info message; 4 times used
+2023-03-25 17:23:33,058 - loghelper - ERROR - code failed; 4 times used
+2023-03-25 17:24:22,215 - root - DEBUG - debug msg; 6 times used
+2023-03-25 17:24:22,215 - root - DEBUG - FUK YU; 6 times used
+2023-03-25 17:24:22,215 - root - WARNING - input not ideal: see documentationa; 6 times used
+2023-03-25 17:24:22,215 - loghelper - INFO - info message; 6 times used
+2023-03-25 17:24:22,215 - loghelper - ERROR - code failed; 6 times used
+2023-04-22 15:04:06,044 - root - DEBUG - debug msg; 7 times used
+2023-04-22 15:04:06,045 - root - DEBUG - FUK YU; 7 times used
+2023-04-22 15:04:06,046 - root - WARNING - input not ideal: see documentationa; 7 times used
+2023-04-22 15:04:06,046 - loghelper - INFO - info message; 7 times used
+2023-04-22 15:04:06,046 - loghelper - ERROR - code failed; 7 times used
+2023-04-23 11:39:40,266 - root - DEBUG - debug msg; 8 times used
+2023-04-23 11:39:40,270 - root - DEBUG - FUK YU; 8 times used
+2023-04-23 11:39:40,270 - root - WARNING - input not ideal: see documentationa; 8 times used
+2023-04-23 11:39:40,270 - loghelper - INFO - info message; 8 times used
+2023-04-23 11:39:40,270 - loghelper - ERROR - code failed; 8 times used
+2023-04-23 12:14:00,131 - root - DEBUG - debug msg; 9 times used
+2023-04-23 12:14:00,131 - root - DEBUG - FUK YU; 9 times used
+2023-04-23 12:14:00,131 - root - WARNING - input not ideal: see documentationa; 9 times used
+2023-04-23 12:14:00,131 - loghelper - INFO - info message; 9 times used
+2023-04-23 12:14:00,131 - loghelper - ERROR - code failed; 9 times used
