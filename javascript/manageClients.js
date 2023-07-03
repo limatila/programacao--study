@@ -113,4 +113,5 @@ function changeProp(objName, num_id, idProp, value){
 }
 
 
-//4: 
+//4: Descrever o user, usando dados sobre ele.
+var 
