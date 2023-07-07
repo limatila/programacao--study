@@ -27,3 +27,12 @@ console.log(filteringAndSumming(myDenseArray))
 
 var doubling = (arr) => arr.map(x => x*2)//iterating trough all, doubling the values
 console.log(doubling(myDenseArray))
+
+
+//sort also takes a function as a arg, to evaluate the sorting. it can't sort numbers by itself
+console.log("sorting:")
+arr1 = Array(1, 20, 15, 80, 37, 75, 1050)
+console.log(arr1)
+
+arr1.sort(function(a, b){return a - b})//the contrary for descending order
+console.log(arr1)
