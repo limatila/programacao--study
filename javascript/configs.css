@@ -11,3 +11,31 @@
 .totem {
     float: right;
 }
+
+#countPresser{
+    background-color: rgb(83, 214, 83);
+}
+
+#decreasePresser{
+    background-color: rgb(200, 230, 31);
+}
+
+#resetPresser{
+    background-color: red;
+    font-family: Impact;
+}
+
+#savePresser{
+    float: right;
+    background-color: rgb(33, 236, 236);
+    font-family: cursive;
+}
+#saves{
+    font-size: medium;
+    float: right;
+}
+#saveResetPresser{
+    float: right;
+    padding-block-start: 10cap;
+    font-family: Impact;
+}
