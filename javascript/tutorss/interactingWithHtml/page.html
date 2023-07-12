@@ -1,0 +1,38 @@
+<!DOCTYPE html> 
+    <head>
+        <title>A Counter</title>
+        <link rel="icon" type="image/x-icon" href="/html/images/uiui udy.ico">
+        <link rel="stylesheet" href="/javascript/configs.css">
+
+        <style>
+            body{
+                text-align: center;
+                font-family: Verdana;
+                font-size: xx-large;
+            }
+
+            button{
+                border: 1cap #000;
+                align-self: center;
+                padding: 0.3cm;
+                font-size: large;
+            }
+        </style>
+    </head>
+        
+    <body>
+        <h1>Your Counter:</h1>
+        <h2 id="countEl">0</h2>
+        
+        <script src="counter.js"></script>
+        <h3><button id="countPresser" onclick="increment()"> Count +1 </button>
+        <h3><button id="decreasePresser" onclick="decrement()"> Decrease -1 </button></h3>
+        <h3><button id="resetPresser" onclick="reset()"> <b>RESET</b> </button></h3>
+
+        <button id="savePresser" onclick="save()"> <i>Save</i></button>
+        <button id="saveResetPresser" onclick="saveReset()"> <i><b>RESET SAVES</b></i></button>
+        <h4 id="saves">Your Saves: </h4>
+
+
+    </body>
+</html>
