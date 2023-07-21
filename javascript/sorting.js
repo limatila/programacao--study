@@ -1,0 +1,1 @@
+myList = ['ok', 'gabu', 'átila', 'miosina', 'actinina', 'íris', 'mão']
