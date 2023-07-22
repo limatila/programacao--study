@@ -58,4 +58,20 @@ console.log(val1 == val2)   //em js, caracteres iguais são avaliados com '=='
 console.log(val1 === val2)  //para avaliar entre classes, use '==='
 //!= e !== para inequações
 
+
+//checking types-----------------------------------------------------------
+const strType = 'Atila'
+const arrType = ['well', 'gabu', 'ok']
+const objType = {
+    'name': 'this dude',
+    'age': 18 
+}
+
+console.log(typeof(strType)) //'string'
+console.log(typeof(arrType)) //these two will be objects, trough this method.
+console.log(typeof(objType))
+
+console.log(Array.isArray(arrType)) //return a boolean value, accurate
+
+
 //copying------------------------------------------------------------------
