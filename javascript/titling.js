@@ -1,4 +1,4 @@
-// develop title method
+// develop title method based on the one from python. Evaluates Strings and Arrays.
 
 function title(value){
     if (typeof(value) === 'string'){ //if a string (if array 'typeof' will return 'object')
