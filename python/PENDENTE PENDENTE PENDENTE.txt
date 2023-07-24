@@ -1,3 +1,4 @@
 matrizes.py
 primechecker.py
-oslibrary.py
+oslibrary.py (estudo)
+jsonHandling.py (estudo)
