@@ -39,3 +39,26 @@
     padding-block-start: 10cap;
     font-family: Impact;
 }
+
+
+#failbutton{
+    font-size: small;
+    border-radius: 2rem;
+    border-collapse: collapse;
+    width: fit-content;
+    height: fit-content;
+}
+#fail{
+    font-family: Impact;
+    color: red;
+    font-size: x-large;
+    
+}
+
+.elementChanger{
+    float: left;
+    font-size: large;
+}
+#nikeChangerButton{
+    font-size: small;
+}
