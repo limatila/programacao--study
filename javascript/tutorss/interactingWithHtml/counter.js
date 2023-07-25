@@ -1,4 +1,4 @@
-countDisplay = document.getElementById("countEl") //DOM, taking the value from HTML to modify it here
+countDisplay = document.getElementById("countEl") //DOM(Document Object Model), taking the value from HTML to modify it here
 
 var count = 0 //starting value
 
@@ -24,14 +24,13 @@ const reset = () => { //to reset the count
 
 }
 
-const editCount = (val) => { //quick edit the count number
+const editCount = (val) => { //quick edit the count number, only console
     count = val
     countDisplay.innerText = count
 }
 
 
 //saving our countings(should attribute to a file later)
-
 const save = () =>{
     //could update it to produce tables
     saved = document.getElementById('saves')
@@ -42,4 +41,18 @@ const save = () =>{
 }
 const saveReset = () =>{ //for cleaning
     saved.innerText = "Your Saves: "  
+}
+
+const failPurchase = () =>{ //purposely fails a purchase, for demonstration
+    purchaseText = document.getElementById("fail")
+    purchaseText.textContent = "This purchase has failed. Please contact us."
+    console.log("Purchase function Exec.")
+}
+
+const changeNikeHeader = () => { //changes the nike header with 'outerHTML' brute editing
+    myText = document.getElementById("changeInputText")
+    myHeader = document.getElementById("nikeHeader")
+
+    myHeader.outerHTML = `<h2 id="nikeHeader">${myText.value}</h2>`
+    console.log("The Nike header was changed!")
 }
