@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+    <head>
+        <link rel="stylesheet" href="/javascript/configs.css">
+        <link rel="icon" type="image/x-icon" href="/html/images/uiui udy.ico">
+        <title>A Calculator</title>
+
+        <script src="simpleCalculator.js"></script>
+
+        <style>
+            body{
+                text-align: center;
+                font-family: Verdana;
+            }
+
+            button{
+                border: 1cap #000;
+                padding: 0.3cm;
+                font-size: medium;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <a href="calculator.html"><button style="float: left;">Reload</button></a>
+        <br><br><br>
+        <button style="float: left;" onclick="reset()">Restart Default</button>
+
+
+        <h1>Your Calculator:</h1>
+        <p style="font-size: smaller;">Obs: just a simple calculator</p>
+    
+        <br><br> <!--input-->
+        <h3>Your Input:</h3>
+        <input id="num1Input" type="number">
+        <input id="num2Input" type="number">
+
+
+        <br><br><br><br> <!--buttons-->
+        <div class="calculator">
+            <h3>Click To perform operation:</h3>
+            <form id="calcForm" onsubmit="return false"> 
+                <button onclick="calculate('add')">Add</button>
+                <button onclick="calculate('subtract')">Subtract</button>
+                <button onclick="calculate('multiply')">Multiply</button>
+                <button onclick="calculate('divide')">Divide</button>
+            </form>
+
+        </div>
+
+        <div class="results">
+            <h3>Result:</h3>
+            <p id="calcResult">0</p>
+        </div>
+
+    </body>
+</html>
