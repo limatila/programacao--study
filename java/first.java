@@ -1,15 +1,15 @@
 class first{
     public static void main(String[] args){
 
-        int a = 1;
+        int a = 1;		//ALWAYS declare type of var
         System.out.println(a);
 
-        float b = 2.1;
+        int b = 55;
 
-        const myIterable = [1, 2.1]; //error
-
-        for(i = 0; i<myIterable.length; i++){
-            System.out.println("this variable: " + myIterable[i]);
+        int myIterable[] = {a, b};
+		
+        for(int i = 0; i<myIterable.length; i++){
+            System.out.println("this variable: " + myIterable[i]); 
         };
 
     }
