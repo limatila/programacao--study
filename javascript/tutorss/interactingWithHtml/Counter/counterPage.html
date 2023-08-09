@@ -1,0 +1,66 @@
+<!DOCTYPE html> 
+    <head>
+        <title>A Counter</title>
+        <link rel="icon" type="image/x-icon" href="/html/images/uiui udy.ico">
+        <link rel="stylesheet" href="/javascript/configs.css">
+
+        <style>
+            body{
+                text-align: center;
+                font-family: Verdana;
+                font-size: xx-large;
+            }
+
+            button{
+                border: 1cap #000;
+                padding: 0.3cm;
+                font-size: large;
+            }
+
+
+        </style>
+    </head>
+        
+    <body>
+        <nav>
+            <a href="#nikeChangerButton">
+                <button style="float: left; font-size: medium;">
+                    Go to the bottom</button>
+            </a>
+        </nav>
+
+        <br>
+        <h1>Your Counter:</h1>
+        <h2 id="countEl">0</h2>
+        
+        <script src="counter.js"></script>
+        <h3><button id="countPresser" onclick="increment()"> Count +1 </button>
+        <h3><button id="decreasePresser" onclick="decrement()"> Decrease -1 </button></h3>
+        <h3><button id="resetPresser" onclick="reset()"> <b>RESET</b> </button></h3>
+
+        <button id="savePresser" onclick="save()"> <i>Save</i></button>
+        <button id="saveResetPresser" onclick="saveReset()"> <i><b>RESET SAVES</b></i></button>
+        <h4 id="saves">Your Saves: </h4>
+
+    
+        <!-- building a basic responsive error-->
+        <br><br><br><br><br>
+        <div class="purchases">
+            <h2 id="nikeHeader">A nike</h2>
+            <img src="https://www.kicksonfire.com/wp-content/uploads/2019/03/Nike-Air-VaporMax-2-What-The-.jpg" alt="nike" id="nike" height="250">           
+            <br>
+            <button id="failbutton" onclick="failPurchase()">Purchase</button>
+            <p id="fail"></p>
+        </div>
+
+        <aside class="elementChanger">
+            <h3>Change the nike name:</h3>
+            <form id="form" onsubmit="return false">
+                <textarea name="text for changing the nike header" id="changeInputText" cols="25" rows="2" placeholder="Input a new title here"></textarea>
+                <br>
+                <button onclick="changeNikeHeader()" id="nikeChangerButton" type="button" title="click here to change">Change</button>
+            </form>
+        </aside>
+        
+    </body>
+</html>

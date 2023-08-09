@@ -61,7 +61,7 @@ function addUser(dataObj, num_id, username, user_Interesse, userLocation, ){
             'location': userLocation,
         }
     } else {
-        dataObj[num_id] = {
+        dataObj[num_id] = { //can enhance this using arrow function
                 'name': username,
                 'interested_in': user_Interesse,
                 'location': userLocation,
@@ -96,21 +96,39 @@ function removeUser(dataObj, num_id){
 }
 
 //3: mudar uma prop. (add, remove, change)
-function changeProp(objName, num_id, idProp, value){
+function changeUserProp(dataObj, num_id, idProp, value){
     if(num_id === 'ObjName'){
-        console.error('The object name can\'t be changed.')
+        throw console.error('The object name can\'t be changed.')
     } else if (value === 'del'){
-        delete objName[num_id][idProp]
+        delete dataObj[num_id][idProp]
         console.log("id prop deleted sucessfully!")
     } else if (idProp === 'name'){
-        console.warn("WARNING: it\'s not safe to change name of id. for precaution: it\'s " + num_id + " and the name was " + objName[num_id][idProp])
-        objName[num_id][idProp] = value
+        console.warn("WARNING: it\'s not safe to change name of id. for precaution: it\'s " + num_id + " and the name was " + dataObj[num_id][idProp])
+        dataObj[num_id][idProp] = value
         console.log("name of User changed sucessfully!")
     } else {
-        objName[num_id][idProp] = value
+        dataObj[num_id][idProp] = value
         console.log("id prop changed sucessfully!")
     } 
 }
 
 
-//4: 
+//4: Descrever o user, usando dados sobre ele.
+function describeUser(dataObj, num_id){
+    if (num_id.startsWith('id_') === true){
+        var {name : nameCopy, interested_in : interestCopy, location : locationCopy} = dataObj[num_id];
+
+        let toPrint = `        O usuário referido chama-se "${nameCopy}".
+        Ele é um sujeito que gosta de ${interestCopy.join(", ")}.. ele deve gostar de mais coisas, sem dúvida.
+        A última localização associada a ele foi em "${locationCopy}"`
+        console.log(toPrint)
+
+    } else if (num_id == "ObjName"){
+        let nameCopy = dataObj[num_id];
+        let toPrint = `O nome deste objeto é "${nameCopy}"`
+        console.log(toPrint)
+
+    } else {
+        throw console.error('Specify an id correctly: \'id_XXXXX\' / \'all\'')
+    }
+}

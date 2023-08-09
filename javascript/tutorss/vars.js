@@ -1,7 +1,7 @@
 //var declaring:
 let This_is_a_LOCAL_Var = "wont be able to be used in global \
 scope, if it's declared in local scope, \
-and cannot be set twice"
+and cannot be set twice" //the escapes here won't log out as '\n'
 var this_is_a_GLOBAL_Var = "will be able to be used in every other scope"
 const this_Var_cannot_change = "it's really unmodifiable."
 
@@ -45,6 +45,11 @@ console.log(myStrSplited)
 myStrSliced = myStr.slice(3,8)
 console.log(myStrSliced)
 
+const templateLiteral = `i can put any " or other elements, there will be
+no need to escape them. also i can do newlines with ease,
+and i can bring some vars using ${aNum} (see origin code)`
+console.log(templateLiteral) //usefull to auto write code
+
 
 //equality-----------------------------------------------------------------
 var val1 = 10
@@ -52,5 +57,21 @@ var val2 = "10"
 console.log(val1 == val2)   //em js, caracteres iguais são avaliados com '=='
 console.log(val1 === val2)  //para avaliar entre classes, use '==='
 //!= e !== para inequações
+
+
+//checking types-----------------------------------------------------------
+const strType = 'Atila'
+const arrType = ['well', 'gabu', 'ok']
+const objType = {
+    'name': 'this dude',
+    'age': 18 
+}
+
+console.log(typeof(strType)) //'string'
+console.log(typeof(arrType)) //these two will be objects, trough this method.
+console.log(typeof(objType))
+
+console.log(Array.isArray(arrType)) //return a boolean value, accurate
+
 
 //copying------------------------------------------------------------------

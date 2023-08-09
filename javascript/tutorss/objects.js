@@ -1,6 +1,6 @@
 var myDog = {       //like python's dict
     'name': 'Luna',
-    'color skin': 'orange yellowed',
+    'colorSkin': 'orange yellowed',
     'bites': true,
     'age': 3.2
 }
@@ -47,3 +47,38 @@ myTought_Rn.myStudies.myFunction = {     //adding to object memory
     'mySoma': soma
 }
 //can call here or in the console.
+
+
+//simple attributing(see arrow function in 'quickFcts.js'):
+const myObjHas = (name, use) => ({name, use}) //function 
+var thisObj = myObjHas('pen', '2 days')
+console.log(thisObj)
+
+
+//a obj can store functions inside it.
+myDog.bark = (pont) => { 
+    if (pont in "ABCDEFGHIKKLMNOPQRSTUVWXYZ"){
+        throw console.error('not permited')
+    } else {
+        console.log('bark'+pont)
+    }
+}
+
+
+//classes: o molde para os objetos criados a partir dela
+class addDog{
+    constructor(name, colorSkin, bites, age){
+        this.name = name
+        this.colorSkin = colorSkin
+        this.bites = Boolean(bites)
+        this.age = parseInt(age)
+        console.log("new dog added")
+    }
+
+    bark(pont){
+        console.log('bark'+pont)
+    }
+    
+}
+
+const mySecDog = new addDog('Átila', 'black', false, 9.0) //now this is real OOP.
