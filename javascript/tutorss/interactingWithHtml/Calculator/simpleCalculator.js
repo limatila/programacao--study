@@ -45,3 +45,14 @@ const reset = () =>{
 
     console.log("RESETED.")
 }
+
+getRandom = (max) => { //recursive functions will have max memory limits. NOT A SAFE WAY
+    let rand = Math.random()
+    console.log('random is' + rand)
+    val = Math.floor(rand * max); 
+    if(val == 0){
+        getRandom(max)
+    }
+    return val
+
+}
