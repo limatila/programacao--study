@@ -50,7 +50,7 @@ const reset = () =>{
 
 function generator(max){let rand = Math.random()
     val = Math.round(rand * max); 
-    if(val <= 1){
+    if(val < 1){
         getRandom(max)
     }
     return val
@@ -69,4 +69,4 @@ const getRandom = () => { //recursive functions will have max memory limits. NOT
     document.getElementById("num1Input").value = num1
     document.getElementById("num2Input").value = num2 
     console.log("Random numbers generated:", num1, num2)
-} //! fix huge amout of stacks in low input number
+} //! 1.fix huge amout of stacks in low input number(the last will always count?)
