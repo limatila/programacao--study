@@ -67,3 +67,7 @@
     color: rgb(46, 197, 46);
     text-shadow: 2px #000;
 }
+
+.randomGenButton{
+    float: right;
+}
