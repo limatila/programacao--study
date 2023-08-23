@@ -82,3 +82,30 @@ class addDog{
 }
 
 const mySecDog = new addDog('Átila', 'black', false, 9.0) //now this is real OOP.
+
+
+//method chaining: using two consecutive methods
+class stringTreatment{
+    constructor(str){
+        this.primaryValue = str //setup a string to work with
+        console.log("new string treatment added")
+    }
+
+    addThing = (thing) => {
+        this.primaryValue += thing
+        return this     //return entire object to be readed
+    }
+
+    capitalizeString = () => {
+        this.initial = this.primaryValue.charAt(0).toUpperCase() //?: really need to use 'this.' in every var?
+        this.final = this.primaryValue.slice(1)
+        this.primaryValue = this.initial + this.final  
+        return this.primaryValue    //returning only the value, not the object. won't be able to chain another method.
+    }
+}
+
+thisString = new stringTreatment("essa String aki")
+console.log(thisString.addThing(' é massa').capitalizeString(), ';it\'s a chained processed method')
+console.log(thisString.initial)
+
+//prototype:
