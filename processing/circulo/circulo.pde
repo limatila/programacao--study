@@ -13,7 +13,9 @@ void draw(){
   varY= varY + velocidade;
   varX+= (velocidade- 3);
   
-  
+  if(mousePressed == true){ //if click, will spawn the object
+    circle(100,1000,50);
+  };
   
   fill(255, 0, 0, 100);
   circle(velocidade+varX, velocidade+varY, 190);
