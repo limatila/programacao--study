@@ -20,3 +20,5 @@ function title(value){
 }
 
 console.log(title("atila"))
+
+//TODO: add support for full phrase titling
