@@ -1,3 +1,5 @@
+package unifametroExercises;
+
 class exer01{
     public static void main(String[] args){
 
@@ -67,7 +69,8 @@ class exer01{
         double mediaPonderada = (nota1 + (nota2*2) + (nota3*3) + (nota4*4))/10;
         System.out.println("A Média Ponderada é: " + mediaPonderada);
 
-        //15.
+
+        //15. select angle and show trigonometric notations
         float angulo = 30;
         double seno = Math.sin(angulo);
         double cosSeno = Math.cos(angulo);
@@ -80,5 +83,37 @@ class exer01{
             System.out.println("Meu ângulo: " + angulo + "\nSeno dele: " + seno + "\nCosseno dele: " + cosSeno + "\nTangente dele: " + tangente + "\nSecante: " + secante
             + "\nCossecante: " + coSecante + "\nCotangente: " + coTangente);
         System.out.println("--------------");
+
+
+        //16.
+        double Logaritm = Math.log10(myNums[0]);
+        System.out.println(Logaritm);
+
+        //17.
+        System.out.println("número: " + myNums[2]);
+        System.out.println("raíz quadrada: " + Math.sqrt(myNums[2]));
+        System.out.println("elevado a 2: " + Math.pow(myNums[2], 2));
+    
+        //18.
+        double dolar = 4.93; //em 12/09/23
+        double newDolar = (dolar/100) + dolar;
+        var newDolarFormatted = String.format("%.2f", newDolar);
+        System.out.println("o Dolar estava a " + dolar + ", sofreu um aumento e custa agora: "+ newDolarFormatted);
+
+        //19. inverter um int?
+
+        //20.
+        double salarioMinimo = 1320;
+        double valorKW = (salarioMinimo/7)/100;
+        int usoEnergia = 157; //157kw/home in general in brazil
+        double fatura = valorKW * usoEnergia;
+        double faturaDescontada = fatura - (fatura/10);
+        
+        System.out.println("preço do kilawatt é: " + valorKW);
+
+        var faturaFormatted = String.format("%.2f", (fatura)); //formatting for better visualizing 
+        var descontadaFormatted = String.format("%.2f", faturaDescontada);
+        System.out.println("o valor total a pagar é de " + faturaFormatted + ", e em alguns casos há um desconto, totalizando: " + descontadaFormatted);
+
     }
 }
