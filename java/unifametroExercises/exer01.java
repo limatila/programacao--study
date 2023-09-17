@@ -1,7 +1,11 @@
 package unifametroExercises;
+import java.util.Scanner;
+import java.util.Array;
 
 class exer01{
     public static void main(String[] args){
+        
+        Scanner scanner = new Scanner(System.in); //creating scanner for futute use
 
         //2.
         var nome = new String("Átila");
@@ -116,7 +120,11 @@ class exer01{
         System.out.println("o valor total a pagar é de " + faturaFormatted + ", e em alguns casos há um desconto, totalizando: " + descontadaFormatted);
 
         //21.
-        
+        System.out.println("digite seu nome: ");
+        String nameScanned = scanner.nextLine();
+        String duasLetras[] = {nameScanned.charAt(0), nameScanned.charAt(nameScanned.length - 1)};
 
+        System.out.println("Olá " + nameScanned + ". Sua inicial e sua final são " + Array.toString(duasLetras));
+	
     }
 }
