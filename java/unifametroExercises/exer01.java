@@ -1,6 +1,6 @@
 package unifametroExercises;
 import java.util.Scanner;
-import java.util.Array;
+import java.util.Arrays;
 
 class exer01{
     public static void main(String[] args){
@@ -122,9 +122,23 @@ class exer01{
         //21.
         System.out.println("digite seu nome: ");
         String nameScanned = scanner.nextLine();
-        String duasLetras[] = {nameScanned.charAt(0), nameScanned.charAt(nameScanned.length - 1)};
+        String duasLetras[] = {String.valueOf(nameScanned.charAt(0)), String.valueOf(nameScanned.charAt(nameScanned.length() - 1))};
 
-        System.out.println("Olá " + nameScanned + ". Sua inicial e sua final são " + Array.toString(duasLetras));
-	
+        System.out.println("Olá " + nameScanned + ". Sua inicial e sua final são " + Arrays.toString(duasLetras));
+        System.out.println("Suas primeiras três letras são: " + nameScanned.substring(0, 3));
+        System.out.println("Logo após, a quarta letra: " + nameScanned.charAt(3));
+        System.out.println("Todos menos a inicial: " + nameScanned.substring(1, nameScanned.length()));
+        System.out.println("Últimas duas letras: " + nameScanned.substring(nameScanned.length() - 2, nameScanned.length()));
+
+        //22.
+        System.out.println("Insira uma base (inteiro) para um retângulo : ");
+        int base = scanner.nextInt();
+        System.out.println("Insira agora uma altura: ");
+        int altura = scanner.nextInt();
+
+        System.out.println("Sua área é: " + base * altura);
+        System.out.println("Seu perímetro é " + (base * 2 + altura * 2));
+        System.out.println("Sua diagonal é " + Math.sqrt(Math.pow(base, 2) + Math.pow(altura, 2)));
+
     }
 }
