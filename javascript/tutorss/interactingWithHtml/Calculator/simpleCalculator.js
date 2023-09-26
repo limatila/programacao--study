@@ -1,6 +1,6 @@
 //how to implement functions with a function?
 
-function calculate(method){
+const calculate = (method) => {
     var num1 = document.getElementById("num1Input").value
     var num2 = document.getElementById("num2Input").value
     num1 = parseInt(num1); num2 = parseInt(num2) //elements in html will ALWAYS be treated as string
@@ -42,6 +42,31 @@ const reset = () =>{
     document.getElementById("calcResult").textContent = 0
     document.getElementById("num1Input").value = null
     document.getElementById("num2Input").value = null
+    document.getElementById("randomMaxInput").value = null
 
     console.log("RESETED.")
 }
+
+
+function generator(max){let rand = Math.random()
+    val = Math.round(rand * max); 
+    if(val < 1){
+        getRandom(max)
+    }
+    return val
+}
+
+const getRandom = () => { //recursive functions will have max memory limits. NOT A SAFE WAY
+
+    var genInput = document.getElementById("randomMaxInput").value
+
+    let random_1 = generator(genInput)
+    let random_2 = generator(genInput)
+
+    num1 = random_2
+    num2 = random_1
+
+    document.getElementById("num1Input").value = num1
+    document.getElementById("num2Input").value = num2 
+    console.log("Random numbers generated:", num1, num2)
+} //! 1.fix huge amout of stacks in low input number(the last will always count?)
