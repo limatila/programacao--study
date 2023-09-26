@@ -138,7 +138,11 @@ class exer01{
 
         System.out.println("Sua área é: " + base * altura);
         System.out.println("Seu perímetro é " + (base * 2 + altura * 2));
-        System.out.println("Sua diagonal é " + Math.sqrt(Math.pow(base, 2) + Math.pow(altura, 2)));
+        System.out.println("Sua diagonal é aproximadamente " + 
+                            String.format("%.2f", 
+                            Math.sqrt(Math.pow(base, 2) + Math.pow(altura, 2))
+                                )
+                            );
 
     }
 }
