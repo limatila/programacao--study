@@ -1,3 +1,4 @@
+# EN
 Hii, first of all this is a repo containing my work on studying software development.. 
 Feel free to explore and analize it, but some code can be "childish" because i am a novice..
 All my study work is divided by these folders, with anotations, some finished codes, and other things
@@ -10,3 +11,11 @@ For examples OOP theorys like SOLID programming, composition, refactorization, d
 Some updates will be gradually be updated here as i study more.
 The updates are mainly comitted to the 'main' branch, and then pulled to the 'master' branch(After a major event happens). 
 The more recent codes i'm writing shall be searched in the 'main' branch.
+
+# PT-BR
+Olá! primeiramente, este é um repositório contendo todo o meu estudo em desenvolvimento de software.
+Sinta-se livre para explorar e analizá-lo, nas alguns códigos ainda são "imaturos", em algum sentido, porque sou novato na área..
+Todo meu estudo está dividido nestas pastas, com anotaçoes, alguns códigos acabados, entre outras coisas.
+
+Esses arquivos devem mudar no futuro, enquanto eu estudo mais sobre programação crua, e algumas teorias também.
+Eu [.]
