@@ -18,4 +18,9 @@ Sinta-se livre para explorar e analizá-lo, nas alguns códigos ainda são "imat
 Todo meu estudo está dividido nestas pastas, com anotaçoes, alguns códigos acabados, entre outras coisas.
 
 Esses arquivos devem mudar no futuro, enquanto eu estudo mais sobre programação crua, e algumas teorias também.
-Eu [.]
+Eu também irei atualizá-lo com alguns textos e algumas teorias que estou estudando também,
+Como por exemplo teorias de POO como programação SOLID, composição, refatoração, métodos de injeção de dependência, etc.
+
+Algumas atualizações devem ser gradualmente incluídas neste repositório, enquanto eu vou estudando mais.
+Atualizações são geralmente comitadas para a branch 'main', e então mergidas com a branch 'master'(depois de algum tempo ou evento considerável).
+Os códigos mais recentes devem ser achados na branch 'main'.
