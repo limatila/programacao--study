@@ -56,7 +56,7 @@ var val1 = 10
 var val2 = "10"
 console.log(val1 == val2)   //em js, caracteres iguais são avaliados com '=='
 console.log(val1 === val2)  //para avaliar entre classes, use '==='
-//!= e !== para inequações
+//!= e !== para inequações (negação lógica)
 
 
 //checking types-----------------------------------------------------------
