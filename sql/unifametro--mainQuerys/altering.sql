@@ -1,2 +1,2 @@
 alter table Users 
-    urlVideo varchar(40);
+    urlVideo varchar(30);
