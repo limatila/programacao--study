@@ -1,4 +1,4 @@
-//To avoid that realtime errors stop the execution of the code.
+//To avoid realtime errors that stop the execution of the code.
 const a = 2
 try{
     a = 15

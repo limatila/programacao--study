@@ -15,5 +15,5 @@ console.log(myObj.age)
 
 import { writeFile } from 'fs' assert {type: "json"};
 function saveToFile(obj){
-
+    
 }
