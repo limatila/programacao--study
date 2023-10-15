@@ -1,2 +1,4 @@
-alter table Users 
-    urlVideo varchar(30);
+use youtube;
+
+alter table Users
+	 column urlVideo varchar(30); /* pergunta pro carlos k */
