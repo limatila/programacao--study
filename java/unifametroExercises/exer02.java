@@ -1,6 +1,7 @@
 package unifametroExercises;
 
 import java.util.Scanner;
+import java.util.function.ToIntFunction;
 
 class exer02{
     public static void main (String[] args){
@@ -20,7 +21,7 @@ class exer02{
         //2.
         System.out.println("Iterando somente em pares...");
         
-        for(int i = 0; i<= numInserted; i++){ //numInserted = delimitador.
+        for(int i = 0; i <= numInserted; i++){ //numInserted = delimitador.
             if(i%2 == 0){
                 System.out.println(i);
             }
@@ -45,7 +46,39 @@ class exer02{
             System.out.println(numInserted + " vezes " + i + " = " + multip);
         }
 
+        //*.
+	    int counter = 5;
+        while (counter <= 15){
+            if(counter % 2 != 0){
+                System.out.println("Iterando ímpares: " + counter);
+            }
+            counter++;
+        }
+
+
         //5.
-	for()
+        System.out.println("Iterando divisíveis por 4:");
+        for(int i = 0; i <= numInserted; i++){
+            if(i % 4 == 0){
+                System.out.println(i);
+            }
+        }
+
+        //6.
+        System.out.println("Apresentando potências de 3 de 0 a 10");
+
+        int base = 5;
+        int total = base;
+        int i = 1;
+        int expoente = 3;
+
+        while(i <= expoente){
+            total = total * base;
+            
+            System.out.println(total);
+            i++;
+        }
+
+        //7.
     }
 }
