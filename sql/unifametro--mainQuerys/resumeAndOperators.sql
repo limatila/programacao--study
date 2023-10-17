@@ -13,12 +13,12 @@ create table ESports(
 );
 
 insert into ESports (modalidade, timeSelecao, dataJogos) values
-("FF", "LOUD", "2023-10-11 17:00"),
+("LOL", "ZAUNITAS", "2022-05-11 09:46"); /*
 ("Yugioh", "Riquelmix", "2022-11-05 13:00"),
 ("CS", "Fnatic", "2023-05-17 19:00"),
-("FF", "Baki", "2023-07-28 09:00"),
-("LOL", "PAIN", "2021-08-30 18:00");
-
+("FF", "Baki", "2025-07-28 09:00"),
+("LOL", "PAIN", "2026-08-30 18:00");
+*/
 
 /* DQL */
 select * from ESports;
@@ -36,20 +36,33 @@ where EXTRACT(year from dataJogos) <= "2023" AND modalidade = "PES";
 
 /* deletes (DML) */
 set SQL_SAFE_UPDATES = 0; /* desables feature that impossibilitates deleting records without specifying a key */
-delete from ESports 
+delete from ESports /* deleting too much future games */
 where dataJogos >= "2024-08-29";
+
+delete t1 FROM ESports t1
+INNER  JOIN ESports t2
+WHERE
+    t1.idJogo > t2.idJogo AND
+    t1.modalidade = t2.modalidade AND
+    t1.timeSelecao = t2.timeSelecao AND
+    t1.dataJogos = t2.dataJogos;
+
 
 
 /* like param. in DQL */
-/* % sinaliza onde começa a semelhança. %FU procura quem termina em "FU", "A%" procura quem começa em "A". %ABC% procura das duas formas */
+/* % sinalizes where the similiarities begin. %FU searchs who end in 'FU', "A%" searchs who begin in "A". "%ABC%" searchs in the 2 ways. */
 select * from ESports
-where timeSelecao like "FU%"; /* tudo que comece com 'FU' */
+where timeSelecao like "FU%"; /* All that starts in 'FU' */
 
 select modalidade, idJogo from ESports
-where modalidade like "%S"; /* tudo que termine com 'S' */
+where modalidade like "%S"; /* All that ends in 'S' */
 
 select * from ESports
-where timeSelecao not like "%Z%"; /* tudo que NAO contenha 'Z' */ /*translate*/
+where timeSelecao not like "%Z%"; /* All that DOESN'T contain 'Z' */
 
 /* grab formatted date in select */
 select date_format(dataJogos, "%d/%m/%Y - ás %H:%i horas"), timeSelecao from ESports;
+
+/* display ordered by date */
+select date_format(dataJogos, "%d/%m/%Y"), timeSelecao from esports
+order by EXTRACT(year from dataJogos);
