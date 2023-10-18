@@ -39,7 +39,7 @@ set SQL_SAFE_UPDATES = 0; /* desables feature that impossibilitates deleting rec
 delete from ESports /* deleting too much future games */
 where dataJogos >= "2024-08-29";
 
-delete t1 FROM ESports t1
+delete t1 FROM ESports t1 /* deleting */
 INNER  JOIN ESports t2
 WHERE
     t1.idJogo > t2.idJogo AND
@@ -66,3 +66,20 @@ select date_format(dataJogos, "%d/%m/%Y - ás %H:%i horas"), timeSelecao from ES
 /* display ordered by date */
 select date_format(dataJogos, "%d/%m/%Y"), timeSelecao from esports
 order by EXTRACT(year from dataJogos);
+
+/*! to test!*/
+/* showing sum of all objects */
+select COUNT(idJogo) from ESports;
+
+/* selecting, grouping, and ordering decrescently */
+select timeSelecao, max(dataJogos) from ESports
+GROUP BY modalidade 
+ORDER BY max(dataJogos) DESC;
+
+/* showing average year of the matches */
+select avg(EXTRACT(year from dataJogos)) from ESports;
+
+/*  */
+select idJogo, dataValidade from ESports
+;
+
