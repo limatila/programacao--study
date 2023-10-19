@@ -1,7 +1,6 @@
 package unifametroExercises;
 
 import java.util.Scanner;
-import java.util.function.ToIntFunction;
 
 class exer02{
     public static void main (String[] args){
@@ -32,7 +31,7 @@ class exer02{
         System.out.println("Iterando adicionando um por um até o num limite...");
 
         int soma = 0;
-        for(int i = 0; soma <= numInserted; i++){
+        for(int i = 0; i <= numInserted; i++){  //until 'soma' be the sum of all 'i's
             soma += i;
             System.out.println(soma);
         }
@@ -46,7 +45,7 @@ class exer02{
             System.out.println(numInserted + " vezes " + i + " = " + multip);
         }
 
-        //*.
+        //* exemplo de sala.
 	    int counter = 5;
         while (counter <= 15){
             if(counter % 2 != 0){
