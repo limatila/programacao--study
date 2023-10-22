@@ -12,9 +12,11 @@ Some updates will be gradually be updated here as i study more.
 The updates are mainly comitted to the 'main' branch, and then pulled to the 'master' branch(After a major event happens). 
 The more recent codes i'm writing shall be searched in the 'main' branch.
 
+*Algorithms present in this repo belongs to Átila Lima, and can be accessed and uses in any legal purpose.
+
 # PT-BR
 Olá! primeiramente, este é um repositório contendo todo o meu estudo em desenvolvimento de software.
-Sinta-se livre para explorar e analizá-lo, nas alguns códigos ainda são "imaturos", em algum sentido, porque sou novato na área..
+Sinta-se livre para explorar e analizá-lo, mas alguns códigos ainda são "imaturos", em algum sentido, porque sou novato na área..
 Todo meu estudo está dividido nestas pastas, com anotaçoes, alguns códigos acabados, entre outras coisas.
 
 Esses arquivos devem mudar no futuro, enquanto eu estudo mais sobre programação crua, e algumas teorias também.
@@ -24,3 +26,8 @@ Como por exemplo teorias de POO como programação SOLID, composição, refatora
 Algumas atualizações devem ser gradualmente incluídas neste repositório, enquanto eu vou estudando mais.
 Atualizações são geralmente comitadas para a branch 'main', e então mergidas com a branch 'master'(depois de algum tempo ou evento considerável).
 Os códigos mais recentes devem ser achados na branch 'main'.
+
+*Códigos presentes neste repositório pertencem a Átila Lima, e podem ser acessados em qualquer propósito legal.
+
+***
+### Linkedin: https://www.linkedin.com/in/átila-lima-240a82269/
