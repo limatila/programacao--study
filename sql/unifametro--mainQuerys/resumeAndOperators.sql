@@ -13,12 +13,12 @@ create table ESports(
 );
 
 insert into ESports (modalidade, timeSelecao, dataJogos) values
-("LOL", "ZAUNITAS", "2022-05-11 09:46"); /*
+("LOL", "ZAUNITAS", "2022-05-11 09:46"),
 ("Yugioh", "Riquelmix", "2022-11-05 13:00"),
 ("CS", "Fnatic", "2023-05-17 19:00"),
 ("FF", "Baki", "2025-07-28 09:00"),
 ("LOL", "PAIN", "2026-08-30 18:00");
-*/
+
 
 /* DQL */
 select * from ESports;
@@ -34,7 +34,7 @@ select dataJogos, modalidade from ESports
 where EXTRACT(year from dataJogos) <= "2023" AND modalidade = "PES"; 
 
 
-/* deletes (DML) */
+/* DML deletes */
 set SQL_SAFE_UPDATES = 0; /* desables feature that impossibilitates deleting records without specifying a key */
 delete from ESports /* deleting too much future games */
 where dataJogos >= "2024-08-29";
@@ -67,7 +67,7 @@ select date_format(dataJogos, "%d/%m/%Y - ás %H:%i horas"), timeSelecao from ES
 select date_format(dataJogos, "%d/%m/%Y"), timeSelecao from esports
 order by EXTRACT(year from dataJogos);
 
-/*! to test!*/
+/* to test */
 /* showing sum of all objects */
 select COUNT(idJogo) from ESports;
 
@@ -79,7 +79,13 @@ ORDER BY max(dataJogos) DESC;
 /* showing average year of the matches */
 select avg(EXTRACT(year from dataJogos)) from ESports;
 
-/*  */
-select idJogo, dataValidade from ESports
-;
 
+/* renomear coluna? DDL */
+
+
+/* update DML */
+set SQL_SAFE_UPDATES = 0;
+update ESports SET dataJogos = DATE_ADD(dataJogos, INTERVAL 1 YEAR) /* changing the year, MySQL exclusive */
+where modalidade = "FF";
+
+select * from ESports;
