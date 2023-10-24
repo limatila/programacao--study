@@ -15,7 +15,7 @@ class exer01{
         System.out.println(28*43);
 
         //4.
-        int myNums[] = {8,100,7}; //change only this
+        int myNums[] = {8,100,64}; //change only this
 
         double soma = 0;
         double media = 0;
@@ -95,8 +95,8 @@ class exer01{
 
         //17.
         System.out.println("número: " + myNums[2]);
-        System.out.println("raíz quadrada: " + Math.sqrt(myNums[2]));
-        System.out.println("elevado a 2: " + Math.pow(myNums[2], 2));
+        System.out.println("raíz quadrada: " + (int) Math.sqrt(myNums[2])); //se possível após método, converter em Int. 
+        System.out.println("elevado a 2: " + (int) Math.pow(myNums[2], 2));
     
         //18.
         double dolar = 4.93; //em 12/09/23
