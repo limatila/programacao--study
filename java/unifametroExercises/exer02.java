@@ -66,18 +66,24 @@ class exer02{
         //6.
         System.out.println("Apresentando potências de 3 de 0 a 10");
 
-        int base = 5;
+        int base = 1;
         int total = base;
-        int i = 1;
+        int counterExp = 1;
         int expoente = 3;
+        
+        while(base <= 10){  //iterando de 0 a 10, itera a potência.
+            counterExp = 1;
 
-        while(i <= expoente){
-            total = total * base;
+            while(counterExp <= expoente + 1){
+                total = total * base;
+                counterExp++;
+            }
+            System.out.println(base + " elevado a " + expoente + " = " + total);
             
-            System.out.println(total);
-            i++;
-        }
+            base++;
+        }; //! errado
 
         //7.
+        System.out.println("imprimindo as primeiras 20 potencias de 2: ");
     }
 }
