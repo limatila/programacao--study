@@ -2,6 +2,7 @@
 Hii, first of all this is a repo containing my work on studying software development.. 
 Feel free to explore and analize it, but some code can be "childish" because i am a novice..
 All my study work is divided by these folders, with anotations, some finished codes, and other things
+In any of these primary folders, the directory "tutorss" contain programs and anotations i built when studying tutorials, courses, and documentations.
 
 This files should change in future, as i study more about brute programmation, 
 and some theory too,
@@ -18,6 +19,7 @@ The more recent codes i'm writing shall be searched in the 'main' branch.
 Olá! primeiramente, este é um repositório contendo todo o meu estudo em desenvolvimento de software.
 Sinta-se livre para explorar e analizá-lo, mas alguns códigos ainda são "imaturos", em algum sentido, porque sou novato na área..
 Todo meu estudo está dividido nestas pastas, com anotaçoes, alguns códigos acabados, entre outras coisas.
+Em qualquer uma das pastas primárias, o diretório "tutorss" contém programas e anotações que eu construí estudando tutoriais, cursos e documentações.
 
 Esses arquivos devem mudar no futuro, enquanto eu estudo mais sobre programação crua, e algumas teorias também.
 Eu também irei atualizá-lo com alguns textos e algumas teorias que estou estudando também,
