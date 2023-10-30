@@ -1,7 +1,7 @@
 # EN
 Hii, first of all this is a repo containing my work on studying software development.. 
 Feel free to explore and analize it, but some code can be "childish" because i am a novice..
-All my study work is divided by these folders, with anotations, some finished codes, and other things
+All my study work is divided by these folders, with anotations, some finished codes, and other things.
 In any of these primary folders, the directory "tutorss" contain programs and anotations i built when studying tutorials, courses, and documentations.
 
 This files should change in future, as i study more about brute programmation, 
