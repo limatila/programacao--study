@@ -13,7 +13,7 @@ Some updates will be gradually be updated here as i study more.
 The updates are mainly comitted to the 'main' branch, and then pulled to the 'master' branch(After a major event happens). 
 The more recent codes i'm writing shall be searched in the 'main' branch.
 
-*Algorithms present in this repo belongs to Átila Lima, and can be accessed and uses in any legal purpose.
+*Algorithms present in this repo belongs to Átila Lima, and can be accessed and used in any legal purpose.
 
 # PT-BR
 Olá! primeiramente, este é um repositório contendo todo o meu estudo em desenvolvimento de software.
@@ -29,7 +29,7 @@ Algumas atualizações devem ser gradualmente incluídas neste repositório, enq
 Atualizações são geralmente comitadas para a branch 'main', e então mergidas com a branch 'master'(depois de algum tempo ou evento considerável).
 Os códigos mais recentes devem ser achados na branch 'main'.
 
-*Códigos presentes neste repositório pertencem a Átila Lima, e podem ser acessados em qualquer propósito legal.
+*Códigos presentes neste repositório pertencem a Átila Lima, e podem ser acessados e usados em qualquer propósito legal.
 
 ***
 ### Linkedin: https://www.linkedin.com/in/átila-lima-240a82269/
