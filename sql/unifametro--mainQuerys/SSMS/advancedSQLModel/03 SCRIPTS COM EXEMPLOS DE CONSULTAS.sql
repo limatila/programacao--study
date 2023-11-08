@@ -1,0 +1,168 @@
+USE VW;
+
+--1. CONSULTAR OS NOMES DOS PRODUTOS E FORNECEDORES
+SELECT 
+	P.NOMEPRODUTO,
+	F.NOMEFORNECEDOR
+FROM 
+	Produtos P 
+	INNER JOIN Fornecedores F ON P.FornecedorID = F.FornecedorID;
+
+/*2. CONSULTAR OS PRODUTOS QUE TIVERAM PREÇOS ALTERADOS, EXIBINDO:
+- A QUANTIDADE DE VEZES QUE TEVE ALTERAÇÃO 
+- A ÚLTIMA DATA DE ALTERAÇÃO 
+- QUAL O VALOR DO PREÇO ATUAL*/
+SELECT 
+	P.NOMEPRODUTO,
+	COUNT(HP.ProdutoID) 'QTD_ALTERAÇÕES DE PREÇO',
+	CONVERT(VARCHAR, MAX(HP.DATAATUALIZACAO), 106) 'ÚLTIMA ALTERAÇÃO DE PREÇO',
+	REPLACE(MAX(P.Preco), '.', ',') 'PREÇO ATUAL'	/* REPLACE(entrada, original, substituição) */
+FROM 
+	Produtos P 
+	INNER JOIN Historico_precos HP ON P.ProdutoID = HP.ProdutoID
+GROUP BY
+	P.NOMEPRODUTO
+ORDER BY
+	MAX(P.Preco) DESC;
+
+/*3. CONSULTAR PRODUTOS VENDIDOS, EXIBINDO:
+- NOME DO PRODUTO
+- NOME DO FORNECEDOR
+- A QUANTIDADE DAS VENDAS
+- O VALOR TOTAL DAS VENDAS
+- QUANTIDADE EM ESTOQUE
+*/
+SELECT 
+	P.NOMEPRODUTO,
+	F.NOMEFORNECEDOR,
+	E.QuantidadeEmEstoque,
+	SUM(V.QUANTIDADEVENDA) 'QTD VENDIDAS',
+	SUM(P.PRECO) 'TOTAL ARRECADADO'	
+FROM
+	Produtos P 
+	INNER JOIN Fornecedores F ON P.FornecedorID = F.FornecedorID
+	INNER JOIN Historico_precos HP ON P.ProdutoID = HP.ProdutoID
+	INNER JOIN Estoque E ON P.ProdutoID = E.ProdutoID
+	INNER JOIN Vendas V ON P.ProdutoID = V.ProdutoID
+GROUP BY
+	P.NOMEPRODUTO,
+	F.NOMEFORNECEDOR,
+	E.QuantidadeEmEstoque;
+
+/*4. CONSULTAR PRODUTOS QUE NÃO TIVERAM VENDAS, EXIBINDO:
+- NOME DO PRODUTO
+- NOME DO FORNECEDOR
+- PREC0
+- QUANTIDADE NO ESTOQUE
+*/
+SELECT 
+	P.NOMEPRODUTO,
+	F.NOMEFORNECEDOR,
+	P.PRECO,
+	V.QUANTIDADEVENDA,
+	E.QuantidadeEmEstoque
+FROM
+	Produtos P 
+	INNER JOIN Fornecedores F ON P.FornecedorID = F.FornecedorID
+	INNER JOIN Estoque E ON P.ProdutoID = E.ProdutoID
+	LEFT JOIN Vendas V ON P.ProdutoID = V.ProdutoID	
+WHERE 
+	V.QUANTIDADEVENDA IS NULL;
+
+/*5. CONSULTE:
+- A QUANTIDADE DE VEZES QUE HOUVE ALTERAÇÃO DE PREÇOS POR FORNECEDOR
+- A DATA DA ULTIMA ALTERAÇÃO DE PREÇO
+- EXIBA TAMBÉM NA MESMA CONSULTA OS FORNECEDORES QUE NUNCA TIVERAM ALTERAÇÃO DE PREÇOS*/
+SELECT 
+	F.NOMEFORNECEDOR,
+	MAX(HP.DATAATUALIZACAO),
+	COUNT(HP.NovoPreco) 'QTD ALTERAÇÕES DE PREÇOS'
+FROM
+	Produtos P 
+	INNER JOIN Fornecedores F ON P.FornecedorID = F.FornecedorID
+	LEFT JOIN Historico_precos HP ON P.ProdutoID = HP.ProdutoID
+GROUP BY
+	F.NOMEFORNECEDOR
+ORDER BY 
+	F.NOMEFORNECEDOR;
+
+/*6.CONSULTE:
+- A QUANTIDADE DE VEZES QUE HOUVE ALTERAÇÃO DE PREÇOS POR FORNECEDOR
+- A DATA DA ULTIMA ALTERAÇÃO DE PREÇO
+- EXIBIR TAMBÉM NA MESMA CONSULTA OS FORNECEDORES QUE NUNCA TIVERAM ALTERAÇÃO DE PREÇOS
+- EXIBIR SOMENTE QUEM TEVE ALTERAÇÃO DE PREÇO ENTRE 0 (ZERO) E 3 (TRÊS)
+*/
+SELECT 
+	F.NOMEFORNECEDOR,
+	MAX(HP.DATAATUALIZACAO) 'Última atualização',
+	COUNT(HP.NovoPreco) 'QTD ALTERAÇÕES DE PREÇOS'
+FROM
+	Produtos P 
+	INNER JOIN Fornecedores F ON P.FornecedorID = F.FornecedorID
+	LEFT JOIN Historico_precos HP ON P.ProdutoID = HP.ProdutoID
+GROUP BY
+	F.NOMEFORNECEDOR
+HAVING
+	COUNT(HP.NovoPreco) >= 0 AND COUNT(HP.NovoPreco) <=3
+ORDER BY 
+	F.NOMEFORNECEDOR;
+
+/*7.REALIZE A ATUALIZAÇÃO DOS PREÇOS DOS PRODUTO QUE POSSUI O CÓDIGO 1:
+- O NOVO VALOR DEVE SER A MÉDIA DOS ÚLTIMOS PREÇOS ANTERIORES QUE CONSTAM NA TABELA HISTÓRICO DE PREÇOS
+- GUARDE O NOVO VALOR NA TABELA HISTORICO DE PREÇOS E ATUALIZE NA TABELA DE PRODUTOS
+*/
+DECLARE /* Declara as variaveis (@ para iniciar uma) */
+	@PRECOATUAL DECIMAL(10,2) = (SELECT PRECO FROM PRODUTOS WHERE ProdutoID = 1),
+	@PRECONOVO DECIMAL(10,2) = (
+	SELECT 
+		CONVERT(DECIMAL(15,2), AVG(HP.PrecoAnterior)) /* CONVERT(tipo do dado, dado para conversão) */
+	FROM
+		Historico_precos HP 
+		INNER JOIN Vendas V ON HP.ProdutoID = V.ProdutoID
+	WHERE 
+		V.ProdutoID = 1
+		);
+BEGIN
+	UPDATE Produtos SET PRECO = @PRECONOVO
+	WHERE ProdutoID = 1;
+
+	INSERT INTO Historico_precos (ProdutoID, DataAtualizacao, PrecoAnterior, NovoPreco)
+	VALUES (1, GETDATE(), @PRECOATUAL, @PRECONOVO);
+END;
+
+/* PROCEDURES: funções reaplicáveis */
+CREATE PROCEDURE SELECT_produtos AS
+BEGIN
+	SELECT * FROM Produtos;
+END
+
+EXEC SELECT_produtos; /* deve reaplicar os comandos da procedure */
+
+------------
+create procedure produtoz
+	@IDPRODUTO INT	/* inserção de parâmetros*/
+as
+BEGIN
+	select * from Produtos
+	where PRODUTOID = @IDPRODUTO;
+END
+
+exec produtoz 5; /* muda dependendo do id escolhido */
+
+
+--ATIVIDADE EXTRA: 
+/* Consulta que retorne: 
+1. Nomes dos clientes
+2. Produtos comprados
+3. Nome do fornecedor
+*/
+
+select 
+	C.NomeCliente as 'Nome do Cliente',
+	P.NomeProduto as 'Nome do Produto',
+	F.NomeFornecedor as 'Nome do Fornecedor'
+from
+	Vendas V
+	INNER JOIN Produtos P on V.ProdutoID = P.ProdutoID
+	INNER JOIN Clientes C on V.ClienteID = C.ClienteID
+	INNER JOIN Fornecedores F on P.FornecedorID = F.FornecedorID
