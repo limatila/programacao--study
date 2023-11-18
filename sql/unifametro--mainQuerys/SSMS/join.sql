@@ -46,7 +46,7 @@ insert into Vendedores (nomeVendedor) values
 
 
 /* Left Join */
-select idVendedor, nomeVendedor, idVenda
+select idVendedor, nomeVendedor, idVenda, valorVenda
 from 
 	Vendas LEFT JOIN Vendedores on Vendedores.idVendedor = Vendas.idVendedorF
 ORDER BY 
@@ -54,7 +54,7 @@ ORDER BY
 
 
 /* Right Join */
-select idVendedor, nomeVendedor, idVenda
+select idVendedor, nomeVendedor, idVenda, valorVenda
 from Vendas 
 	RIGHT JOIN Vendedores on Vendedores.idVendedor = Vendas.idVendedorF; 
 

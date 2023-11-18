@@ -6,7 +6,9 @@ SELECT
 	F.NOMEFORNECEDOR
 FROM 
 	Produtos P 
-	INNER JOIN Fornecedores F ON P.FornecedorID = F.FornecedorID;
+	INNER JOIN Fornecedores F ON P.FornecedorID = F.FornecedorID
+ORDER BY 
+	F.NOMEFORNECEDOR asc;
 
 /*2. CONSULTAR OS PRODUTOS QUE TIVERAM PREÇOS ALTERADOS, EXIBINDO:
 - A QUANTIDADE DE VEZES QUE TEVE ALTERAÇÃO 
@@ -165,4 +167,4 @@ from
 	Vendas V
 	INNER JOIN Produtos P on V.ProdutoID = P.ProdutoID
 	INNER JOIN Clientes C on V.ClienteID = C.ClienteID
-	INNER JOIN Fornecedores F on P.FornecedorID = F.FornecedorID
+	INNER JOIN Fornecedores F on P.FornecedorID = F.FornecedorID;
