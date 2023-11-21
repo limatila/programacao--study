@@ -17,6 +17,7 @@ class qtrinta {
 
         System.out.println("O programa a seguir irá calcular quanto deverá ser investido para a campanha de Natal.");
         System.out.println("Insira 'vazio' no campo 'nome' para terminar a execução!");
+	System.out.println("");
 
         while ( nome != "VAZIO" ){
 
@@ -27,10 +28,11 @@ class qtrinta {
             }
             System.out.print("Insira o número de filhos com menos de 12 anos\t=>");
             numFilhos = scanner.nextInt();
+	    System.out.println("");
 
             for(int i = 0; i < numFilhos; i++){
                 
-                System.out.print("Insira a idade da criança(até 12 anos)\t=>");
+                System.out.print("Insira a idade da "+ (i+1) +"° criança(até 12 anos)\t=>");
                 idadeInput = scanner.nextInt();
                 
                 if(idadeInput < 5){
@@ -38,7 +40,7 @@ class qtrinta {
                     System.out.println(msgAceito);
                 } else if(idadeInput >= 5 && idadeInput <= 12){
                     System.out.print("Insira o sexo da criança(M/F)\t=>");
-                    sexo = scanner.next();
+                    sexo = scanner.next().toUpperCase();
                     if (sexo.charAt(0) == 'M'){
                         preAdolescentesM++;
                     } else if (sexo.charAt(0) == 'F'){
@@ -58,8 +60,9 @@ class qtrinta {
         }
 
         valorTotal = (bebes*valorBola + preAdolescentesM*valorCarrinho + preAdolescentesF*valorBoneca);
-        System.out.println("O valor total investido deve ser de R$" + String.format("%.3f", valorTotal));
+	System.out.println("");
+        System.out.println("O valor total investido deve ser de R$" + String.format("%.2f", valorTotal));
         
-        System.out.println("Acabando o programa...");
+        System.out.println("Terminando o programa...");
     }
 }
