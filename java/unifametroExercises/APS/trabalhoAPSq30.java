@@ -1,7 +1,6 @@
 package APS;
 
 import java.util.Scanner;
-import java.util.Locale;
 
 class qtrinta {
     public static void main(String[] args) {
@@ -63,6 +62,7 @@ class qtrinta {
 	System.out.println("");
         System.out.println("O valor total investido deve ser de R$" + String.format("%.2f", valorTotal));
         
+        scanner.close();
         System.out.println("Terminando o programa...");
     }
 }
