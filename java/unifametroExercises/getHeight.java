@@ -50,5 +50,6 @@ public class getHeight {
     System.out.println("O número de homens: " + countMasc);
     System.out.println("A média das alturas: " + String.format("%.2f", mediaAlturas));
   
+    scanner.close();
   }
 }

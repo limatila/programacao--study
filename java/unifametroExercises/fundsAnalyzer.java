@@ -37,6 +37,7 @@ class fundsAnalyzer {
             } else { System.out.println(""); }
         }
 
+        scanner.close();
         System.out.println("Finishing...");
     }
 }
