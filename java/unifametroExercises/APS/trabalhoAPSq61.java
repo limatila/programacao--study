@@ -50,7 +50,8 @@ class qSessentaEum {
 
         //apresentando
         System.out.println(resumeMedias);
-        System.out.println("A porcentagem de alunos aprovados foi de aproximadamente " + ( ( totalAprov * 100 ) / totalAlun ) + "%");
+        double percentAprov = ( ( totalAprov * 100.0 ) / totalAlun );
+        System.out.println("A porcentagem de alunos aprovados foi de aproximadamente " + String.format("%.2f", percentAprov) + "%");
 
         System.out.println("");
         System.out.println("Programa terminando...");

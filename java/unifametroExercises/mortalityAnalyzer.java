@@ -35,8 +35,8 @@ public class mortalityAnalyzer {
             }
         }
 
-        double mascDeadPorcentage = (deadMasculine / periodQuantity)*100.0;
-        double femDeadPorcentage = (deadFeminine / periodQuantity)*100.0;
+        double mascDeadPorcentage = ( (deadMasculine / periodQuantity) * 100 ) ;
+        double femDeadPorcentage = ( (deadFeminine / periodQuantity) * 100 );
 
         System.out.println("A porcentagem de crianças meninos mortas foi " + mascDeadPorcentage + "%");
         System.out.println("A porcentagem de crianças meninas mortas foi " + femDeadPorcentage + "%");

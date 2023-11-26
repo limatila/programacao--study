@@ -68,14 +68,14 @@ class qNoventaEum {
         System.out.println("");
         System.out.println("Concluindo...");
 
-        double alunasPercent = ( (totalAlunasF / totalAlunos) * 100.0 );
-        double alunasPercentAprov = ( (totalAprovF / totalAlunasF) * 100.0 );
+        double alunasPercent = ( (totalAlunasF * 100.0) / totalAlunos );
+        double alunasPercentAprov = ( (totalAprovF * 100.0) / totalAlunasF);
 
         System.out.println("A maior média feminina: " + String.format("%.1f", maiorMediaAlunF));
         System.out.println("A maior média masculina: " + String.format("%.1f", maiorMediaAlunM));
-        System.out.println("O percentual de mulheres na turma: " + alunasPercent + "%");
+        System.out.println("O percentual de mulheres na turma: " + String.format("%.2f", alunasPercent) + "%"); //!
         System.out.println("Quantidade de alunos aprovados: " + (totalAprovF + totalAprovM));
-        System.out.println("O percentual de alunas aprovadas dentre as outras: " + alunasPercentAprov + "%");
+        System.out.println("O percentual de alunas aprovadas dentre as outras: " + String.format("%.2f", alunasPercentAprov) + "%"); //!
 
         System.out.println("");
         scanner.close();
