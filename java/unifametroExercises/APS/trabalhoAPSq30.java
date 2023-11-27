@@ -16,7 +16,7 @@ class qtrinta {
 
         System.out.println("O programa a seguir irá calcular quanto deverá ser investido para a campanha de Natal.");
         System.out.println("Insira 'vazio' no campo 'nome' para terminar a execução!");
-	System.out.println("");
+	    System.out.println("");
 
         while ( nome != "VAZIO" ){
 
@@ -27,7 +27,7 @@ class qtrinta {
             }
             System.out.print("Insira o número de filhos com menos de 12 anos\t=>");
             numFilhos = scanner.nextInt();
-	    System.out.println("");
+	        System.out.println("");
 
             for(int i = 0; i < numFilhos; i++){
                 
@@ -59,7 +59,7 @@ class qtrinta {
         }
 
         valorTotal = (bebes*valorBola + preAdolescentesM*valorCarrinho + preAdolescentesF*valorBoneca);
-	System.out.println("");
+    	System.out.println("");
         System.out.println("O valor total investido deve ser de R$" + String.format("%.2f", valorTotal));
         
         scanner.close();
