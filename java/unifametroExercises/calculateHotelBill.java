@@ -40,5 +40,8 @@ public class calculateHotelBill {
 
         System.out.println( paymentResume );
         System.out.println( "O total ganho foi de R$" + String.format("%.2f", paymentSum) );
+        
+        System.out.println("Programa terminando...");
+        scanner.close();
     }
 }
