@@ -9,12 +9,12 @@
         <h1>A Link Saver App</h1>
         <br><br>
 
-        <input type="text" id="inp1" placeholder="Url Here"> <br>
+        <input type="text" id="inp1" placeholder="Url Here" autofocus> <br>
         <button id="saveInpButton" onclick="saveInput()"><b>SAVE INPUT</b></button>
         <button id="saveTabButton" onclick="saveTab()"><b>SAVE TAB</b></button>
-        <button id="resetLinksButton">RESET ALL</button> <!-- TODO: should also have a way to erase 1 line. -->
+        <button id="resetLinksButton" onclick="resetSaves()">RESET ALL</button> <!-- TODO: should also have a way to erase 1 line. -->
         
-        <h3 id="linkShowEl" hidden></h3>
+        <h3 id="linkShowEl"></h3>
         
         <script src="markup.app.js"></script>
     </body>

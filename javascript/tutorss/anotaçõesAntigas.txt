@@ -1,0 +1,59 @@
+-function: um código dentro de um código, faz adicionar comandos aquela instância código.
+
+function imprimir(a,b){
+  console.log(a*b)
+}
+
+se você spawnar o código com imprimir(numero, numero) aqui, ele vai executar o código dentro, ou seja um código para aquele arquivo.js; ao criar uma função SEMPRE CHAMAR ESTA NO FINAL, já que só executada assim.
+sempre que uma var está numa função ela se torna local, uma local significa q ela so aparece na função, e so é printada quando a função for chamada.
+
+Vetor: iguala a algo fechado por parenteses
+Matriz: iguala a algo fechado por colchetes
+
+Matriz[0]: primeira matriz inteira
+Matriz[1]: segunda matriz inteira
+Matriz[1][1]: segundo element da segunda matriz
+
+while: recebe uma condiçao de repetição, executa enquanto esta condição for verdadeira
+
+do: executa de qualquer forma, depois verifica o while.
+
+for: executa segundo o que ta em chaves, recebe entrada, condição, e executa a última parte.
+for(entrada; condição; executadoFinal){
+    comandos desejados
+}
+
+
+vetor = []: os dois elementos constituem a variavel
+vetor = (): o último elemento representa a variavel
+
+*java: vetor[] = []: array no var 'vetor', na endereço [], precisa declarar 'vetor = []' antes.
+
+
+--Strings:
+string.length: tamanho da string
+index: string[0-infinite]: seleciona o elemento na posição selecionada
+uma string é imutável em javascript
+number.toFixed(2): arredonda um numero, mas o transforma em string.
+
+---Arrays:
+array[][]: especifica as coordenadas no array
+array.length
+array1.concat(array2): adiciona um array a outro
+arrayPopped = array1.pop(): seta um array com o ultimo elemento
+arrayShifted = array1.shift(): seta um array com o primeiro elemento
+JSON.stringify(array): transforma objetos numa String carregável
+
+
+---Switch
+function Switch(value){
+  switch(value){
+    case 1:
+      etc etc
+      break;
+    case "segundaOpcao":
+      etcetc
+      break;
+    default:
+     etcetc
+}

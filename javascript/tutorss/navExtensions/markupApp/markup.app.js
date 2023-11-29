@@ -6,8 +6,8 @@ linkShow = document.getElementById("linkShowEl")
 
 websiteLinks = [];
 //functions
-const saveInput = () =>{
-    if(textInput.value.length === 0){
+const saveInput = () => {
+    if(textInput.value.length === 0){ //err if input is empty
         alert("Empty Input!");
         throw console.error("Empty Input! function not executed.")
     }
@@ -15,17 +15,24 @@ const saveInput = () =>{
     websiteLinks.push(textInput.value)
 
     //TODO: show it.
-    totalContent = ""
+    totalTextContent = "";
     for(i = 0; i < websiteLinks.length; i++){
-        totalContent += websiteLinks[i] + "\n"
+        totalTextContent += websiteLinks[i] + "\n"
     }
 
-    linkShow.innerText = totalContent //user innerText for escaping literals.
-    linkShow.hidden = false
+    linkShow.innerText = totalTextContent //user innerText for escaping literals.
 
     textInput.value = null //clear
 };
 
-const saveTab = () =>{
 
+const resetSaves = () => {
+    websiteLinks = [];
+    linkShow.textContent = null;
+    textInput.value = null;
+};
+
+
+const saveTab = () =>{ //!how to chose a tab?
+    
 };
