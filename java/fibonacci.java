@@ -3,9 +3,9 @@ import java.util.Arrays;
 class fibonacci {
     public static void main(String[] args) {
 
-        int fib[] = { 1, 1 };
+        int fib[] = { 0, 1 };
 
-        for (var i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) { //? why is it iterating 11 times?
             int newV = fib[i] + fib[i + 1];
 
             fib = Arrays.copyOf(fib, fib.length + 1); // ceate copy, resize slots
