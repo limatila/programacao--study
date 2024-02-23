@@ -26,7 +26,7 @@ def decreaseValue(lock, strin): #decrease in local and store back to the global 
 
 
 #Set the threads used
-if __name__ == '__main__': #padrão.
+if __name__ == '__main__': #It means if this file is executed directly, without being imported. __main__ suggest it is the original file that's being runned.
     print(f"this is the start value, folks: {value}")
 
     thread1 = Thread(target=decreaseValue, args= (locks[0], "thread done.")) #t1
