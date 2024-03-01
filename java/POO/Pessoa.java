@@ -63,7 +63,7 @@ class Pessoa {
         } else {
             String dataGerada2 = new SimpleDateFormat("ddMM").format(Calendar.getInstance().getTime()).substring(2, 4);
             String dataAnivReduzida = this.dataAniversario.substring(2, 4);
-            int mesesFaltando = (Integer.parseInt(dataGerada2) - Integer.parseInt(dataAnivReduzida));
+            int mesesFaltando = (Integer.parseInt(dataGerada2) - Integer.parseInt(dataAnivReduzida)); //*String para Int!
             System.out.println("Ainda faltam mais ou menos " + mesesFaltando + " meses para o seu aniversário, " + this.Nome + "."); //!não leva em conta os dias
         }
     }
