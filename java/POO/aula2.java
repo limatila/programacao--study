@@ -29,7 +29,6 @@ public class aula2 {
         pess_ultimo.mudarSexo("F");
         pess_ultimo.aumentarIdade(20);
 
-
         System.out.println("");
         pess1.resumir();
         pess_ultimo.resumir();

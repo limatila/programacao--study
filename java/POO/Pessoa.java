@@ -12,6 +12,12 @@ class Pessoa {
     private String natalidade = "";
     private String CPF = "0"; 
 
+    //getters
+    private String getCPF(){
+        if(this.CPF == "0"){
+            return "Nulo";
+        } else { return this.CPF; }
+    }
 
     //setters -- melhor usar um constructor
     public void mudarNome(String nomeInserido){ //precisa especificar que tipo é o Arg recebido.
@@ -20,11 +26,10 @@ class Pessoa {
     public void mudarDataAniversario(String anivInserido){ //inserir 'ddmmyyyy'
         String anoAniv = anivInserido.substring(4);
         String dia_mesAniv = anivInserido.substring(0,4);
-        
+
         this.dataAniversario = dia_mesAniv;
         this.anoNascimento = anoAniv;
     }
-    
     public void mudarNatalidade(String cidadeInserida){
         this.natalidade = cidadeInserida;
     }
@@ -42,9 +47,9 @@ class Pessoa {
     }
 
     public void resumir(){
-        System.out.println("A pessoa referida tem nome " + this.Nome + ", tem "+ this.idade 
-        + " anos de idade, e é " + descreverSexo() + ". Nasceu em " + this.natalidade
-        + ". Sua data de nascimento é " + (this.dataAniversario.concat(this.anoNascimento + "."))); //! formatar melhor!
+        System.out.println("A pessoa referida tem nome " + this.Nome + ", está sobe CPF " + this.getCPF() + 
+        ", tem " + this.idade + " anos de idade, e é " + descreverSexo() + ". Nasceu em " + this.natalidade
+        + ". Sua data de nascimento é " + (this.dataAniversario.concat(this.anoNascimento + ".")));        //! formatar melhor!
     }
 
     public boolean fazAniversario(){ //pode ser usado pra vários propósitos: polimorfismo.
@@ -70,7 +75,5 @@ class Pessoa {
     
     //?API: como checar o CPF?
 
-
-    //*getters... nao necessario agora
 
 };
