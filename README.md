@@ -32,4 +32,4 @@ Os códigos mais recentes devem ser achados na branch 'main'.
 *Códigos presentes neste repositório pertencem a Átila Lima, e podem ser acessados e usados em qualquer propósito legal.
 
 ***
-### Linkedin: https://www.linkedin.com/in/átila-lima-240a82269/
+### Linkedin: https://www.linkedin.com/in/atilalimadev/
