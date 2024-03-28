@@ -12,6 +12,7 @@ array1 = np.array([1, 3, 5, 10])
 #properties----
 print(array1.size) #length of array
 print(array1.ndim) #number of dimensions in array
+
 print(array1.shape) #length of each dimension of array
 
 print(array1.dtype) #prevalent type of data
@@ -37,6 +38,7 @@ list1 = list1 * 2 #default: python will operate in the list structure itself
 print(array2, list1, sep=";\n")
 
 print( "\n", array2 + 10, sep="") # +, -, *, /, %...
+print(array2[0:2])
 
 print(""); line(42)
 calc1 = ( array2 / array1 ) #Broadcasting, it's selective calculation, can be done only with equal sized arrays
@@ -46,3 +48,17 @@ print(array2, calc1, sep=";\n") #This calc returns to the expoent used in 35
 #more operations
 tspac(); line(47)
 print(np.sqrt( np.array([4, 9, 144]) ))
+
+print("")
+dotProduct = np.dot( array1, np.array([3, 5, 10, 20]) ) #sum of the multiplication of every element by index
+alsoDotProduct = array1 @ array2
+print(dotProduct)
+print(alsoDotProduct)
+
+
+#Bidimensional
+tspac(); line(61)
+array3 = np.array( [[1, 2], [2, 10]] ) #i and j accordingly. accepts a list containing lists
+                   
+print(array3[1, 0])#second row, first column
+print(array3.shape)
