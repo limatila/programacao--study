@@ -63,7 +63,7 @@ class exer02{
             }
         }
 
-        //6.
+        //!6.
         System.out.println("Apresentando potências de 3 de 0 a 10");
 
         int base = 1;
@@ -83,7 +83,7 @@ class exer02{
             base++;
         }; //! errado
 
-        //7.
+        //!7.
         System.out.println("imprimindo as primeiras 20 potencias de 2: ");
     }
 }
