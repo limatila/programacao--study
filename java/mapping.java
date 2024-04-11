@@ -8,7 +8,7 @@ public class mapping{
         map.put(5, "Gabu");
         map.put(6, "Well");
 
-        for(int i = 0; i < 7; i++){
+        for(int i = 1; i < 7; i++){ //Should skip and not reach print statement if value is null.
             if(map.get(i) == null){ continue; } //Complexier then forEach style
             System.out.println(map.get(i));
         }
