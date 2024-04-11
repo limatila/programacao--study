@@ -1,13 +1,16 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class mapping{
-    Map<Integer, String> map = new HashMap<Integer, String>();
-    map.put(1, "Átila");
-    map.put(5, "Gabu");
-    map.put(6, "Well");
-    
     public static void main(String[] args){
-        for(int i = 0; i < map.size; i++){
-            if(this.map.get(i) == null){ continue; }
-            System.out.println(this.map.get(i));
+        Map<Integer, String> map = new HashMap<Integer, String>();
+        map.put(1, "Átila");
+        map.put(5, "Gabu");
+        map.put(6, "Well");
+
+        for(int i = 0; i < 7; i++){
+            if(map.get(i) == null){ continue; } //Complexier then forEach style
+            System.out.println(map.get(i));
         }
         
     }
