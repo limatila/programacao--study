@@ -1,0 +1,24 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateY(40%);
+}
+
+button{
+    font-size: x-large;
+    width: 200px;
+    height: 70px;
+
+}
+
+
+.btn{
+    /* transition: property, duration, timing-function, delay */
+    transition: all 0.5s ease-in-out; /* *Checar opções nas devtools do browser! */
+}
+.btn:hover{
+    transform: translateX(+20px);
+}
+
+/* atenção ao colocar no seletor tag: o texto também sofre animação ao selecionar propriedade 'all' */
