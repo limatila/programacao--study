@@ -1,5 +1,5 @@
-
-//import classe apenas quando de outra pasta!
+package POO;
+//import classe apenas quando de outro package!
 
 public class aula2 {
     public static void main(String[] args) {
@@ -26,7 +26,7 @@ public class aula2 {
         pess_ultimo.mudarNome("Nana");
         pess_ultimo.mudarDataAniversario("30122002");
         pess_ultimo.mudarNatalidade("Fortaleza");
-        pess_ultimo.mudarSexo("F");
+        pess_ultimo.mudarSexo("F"); 
         pess_ultimo.aumentarIdade(20);
 
         System.out.println("");
