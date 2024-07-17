@@ -58,7 +58,32 @@ print(alsoDotProduct)
 
 #Bidimensional
 tspac(); line(61)
-array3 = np.array( [[1, 2], [2, 10]] ) #i and j accordingly. accepts a list containing lists
+array3 = np.array( [[1, 2, 3], 
+                    [2, 10, 25]] ) #i and j accordingly. accepts a list containing lists
                    
 print(array3[1, 0])#second row, first column
 print(array3.shape)
+
+print("\nSlicing:")
+print(array3[0:, 1:])#requires all the dimensions
+
+print("\nInverting:\n", np.flip(array3[0:, 1:]))
+
+tspac(); line(73)
+#Size Operations:
+array4 = np.array( [[10, 103, 59, 88, 23],
+                   [5, 30, {"a": 59}, 22, 500]] )
+
+#vertical (2° array, row)
+array5 = np.vstack((array4, [1, 14, 9, 16, 25]))
+#horizontal (append to array)
+array6 = np.hstack((array5, [[55], [34], [64]] )) #Adding values to each array.
+#ALL THE ARRAYS NEED TO HAVE THE SAME HORIZONTAL SHAPE (think like a rectangle, it needs to be uniform and scrict)
+
+print("Adding vertically: \n", array5)
+print("Adding horizontally: \n", array6)
+print(array6.shape)
+
+print(""); line(88)
+
+
