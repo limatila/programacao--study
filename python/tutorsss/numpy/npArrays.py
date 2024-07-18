@@ -142,8 +142,8 @@ print("Data types of the arrays specified:")
 print(alwaysInt.dtype)
 print(alwaysFloat.dtype)
 
-#*Copying
 print(""); line(147)
+#*Copying
 array7 = np.array([True, False, True])
 array8 = np.array(array7.copy()) #New reference created, won't be modified by the other.
 print(array7, "Is a new array")
@@ -153,5 +153,11 @@ zerosArray = np.zeros((5, 5)) #only 0s in the selected grid
 onesArray = np.ones((5,5)) #only 1s
 selectedNumberArray = np.full((2,4), 100) #creates with the shape, with the desired value
 fillLikeOtherArray = np.full_like(selectedNumberArray, 5500) #creates with shape of another, selecting a value to fill
+emptyArray = np.empty((10, 10), dtype = np.float16) #produced with shape, only declared, not initialized
 
+diagonalFilledArray = np.eye(5) #fills the Matrix Diagonal with 1s in the selected shape (here 5x5)
+#also the np.arange() generates an array from range()
+linspaceArray = np.linspace(0, 100, 11)[1:11] #fills with equally spaced numbers, with start and stop values and the number of elements you want
+line(161); print("Equally spaced from 10 to 100:\n", linspaceArray)
 
+# See more in other files!
