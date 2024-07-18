@@ -116,3 +116,42 @@ reshapedArray = arrayRange_10
 
 resultedSumArray = initialArray + reshapedArray #every single value + every single in compatible shape. If theres more elements, it'll add to them again if compatible
 print("Broadcasting sum to all of the elements:\n", resultedSumArray)
+
+tspac(); line(121)
+#Functions and Axis
+print("Sum of the resulted array:\n", resultedSumArray.sum()) #of all the elements
+print("Sum of the array in the vertical way:\n", resultedSumArray.sum(axis=0)) #of all the from top to bottom in the columns imaginary grid
+print("Sum of the array in the horizontal way:\n", resultedSumArray.sum(axis=1)) #of all the from left to right in the rows imaginary grid
+
+print("Mean of the resulted array:\n", resultedSumArray.mean()) #of all the elements
+print("Mean of the array in the vertical way:\n", resultedSumArray.mean(axis=0)) #for each column
+print("Mean of the array in the horizontal way:\n", resultedSumArray.mean(axis=1)) #for each row
+
+print("Standard Deviation of the resulted array:\n", round( resultedSumArray.std() , 2 )) #of all the elements, also able to use Axis.
+#Can also be used as the proper numpy method: np.std(array, axis[optional])
+
+print("Smaller and Greater element: ", array3.max(), array3.min())
+#TODO: search for more methods and effects on these functions
+
+tspac(); line(137)
+#Data types
+alwaysInt = np.array([3.0001, 25.0], dtype = np.int16)
+alwaysFloat = np.array([2, 1001], dtype = np.float32)
+
+print("Data types of the arrays specified:")
+print(alwaysInt.dtype)
+print(alwaysFloat.dtype)
+
+#Copying
+print(""); line(147)
+array7 = np.array([True, False, True])
+array8 = np.array(array7.copy()) #New reference created, won't be modified by the other.
+print(array7, "Is a new array")
+
+#Generating arrays: new arrays from produced data
+zerosArray = np.zeros((5, 5)) #only 0s in the selected grid 
+
+
+
+
+
