@@ -34,7 +34,7 @@ def smallLogic(npArr):
 smallLogic(array1)
 
 
-print(""); line(35)
+print(""); line(38)
 array2 = array1 * 2 #any kind of operation with unique values will be mapped in the array
 list1 = list1 * 2 #default: python will operate in the list structure itself
 print(array2, list1, sep=";\n")
@@ -42,13 +42,13 @@ print(array2, list1, sep=";\n")
 print( "\n", array2 + 10) # +, -, *, /, %...
 print(array2[0:2])
 
-print(""); line(42)
+print(""); line(46)
 calc1 = ( array2 / array1 ) #Broadcasting, it's selective calculation, can be done only with equal sized arrays
 print(array2, calc1, sep=";\n") #This calc returns to the expoent used in 35
 
 
 #*more operations
-tspac(); line(47)
+tspac(); line(51)
 print(np.sqrt( np.array([4, 9, 144]) ))
 
 print("")
@@ -59,7 +59,7 @@ print(alsoDotProduct)
 
 
 #*Bidimensional
-tspac(); line(61)
+tspac(); line(63)
 array3 = np.array( [[1, 2, 3], 
                     [2, 10, 25]] ) #i and j accordingly. accepts a list containing lists
                    
@@ -71,7 +71,7 @@ print(array3[0:, 1:])#requires all the dimensions
 
 print("\nInverting:\n", np.flip(array3[0:, 1:]))
 
-tspac(); line(73)
+tspac(); line(75)
 #*Size Operations:
 array4 = np.array( [[10, 103, 59, 88, 23],
                    [5, 30, {"a": 59}, 22, 500]] )
@@ -86,13 +86,13 @@ print("Adding vertically: \n", array5)
 print("Adding horizontally: \n", array6)
 print(array6.shape)
 
-print(""); line(89)
+print(""); line(90)
 print("Changing shape order of column/row as 9,2:\n", array6.reshape(9, 2))
 print("Reducing to one single row:\n", array6.flatten())
 array3 = array3.flatten()
 print("Rearranging every element for a row:\n", array3[:, np.newaxis])
 
-print(""); line(91)
+print(""); line(96)
 #*Boolean Reshaping: reshapes according to a set rule
 #comparators and logic operations will be performed in every item and returned as true/false
 def evenArray(arr):
@@ -103,21 +103,12 @@ print(evenArray(array3))
 print(array3[evenArray(array3)])
 print(array3[array3 % 2 == 0]) #placed in sentence
 
-print(""); line(102)
-#Where clause: uses a condition to remap the array
+print(""); line(107)
+#*Where clause: uses a condition to remap the array
 array3 = array3.reshape(2,3)
 print(np.where(array3 >= 3, array3, None)) #Condition, Array to compare, Value to be assigned if condition is not met.
 
-tspac(); line(111)
-#Broadcasting
-initialArray = np.hstack((np.where(arrayRange_10 < 0, arrayRange_10, 10), [10] * 10)).reshape(3,5)
-reshapedArray = arrayRange_10
-#shapes need to be compatible.
-
-resultedSumArray = initialArray + reshapedArray #every single value + every single in compatible shape. If theres more elements, it'll add to them again if compatible
-print("Broadcasting sum to all of the elements:\n", resultedSumArray)
-
-tspac(); line(121)
+tspac(); line(112)
 #*Functions and Axis: products and calculations built-in
 print("Sum of the resulted array:\n", resultedSumArray.sum()) #of all the elements
 print("Sum of the array in the vertical way:\n", resultedSumArray.sum(axis=0)) #of all the from top to bottom in the columns imaginary grid
@@ -133,7 +124,7 @@ print("Standard Deviation of the resulted array:\n", round( resultedSumArray.std
 print("Smaller and Greater element: ", array3.max(), array3.min())
 #TODO: search for more methods and effects on these functions
 
-tspac(); line(137)
+tspac(); line(128)
 #*Data types
 alwaysInt = np.array([3.0001, 25.0], dtype = np.int16)
 alwaysFloat = np.array([2, 1001], dtype = np.float32)
@@ -142,7 +133,7 @@ print("Data types of the arrays specified:")
 print(alwaysInt.dtype)
 print(alwaysFloat.dtype)
 
-print(""); line(147)
+print(""); line(137)
 #*Copying
 array7 = np.array([True, False, True])
 array8 = np.array(array7.copy()) #New reference created, won't be modified by the other.
@@ -158,6 +149,6 @@ emptyArray = np.empty((10, 10), dtype = np.float16) #produced with shape, only d
 diagonalFilledArray = np.eye(5) #fills the Matrix Diagonal with 1s in the selected shape (here 5x5)
 #also the np.arange() generates an array from range()
 linspaceArray = np.linspace(0, 100, 11)[1:11] #fills with equally spaced numbers, with start and stop values and the number of elements you want
-line(161); print("Equally spaced from 10 to 100:\n", linspaceArray)
+line(152); print("Equally spaced from 10 to 100:\n", linspaceArray)
 
 # See more in other files!
