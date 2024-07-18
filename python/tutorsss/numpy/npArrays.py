@@ -110,15 +110,15 @@ print(np.where(array3 >= 3, array3, None)) #Condition, Array to compare, Value t
 
 tspac(); line(112)
 #*Functions and Axis: products and calculations built-in
-print("Sum of the resulted array:\n", resultedSumArray.sum()) #of all the elements
-print("Sum of the array in the vertical way:\n", resultedSumArray.sum(axis=0)) #of all the from top to bottom in the columns imaginary grid
-print("Sum of the array in the horizontal way:\n", resultedSumArray.sum(axis=1)) #of all the from left to right in the rows imaginary grid
+print("Sum of the resulted array:\n", array3.sum()) #of all the elements
+print("Sum of the array in the vertical way:\n", array3.sum(axis=0)) #of all the from top to bottom in the columns imaginary grid
+print("Sum of the array in the horizontal way:\n", array3.sum(axis=1)) #of all the from left to right in the rows imaginary grid
 
-print("Mean of the resulted array:\n", resultedSumArray.mean()) #of all the elements
-print("Mean of the array in the vertical way:\n", resultedSumArray.mean(axis=0)) #for each column
-print("Mean of the array in the horizontal way:\n", resultedSumArray.mean(axis=1)) #for each row
+print("Mean of the resulted array:\n", array3.mean()) #of all the elements
+print("Mean of the array in the vertical way:\n", array3.mean(axis=0)) #for each column
+print("Mean of the array in the horizontal way:\n", array3.mean(axis=1)) #for each row
 
-print("Standard Deviation of the resulted array:\n", round( resultedSumArray.std() , 2 )) #of all the elements, also able to use Axis.
+print("Standard Deviation of the resulted array:\n", round( array3.std() , 2 )) #of all the elements, also able to use Axis.
 #Can also be used as the proper numpy method: np.std(array, axis[optional])
 
 print("Smaller and Greater element: ", array3.max(), array3.min())
