@@ -151,4 +151,4 @@ diagonalFilledArray = np.eye(5) #fills the Matrix Diagonal with 1s in the select
 linspaceArray = np.linspace(0, 100, 11)[1:11] #fills with equally spaced numbers, with start and stop values and the number of elements you want
 line(152); print("Equally spaced from 10 to 100:\n", linspaceArray)
 
-# See more in other files!
+#? See more in other files!
