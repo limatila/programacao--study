@@ -57,6 +57,8 @@ alsoDotProduct = array1 @ array2
 print(dotProduct)
 print(alsoDotProduct)
 
+#comparing equality
+print("it is", np.allclose(array1, array2 / 2), "that array1 and array2 are equal.")
 
 #*Bidimensional
 tspac(); line(63)
@@ -70,6 +72,10 @@ print("\nSlicing:")
 print(array3[0:, 1:])#requires all the dimensions
 
 print("\nInverting:\n", np.flip(array3[0:, 1:]))
+
+#*Matrix operations:
+transposedArray = array3.T #or .transpose()
+invertedArray = np.linalg.inv(array3) # ^-1
 
 tspac(); line(75)
 #*Size Operations:
