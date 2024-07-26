@@ -1,4 +1,4 @@
-from fcts5 import tspac, line, endCode
+from fcts5 import endCode
 import numpy as np
 
 matrix1 = np.array([[1, 2],
@@ -32,3 +32,5 @@ print("Solution 1:\n", result1)
 #.solve, simple and faster
 result1 = np.linalg.solve(A, b)
 print("Solution 2:\n", result1)
+
+endCode()
