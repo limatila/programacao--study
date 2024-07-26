@@ -10,6 +10,7 @@ import numpy as np #convention
 array1 = np.array([1, 3, 5, 10])
 arrayRange_10 = np.arange(0, 10, 2) #mounts the array in a range, and can take steps (third Arg)
 
+line(13)
 #*Properties----
 print(array1.size) #length of array
 print(array1.ndim) #number of dimensions in array
