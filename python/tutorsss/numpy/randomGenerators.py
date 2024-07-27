@@ -15,3 +15,5 @@ print("Integer random generated array:\n", randomIntArray)
 randomChoice = np.random.choice(["Átila", "Gabu", "Marx"], size=1) #pick a value from a list
 #can also be used to pick from ranges of numbers.
 print("random pick:\n", randomChoice[0])
+
+#TODO: search more
