@@ -7,9 +7,9 @@ randomRawArray = np.random.random((4,4)) #in selected shape, from 0 to 1 random 
 print("Raw Random array:\n", randomRawArray)
 
 randomRadn = np.random.randn(2,2) #generator do normal/Gaussian numbers
-print("Raw Random array:\n", randomRadn)
+print("Gaussian Random array:\n", randomRadn)
 
-randomIntArray = np.random.randint(1, 50, size=(3,3) ) #range of integers, and specified size
+randomIntArray = np.random.randint(1, 50, size=(3,24) ) #range of integers, and specified size
 print("Integer random generated array:\n", randomIntArray)
 
 randomChoice = np.random.choice(["Átila", "Gabu", "Marx"], size=1) #pick a value from a list
