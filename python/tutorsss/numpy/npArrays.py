@@ -159,3 +159,4 @@ linspaceArray = np.linspace(0, 100, 11)[1:11] #fills with equally spaced numbers
 line(152); print("Equally spaced from 10 to 100:\n", linspaceArray)
 
 #? See more in other files!
+#TODO: Search about more dimensions
