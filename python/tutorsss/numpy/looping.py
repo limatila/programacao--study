@@ -12,10 +12,10 @@ print("finished loop.")
 
 tspac(); line(14)
 #* Looping on 2D
-array1: np.ndarray = np.array( [ [1, 2, 3],
+array2: np.ndarray = np.array( [ [1, 2, 3],
                                  [4, 5, 6] ] )
 
-for row in array1:
+for row in array2:
     for number in row:
         print(number)
 
