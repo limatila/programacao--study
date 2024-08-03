@@ -87,6 +87,12 @@ lista_de_valores = [
 ]
 print(lista_de_valores)
 
+Dict_da_lista = { chaveImportada: False  #compondo chave-valor
+                  for chaveImportada in 
+                  [ key for key in umDict.keys() ] } #Extraindo keys salvas
+print(Dict_da_lista)
+#ou seja, a mesma lógica pode ser usada aqui denovo
+
 #? There's also much more complex comprehensions
 
 endCode()
