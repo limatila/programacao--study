@@ -93,6 +93,6 @@ Dict_da_lista = { chaveImportada: False  #compondo chave-valor
 print(Dict_da_lista)
 #ou seja, a mesma lógica pode ser usada aqui denovo
 
-#? There's also much more complex comprehensions
+#? There's also much more complex comprehensions, like generator and nested comprehensions
 
 endCode()
