@@ -7,4 +7,12 @@ estudo esse feito encima do curso da Udemy "Aprenda Django Web Framework" minist
 Uma framework que permite criar aplicações web back-end robustaz, escaláveis, rápidamente. Utilizada por grandes aplicações
 como o Instagram, tem um respaldo mundial no quesito de desenvolvimento de aplicações pela Web.
 
+# Uso do VEnv
+Será utilizado um ambiente mais virtualizado para os estudos, usando os comandos venv
+
+* py -m venv venv (cria o venc)
+* venv\Scripts\activate (ativa o venv)
+
+#TODO: será feito um .bat pra automatizar o ínicio...
+
 * Mais conhecimentos serão adicionados conforme estudo no curso e em outras fontes.
