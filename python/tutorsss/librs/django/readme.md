@@ -13,6 +13,12 @@ Será utilizado um ambiente mais virtualizado para os estudos, usando os comando
 * py -m venv venv (cria o venc)
 * venv\Scripts\activate (ativa o venv)
 
-#TODO: será feito um .bat pra automatizar o ínicio...
+# Uso de Django
+Sobre ativação e manejo de projetos Django
 
-* Mais conhecimentos serão adicionados conforme estudo no curso e em outras fontes.
+* /manage.py runserver (ativa um server na porta 8000) 
+
+#Pode ser adicionado um launch.json para o VSCode executar 'manage.py runserver' em um clique (veja '.vscode/launch.json')
+
+
+## Mais conhecimentos serão adicionados conforme estudo no curso e em outras fontes.
