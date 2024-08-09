@@ -19,11 +19,15 @@ from django.urls import path
 from django.http import HttpResponse as HTTP
 
 
-def this_view(request):
+def home_view(request):
     return HTTP("Wow!")
 
 
+def root_view(request):
+    return HTTP("CHOOSE: /admin/  --  /home/")
+
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('home/', this_view)
+    path('home/', home_view, name="Home"),
+    path('admin/', admin.site.urls)
 ]
