@@ -41,7 +41,8 @@ backup(cell)/programação(back)/tutorsss/somelibrarys.py
 backup(cell)/programação(back)/tutorsss/title.py
 backup(cell)/programação(back)/tutorsss/Vars.py
 backup(cell)/programação(back)/tutorsss/__pycache__/fcts0.cpython-39.pyc
-.vscode
+./.vscode/
+settings.json
 execs
 __pycache__
 html/images
