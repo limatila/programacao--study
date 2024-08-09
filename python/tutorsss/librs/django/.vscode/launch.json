@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Django Debugger",
+        "type": "debugpy",
+        "request": "launch",
+        "program": "${workspaceFolder}/projetos/manage.py",
+        "args": [
+          "runserver"
+        ]
+      }
+    ]
+  }
