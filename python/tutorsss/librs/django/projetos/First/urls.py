@@ -19,15 +19,28 @@ from django.urls import path
 from django.http import HttpResponse as HTTP
 
 
+"""
+* Here will be registered all URLs for the
+* server to respond to page access.
+* Accesses are Requests, the Server responds in HttpResponse(s)
+* each Respons can be mounted in a
+* view (a def that returns a HttpResponse)
+TODO: search include()
+"""
+
+
 def home_view(request):
-    return HTTP("Wow!")
+    return HTTP("""
+<h1>Bem Vindo</h1>
+<a href="">1. Reclame Aqui</a>""")
 
 
 def root_view(request):
     return HTTP("CHOOSE: /admin/  --  /home/")
 
 
-urlpatterns = [
+urlpatterns = [  # * all available URLs. Apply 'path(url, view, other args)'
+    path('', root_view, name="Root page"),
     path('home/', home_view, name="Home"),
-    path('admin/', admin.site.urls)
+    path('admin/', admin.site.urls),
 ]
