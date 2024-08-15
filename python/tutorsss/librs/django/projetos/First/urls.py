@@ -32,7 +32,7 @@ TODO: search include()
 def home_view(request):
     return HTTP("""
 <h1>Bem Vindo</h1>
-<a href="">1. Reclame Aqui</a>""")
+<a href="https://youtube.com">1. Reclame Aqui</a>""")
 
 
 def root_view(request):
