@@ -16,9 +16,11 @@ Será utilizado um ambiente mais virtualizado para os estudos, usando os comando
 # Uso de Django
 Sobre ativação e manejo de projetos Django
 
+* django-admin startproject mysite (cria um projeto e servidor no localhost)
 * /manage.py runserver (ativa um server na porta 8000) 
 
 #Pode ser adicionado um launch.json para o VSCode executar 'manage.py runserver' em um clique (veja '.vscode/launch.json')
 
 
 ## Mais conhecimentos serão adicionados conforme estudo no curso e em outras fontes.
+#TODO: adicionar sobre configuração de views e do app em si

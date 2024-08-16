@@ -31,5 +31,6 @@ from django.urls import path, include
 
 urlpatterns = [  # * all available URLs. Apply 'path(url, view, other args)'
     path('admin/', admin.site.urls),
-    path('', include('ReclameAqui.urls'))
+    path('reclame-aqui/', include('ReclameAqui.urls')),
+    path('', include('Receitas.urls'))
 ]
