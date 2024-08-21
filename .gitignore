@@ -54,3 +54,4 @@ javascript/examples/
 sql/unifametro--mainQuerys/selectParams.pdf
 java/**/*.class
 venv
+./data.json
