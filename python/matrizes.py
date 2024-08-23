@@ -30,7 +30,7 @@ matriz5 = [         #3x2
 ]
 
 matriz6 = [
-    [9, 29, 49],      #toda torta
+    [9, 29, 49],      #mais assimétrica
     [50],
     [9, 18, 24, 100]
 ]
@@ -69,12 +69,12 @@ def multipMatriz(m1, m2):
                 i+= 1
             soma = map(lambda x, y: x+y, multis_result)
             i+=0
-        if len(linha) == len(m2):
+        if len(linha) == len(m2):	#! Não está sendo executado a partir da 2° iteração
             for num in linha:
                 resultm = num * m2[i][i2]
                 multis_result.append(resultm)
                 i+= 1
-            soma = map(lambda x, y: x+y, multis_result)          #need to make it work and clean
+            soma = map(lambda x, y: x+y, multis_result)
             final.append(tuple(soma))
         print('line done')
     return final
