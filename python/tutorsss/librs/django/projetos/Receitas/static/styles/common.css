@@ -1,0 +1,39 @@
+*{
+    box-sizing: border-box;
+}
+
+/* Fonts */
+h1{
+    font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    margin: 0;
+    background: linear-gradient(
+        to bottom, white 0%, #ccc 105%
+    );
+
+    font-size: 1.2rem; /* 1px = 0.1rem, 10px = 1rem */
+}
+
+header.flex-header {
+    background-color: rgba(121, 67, 36, 0.829);
+    color: white;
+    width: 100%;
+    position: fixed; /* TODO: fixar header lá encima */
+    top: 0px;
+    z-index: 1000;
+}
+
+/* Flex */
+.flex-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.wrapper{ /* para padronização de espaço */
+    position: relative;
+    margin: 0 auto;
+    width: 85%;
+    max-width: 1200px; 
+}
