@@ -1,10 +1,14 @@
 *{
     box-sizing: border-box;
+    color: white;
 }
 
 /* Fonts */
 h1{
     font-family: 'Montserrat', sans-serif;
+}
+a{
+    text-decoration: none;
 }
 
 body{
@@ -20,15 +24,21 @@ header.flex-header {
     background-color: var(--color-primary);
     color: white;
     width: 100%;
+    height: 4.5rem;
     position: fixed; /* TODO: fixar header lá encima */
     top: 0px;
     z-index: 1000;
+}
+header .main-logo{
+    width: calc(fit-content + 2rem);
+    height: 90%;
+    margin: 0;
 }
 
 /* Flex */
 .flex-container{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 .wrapper{ /* para padronização de espaço */
