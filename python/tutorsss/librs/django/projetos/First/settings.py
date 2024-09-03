@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-9##n0o+jme15=-qdoo$059^)ie1u%o#a!-ex-!=2f-5zhldmb=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [*"localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -58,6 +58,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             BASE_DIR / 'Receitas' / 'templates',
+            
             BASE_DIR / 'Reclame_aqui' / 'templates',
             ],
         'APP_DIRS': True,
