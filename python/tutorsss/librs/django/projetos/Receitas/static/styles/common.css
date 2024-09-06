@@ -1,5 +1,6 @@
 *{
     box-sizing: border-box;
+    font-size: 1.2rem; /* 1px = 0.1rem, 10px = 1rem */
     color: white;
 }
 
@@ -11,15 +12,25 @@ a{
     text-decoration: none;
 }
 
+/* Color for texts */
+.brown-text{
+    color: var(--color-primary);
+}
+.blue-text{
+    color: rgb(41, 104, 175);
+}
+
+/* Body Background and screen*/
 body{
     margin: 0;
     background: linear-gradient(
         to bottom, white 0%, #ccc 105%
     );
 
-    font-size: 1.2rem; /* 1px = 0.1rem, 10px = 1rem */
+    
 }
 
+/* Header */
 header.flex-header {
     background-color: var(--color-primary);
     color: white;
@@ -29,15 +40,20 @@ header.flex-header {
     top: 0px;
     z-index: 1000;
 }
-header .main-logo{
-    width: calc(fit-content + 2rem);
+header * * .main-logo-text{
+    font-size: 2.6rem;
     height: 90%;
     margin: 0;
+}
+.icon-text{
+    font-size: 2.4rem;
+    margin-right: 1rem;
 }
 
 /* Flex */
 .flex-container{
     display: flex;
+    flex-flow: row nowrap;
     justify-content: flex-start;
     align-items: center;
 }
@@ -46,4 +62,5 @@ header .main-logo{
     margin: 0 auto;
     width: 85%;
     max-width: 1200px; 
+    max-height: fit-content;
 }
