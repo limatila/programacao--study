@@ -83,7 +83,6 @@ class Student:
         
 
 class Test:
-
     def __init__(self, name: str, classApplied: schoolClass, student: Student) -> None:
         self.name = name
         self.classApplied = classApplied
@@ -92,10 +91,10 @@ class Test:
         self.dateFinished: str = None
         self.grade: int = None #Default
     
-    def __add__(self, other: 'Test') -> None:
+    def __add__(self, other: 'Test') -> None: #adding in the left side (object first, then other number)
         return self.grade + other
     
-    def __radd__(self, other: 'Test') -> None:
+    def __radd__(self, other: 'Test') -> None: #adding in the right side 
         return other + self.grade
     
     def finish(self) -> None:
