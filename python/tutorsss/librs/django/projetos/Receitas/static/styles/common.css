@@ -9,8 +9,11 @@ html{
 }
 
 /* Fonts */
-h1{
+h1, h2, h3{
     font-family: 'Montserrat', sans-serif;
+}
+p, span, li{
+    font-family: 'Open Sans', sans-serif;
 }
 a{
     text-decoration: none;
@@ -60,6 +63,14 @@ header * * .main-logo-text{
     margin-right: 1rem;
 }
 
+/* Header hover Transition */
+header.flex-header .wrapper a.flex-container{
+    transition: transform 0.2s cubic-bezier(0, 1.03, 1, 1);
+}
+header.flex-header .wrapper a.flex-container:hover{
+    transform: translateX(+0.4rem);
+}
+
 /* Flex */
 .flex-container{
     display: flex;
@@ -83,9 +94,4 @@ header * * .main-logo-text{
 
 .main-receitas-section{
     min-height: 100rem;
-}
-/* Grid */
-.grid-container{
-    display: grid;
-    
 }
