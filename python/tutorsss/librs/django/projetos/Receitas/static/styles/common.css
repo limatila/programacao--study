@@ -1,3 +1,7 @@
+html{
+    scroll-behavior: smooth;
+}
+
 *{
     box-sizing: border-box;
     font-size: 1.2rem; /* 1px = 0.1rem, 10px = 1rem */
@@ -13,11 +17,14 @@ a{
 }
 
 /* Color for texts */
-.brown-text{
+.brown-text *{
     color: var(--color-primary);
 }
-.blue-text{
+.blue-text *{
     color: rgb(41, 104, 175);
+}
+.black-text *{
+    color: var(--color-black);
 }
 
 /* Body Background and screen*/
@@ -26,7 +33,7 @@ body{
     background: linear-gradient(
         to bottom, white 0%, #ccc 105%
     );
-
+    margin-top: 4.5rem;
     
 }
 
@@ -39,6 +46,9 @@ header.flex-header {
     position: fixed; /* TODO: fixar header lá encima */
     top: 0px;
     z-index: 1000;
+}
+.flex-header .wrapper:focus{
+    background-color: var(--color-primary);
 }
 header * * .main-logo-text{
     font-size: 2.6rem;
@@ -63,4 +73,19 @@ header * * .main-logo-text{
     width: 85%;
     max-width: 1200px; 
     max-height: fit-content;
+}
+.wrapper .flex-container{
+    justify-content: center;
+}
+.flex-evenly{
+    justify-content: space-evenly;
+}
+
+.main-receitas-section{
+    min-height: 100rem;
+}
+/* Grid */
+.grid-container{
+    display: grid;
+    
 }
