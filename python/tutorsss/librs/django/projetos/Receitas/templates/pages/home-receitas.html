@@ -1,35 +1,36 @@
 <!-- Carregando variáveis do ambiente Django -->
-{% include "partials/heads/default-head.html" %}
-
+<head>
+    {% include "partials/heads/default-head.html" %}
+    {% include "partials/heads/head-components/style-home.html" %}
+</head>
 <!-- Documento -->
 <body>
     <header class="flex-container flex-header">
         <div class="wrapper flex-container">
-            <a href="" class="flex-container">
-                <span class="fas fa-utensils icon-text"></span>
+            <a href="" class="flex-container white-text" id="header-logo">
+                <span class="fas fa-utensils logo-icon"></span>
                 <h1 class="main-logo-text">Receitas</h1>
             </a>
         </div>
     </header>
 
-    <main class="black-text">
-        <div class="wrapper">
+    <main class="wrapper">
             <nav>
                 {% include "partials/components/search-bar.html" %}
             </nav>
 
             <div>
-                <h1>Menu de Receitas</h1>
+                <h1>Em Alta</h1>
                 <section class="main-receitas-section grid-container">
-                    <span>other things...</span>
-
-                    <span>a</span>
+                    <div class="">abc</div>
                 </section>
             </div>
+    </main>
 
-            <footer>
-                <a href="#top" tabindex="-1">Return to Search</a>
-            </footer>
-        </div>
-    </main> 
+    <hr>
+    <footer class="wrapper flex-container">
+        <a href="#top" tabindex="-1">
+            <button tabindex="-1">Voltar ao Topo</button>
+        </a>
+    </footer>
 </body>
