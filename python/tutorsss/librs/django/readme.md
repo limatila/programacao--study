@@ -23,7 +23,7 @@ Ao usar o Django, se adiciona primeiro um diretório de <i>Projeto</i> para o de
 * <code>mkdir MyProject & cd MyProject</code> (cria uma pasta base <i>MyProject</i> e navega para ela)
 * <code>django-admin startproject mysite .</code> (cria um projeto-diretório 'mysite' e servidor no localhost, dentro da pasta raíz)
 * Atenção ao rodar junto com o '<b>.</b>' pois ele é primordial para a organização das pastas.
-* <code>mysite/manage.py runserver</code> (conecta um server na porta 8000) 
+* <code>manage.py runserver</code> (conecta um server na porta 8000) 
  
 Depois se acessa o servidor pelo Browser, utilizando http://127.0.0.1:8000, por padrão.
  
@@ -35,7 +35,7 @@ Ao ter um projeto criado, vários <i>Apps</i> podem ser criados no mesmo diretó
  
 logo, a estrutura deve ser apresentar assim: 
  
-<img src="https://i.ibb.co/S6bcgC5/image.png">
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/2k7tvN9/Image.png" alt="Comando tree na pasta" border="0" title="Usando Comando tree na pasta do MyProject"></a>
  
 ---
 
