@@ -5,7 +5,6 @@ html{
 *{
     box-sizing: border-box;
     font-size: 1.2rem; /* 1px = 0.1rem, 10px = 1rem */
-    color: white;
 }
 
 /* Fonts */
@@ -20,14 +19,14 @@ a{
 }
 
 /* Color for texts */
-.brown-text *{
+.brown-text{
     color: var(--color-primary);
 }
-.blue-text *{
+.blue-text{
     color: rgb(41, 104, 175);
 }
-.black-text *{
-    color: var(--color-black);
+.white-text{
+    color: var(--color-white);
 }
 
 /* Body Background and screen*/
@@ -43,7 +42,6 @@ body{
 /* Header */
 header.flex-header {
     background-color: var(--color-primary);
-    color: white;
     width: 100%;
     height: 4.5rem;
     position: fixed; /* TODO: fixar header lá encima */
@@ -58,16 +56,16 @@ header * * .main-logo-text{
     height: 90%;
     margin: 0;
 }
-.icon-text{
+.logo-icon{
     font-size: 2.4rem;
     margin-right: 1rem;
 }
 
 /* Header hover Transition */
-header.flex-header .wrapper a.flex-container{
+#header-logo{
     transition: transform 0.2s cubic-bezier(0, 1.03, 1, 1);
 }
-header.flex-header .wrapper a.flex-container:hover{
+#header-logo:hover{
     transform: translateX(+0.4rem);
 }
 
@@ -94,4 +92,15 @@ header.flex-header .wrapper a.flex-container:hover{
 
 .main-receitas-section{
     min-height: 100rem;
+}
+
+/* Footer */
+footer.wrapper{
+    margin-top: 0.2rem;
+    padding: 3.4rem 0px;
+    border-top: 2px thin var(--color-gray-8);
+}
+hr{
+    opacity: 90%;
+    border: 1px solid var(--color-black);
 }
