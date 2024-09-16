@@ -21,6 +21,8 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
     margin-left: 0.2rem;
     padding: 0.5rem;
     height: auto;
+    border-radius: 50%;
+    background-color: var(--color-gray-2);
 }
 #main-search-bar{
     border: 0px;
@@ -62,10 +64,19 @@ input[type="search"]#main-search-bar:focus{
 /* Grid */
 .grid-container{
     display: grid;
-    
+    max-width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    grid-gap: var(--spacing-gutter-medium);
+    justify-content: center;
+}
+.card-item{
+    display: block;
+    background-color: green;
 }
 /* Main */
 main div.wrapper h1{
     font-size: 1.5rem;
+    margin-top: 0rem;
+    padding-top: 0rem;
 }
 
