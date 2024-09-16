@@ -31,7 +31,7 @@ Depois se acessa o servidor pelo Browser, utilizando http://127.0.0.1:8000, por 
 
 ### Criando o App:
 Ao ter um projeto criado, vários <i>Apps</i> podem ser criados no mesmo diretório, caracterizando várias partições de um sistema completo, de forma organizada.
-* <code>manage.py startapp my-app</code> (Cria um app, com todos seus conteúdos específicos)
+* <code>manage.py startapp myapp</code> (Cria um app, com todos seus conteúdos específicos)
  
 logo, a estrutura deve ser apresentar assim: 
  
