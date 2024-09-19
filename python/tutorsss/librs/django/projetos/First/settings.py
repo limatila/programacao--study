@@ -121,21 +121,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-# URL prefix for static files.
-# Example: "http://media.lawrence.com/static/"
+#? URL prefix for static files, when looking into browser (?).
+# Example: "http://mydomain.co/static/"
 STATIC_URL = '/static/'
 
-# Additional locations of static files
+#All dirs that include static files are required to be here.
 STATICFILES_DIRS = (
-# Put strings here, like "/home/html/static" or "C:/www/django/static".
-# Always use forward slashes, even on Windows.
-# Don't forget to use absolute paths, not relative paths.
-BASE_DIR / "Receitas" / "static",
+    BASE_DIR / "Receitas" / "static",
 
 )
 
+# Path for static files to be saved when 'manage.py collectstatic' for production
 STATIC_ROOT = BASE_DIR / 'static/'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
