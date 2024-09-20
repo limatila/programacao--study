@@ -83,7 +83,7 @@ header * * .main-logo-text{
     max-width: 1200px; 
     max-height: fit-content;
 }
-.wrapper .flex-container{
+.search-form-outter-container{
     justify-content: center;
 }
 .flex-evenly{
@@ -103,4 +103,5 @@ footer.wrapper{
 hr{
     opacity: 90%;
     border: 1px solid var(--color-black);
+    margin: 1rem 0rem 0.5rem
 }
