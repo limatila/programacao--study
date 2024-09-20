@@ -1,8 +1,15 @@
-/* Remove the X in search bar */
+/* Remove the X in search inputs */
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration { display: none; }
+
+/* Main */
+main div.wrapper h1{
+    font-size: 1.5rem;
+    margin-top: 0rem;
+    padding-top: 0rem;
+}
 
 /* Search bar */ 
 .search-container{
@@ -60,23 +67,62 @@ input[type="search"]#main-search-bar:focus{
     font-size: 1.4rem;
 }
 
-
+/* *Em Alta */
 /* Grid */
 .grid-container{
     display: grid;
     max-width: 100%;
-    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-    grid-gap: var(--spacing-gutter-medium);
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 0.8fr));
+    grid-template-rows: repeat(auto-fit, minmax(10rem, 0.27fr));
+    grid-gap: 2rem;
     justify-content: center;
-}
-.card-item{
-    display: block;
-    background-color: green;
-}
-/* Main */
-main div.wrapper h1{
-    font-size: 1.5rem;
-    margin-top: 0rem;
-    padding-top: 0rem;
+    margin-top: 0.8rem;
 }
 
+/* Cards */
+.receita-card{
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    box-shadow: 0px 2px 6px 1px rgb(0,0,0, 0.45);
+    
+    transition: all 0.2s ease-out;
+}
+.receita-card *{ 
+    text-decoration: none;
+}
+.receita-card img{
+    margin-top: 0rem;
+}
+
+.receitas-details-title{
+    font-size: 2rem;
+    align-self: flex-start;
+    margin: 0.4rem 0rem;
+}
+.receita-details-container{
+    justify-content: flex-start;
+    height: 100%;
+    flex-direction: column;
+    margin: 0.7rem;
+}
+.receita-publicationDetails-container{  
+    width: 100%;
+    margin: 0.4rem 0rem;
+    font-family: 'Open Sans', sans-serif;
+}
+.receita-publicationDetails-container *{
+    word-break: keep-all;
+    word-wrap: none;
+    font-size: 0.7rem;
+    padding-right: 1rem;
+}
+.receita-details-description{
+    font-size: 0.7rem;
+}
+
+/* Hover on Cards */
+.receita-card:hover{
+    box-shadow: 0px 2px 10px 5px rgb(0,0,0, 0.5);
+    transform: scale(1.023);
+}
