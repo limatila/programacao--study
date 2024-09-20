@@ -111,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'  # ? How to change to UTC-3?
+TIME_ZONE = 'Etc/GMT+3'  # ? How to change to UTC-3?
 
 USE_I18N = True
 

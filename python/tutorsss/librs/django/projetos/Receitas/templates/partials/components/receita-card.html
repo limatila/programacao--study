@@ -1,3 +1,17 @@
-<div class="card-receitas flex-container ">
-    {% comment %} cards de receitas, para o Menu principal {% endcomment %}
-</div>
+{% load static %}
+
+<a class="receita-card flex-container" href="">
+    {% comment %} cards de receitas interativos, para o Menu principal {% endcomment %}
+    <img height="auto" width="100%" src={% static "Receitas/imgs/recipe1.jpg" %} alt="Tapioca de Frango">
+    <div class="receita-details-container flex-container">
+        <h4 class="receitas-details-title">Tapioca de Frango à Nordestina</h4>
+        <div class="receita-publicationDetails-container flex-container">
+            <b>Átila Lima</b>
+            <time datetime="2024-09-19 00:00">19/09/2024</time>
+            <b>atilalimade@gmail.com</b>
+        </div>
+        <p class="receita-details-description">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, neque.
+        </p>
+    </div>
+</a>
