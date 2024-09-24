@@ -85,11 +85,9 @@ input[type="search"]#main-search-bar:focus{
     width: 100%;
     height: fit-content;
     box-shadow: 0px 2px 6px 1px rgb(0,0,0, 0.45);
+    cursor: pointer;
     
     transition: all 0.2s ease-out;
-}
-.receita-card *{ 
-    text-decoration: none;
 }
 .receita-card img{
     margin-top: 0rem;

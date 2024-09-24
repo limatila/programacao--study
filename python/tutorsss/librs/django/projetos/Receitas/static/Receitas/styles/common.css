@@ -17,6 +17,10 @@ p, span, li{
 a{
     text-decoration: none;
 }
+.no-decoration{
+    all: unset;
+    text-decoration: none;
+}
 
 /* Color for texts */
 .brown-text{
