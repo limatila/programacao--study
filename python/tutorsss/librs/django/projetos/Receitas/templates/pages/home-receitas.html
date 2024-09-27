@@ -20,16 +20,11 @@
             </nav>
 
             <div>
-                <h1>Em Alta - Mais Clicados</h1>
+                <h1>Em Alta</h1>
                 <section class="main-receitas-section grid-container">
-                    {% include "partials/components/receita-card.html" %}
-                    {% include "partials/components/receita-card.html" %}
-                    {% include "partials/components/receita-card.html" %}
-                    {% include "partials/components/receita-card.html" %}
-                    {% include "partials/components/receita-card.html" %}
-                    {% include "partials/components/receita-card.html" %}
-                    {% include "partials/components/receita-card.html" %}
-                    {% include "partials/components/receita-card.html" %}
+                    {% for receita in receitas %}
+                        {% include "partials/components/receita-card.html" %}
+                    {% endfor %}
                 </section>
             </div>
     </main>
