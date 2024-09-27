@@ -1,17 +1,21 @@
 {% load static %}
 
+{% comment %} cards de receitas interativos, para o Menu principal {% endcomment %}
 <a class="receita-card flex-container no-decoration" href="">
-    {% comment %} cards de receitas interativos, para o Menu principal {% endcomment %}
-    <img height="auto" width="100%" src={% static "Receitas/imgs/recipe1.jpg" %} alt="Tapioca de Frango">
+    <div class="img-cropper">
+        <img src={{ receita.imageReceita }} alt="Tapioca de Frango">
+    </div>
     <div class="receita-details-container flex-container">
-        <h4 class="receitas-details-title">Tapioca de Frango à Nordestina</h4>
+        <h4 class="receitas-details-title"> '{{ receita.titleReceita }}' </h4>
         <div class="receita-publicationDetails-container flex-container">
-            <b><i class="fa fa-user" aria-hidden="true"></i> '{{ username }}' </b>
-            <time datetime="2024-09-19 00:00"><i class="fa fa-calendar" aria-hidden="true"></i> '{{ publidate }}' </time>
-            <b><i class="fa fa-envelope" aria-hidden="true"></i> '{{ useremail }}' </b>
+            <b><i class="fa fa-user" aria-hidden="true"></i> '{{ receita.userFirstName }}' </b>
+            <time datetime="{{ receita.publicationDate }} 00:00">
+                <i class="fa fa-calendar" aria-hidden="true"></i> '{{ receita.publicationDate }}' 
+            </time>
+            <b><i class="fa fa-envelope" aria-hidden="true"></i> '{{ receita.userEmail }}' </b>
         </div>
         <p class="receita-details-description">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, neque.
+            {{ receita.description }}
         </p>
     </div>
 </a>
