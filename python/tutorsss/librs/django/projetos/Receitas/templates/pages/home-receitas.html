@@ -1,0 +1,38 @@
+<!-- Carregando variáveis do ambiente Django -->
+<head>
+    {% include "partials/heads/default-head.html" %}
+    {% include "partials/heads/head-components/style-home.html" %}
+</head>
+<!-- Documento -->
+<body>
+    <header class="flex-container flex-header">
+        <div class="wrapper flex-container">
+            <a href="" class="flex-container white-text" id="header-logo">
+                <span class="fas fa-utensils logo-icon"></span>
+                <h1 class="main-logo-text">Receitas</h1>
+            </a>
+        </div>
+    </header>
+
+    <main class="wrapper">
+            <nav>
+                {% include "partials/components/search-bar.html" %}
+            </nav>
+
+            <div>
+                <h1>Em Alta</h1>
+                <section class="main-receitas-section grid-container">
+                    {% for receita in receitas %}
+                        {% include "partials/components/receita-card.html" %}
+                    {% endfor %}
+                </section>
+            </div>
+    </main>
+
+    <hr>
+    <footer class="wrapper flex-container">
+        <a href="#top" tabindex="-1">
+            <button tabindex="-1">Voltar ao Topo</button>
+        </a>
+    </footer>
+</body>

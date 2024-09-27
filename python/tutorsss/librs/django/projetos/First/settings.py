@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-9##n0o+jme15=-qdoo$059^)ie1u%o#a!-ex-!=2f-5zhldmb=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [*"localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -56,7 +56,11 @@ ROOT_URLCONF = 'First.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'Receitas' / 'templates',
+            
+            BASE_DIR / 'Reclame_aqui' / 'templates',
+            ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -107,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'  # ? How to change to UTC-3?
+TIME_ZONE = 'Etc/GMT+3'  # ? How to change to UTC-3?
 
 USE_I18N = True
 
@@ -117,9 +121,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+#? URL prefix for static files, when looking into browser (?).
+# Example: "http://mydomain.co/static/"
+STATIC_URL = '/static/'
+
+#All dirs that include static files are required to be here.
+STATICFILES_DIRS = (
+    BASE_DIR / "Receitas" / "static",
+
+)
+
+# Path for static files to be saved when 'manage.py collectstatic' for production
+STATIC_ROOT = BASE_DIR / 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

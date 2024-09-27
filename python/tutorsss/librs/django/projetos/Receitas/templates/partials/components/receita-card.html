@@ -1,0 +1,23 @@
+{% load static %}
+
+{% comment %} cards de receitas interativos, para o Menu principal {% endcomment %}
+<a class="receita-card flex-container no-decoration" href="">
+    <div class="img-cropper">
+        <img src={{ receita.imageReceita }} alt="Tapioca de Frango">
+    </div>
+    <div class="receita-details-container flex-container">
+        <h4 class="receitas-details-title"> '{{ receita.titleReceita }}' </h4>
+        <div class="receita-publicationDetails-container flex-container">
+            <b><i class="fa fa-user" aria-hidden="true"></i> '{{ receita.userFirstName }}' </b>
+            <time datetime="{{ receita.publicationDate }} 00:00">
+                <i class="fa fa-calendar" aria-hidden="true"></i> '{{ receita.publicationDate }}' 
+            </time>
+            <b><i class="fa fa-envelope" aria-hidden="true"></i> '{{ receita.userEmail }}' </b>
+        </div>
+        <p class="receita-details-description">
+            {{ receita.description }}
+        </p>
+    </div>
+</a>
+
+{% comment %} TODO: waiting for implementation with context loading {% endcomment %}
