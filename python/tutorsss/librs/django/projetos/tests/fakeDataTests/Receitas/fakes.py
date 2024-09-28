@@ -5,7 +5,7 @@ from random import choice, randint
 fake = Faker()
 foods: list[Any] = ['pizza', 'burger', 'sushi', 'pasta', 'salad', 'dessert', 'steak', 'sandwich', 'soup']
 def getRandomImageTuple() -> tuple[int, int]:
-    return (randint(500,1024), randint(800, 2098))
+    return (randint(500,1024), randint(300, 600))
 
 def main(num: int = 0) -> dict[Any, Any]:
     firstNameGenerated: str = fake.first_name()
@@ -15,7 +15,7 @@ def main(num: int = 0) -> dict[Any, Any]:
     return {
         "idPage": num,
         "titleReceita": randomFood,
-        "imageReceita": f"https://loremflickr.com/{imagePos1}/{imagePos2}/food,cook",
+        "imageReceita": f"https://loremflickr.com/{imagePos1}/{imagePos2}/food",
         "userName": firstNameGenerated + lastNameGenerated,
         "userFirstName": firstNameGenerated,
         "userLastName": lastNameGenerated,
