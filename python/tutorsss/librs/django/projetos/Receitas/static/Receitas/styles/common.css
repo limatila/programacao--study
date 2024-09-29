@@ -76,7 +76,7 @@ header * * .main-logo-text{
 /* Flex */
 .flex-container{
     display: flex;
-    flex-flow: row nowrap;
+    flex-direction: row;
     justify-content: flex-start;
     align-items: center;
 }
