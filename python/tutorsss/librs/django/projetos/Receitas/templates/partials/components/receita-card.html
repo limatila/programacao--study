@@ -4,17 +4,27 @@
 <div class="receita-card flex-container no-decoration" href="">
     {% comment %} imagem apresentação {% endcomment %}
     <div class="img-cropper">
-        <div class="more-details-hover flex-container">
-            More...
-        </div>
-        <img src={{ receita.imageReceita }} alt="Tapioca de Frango">
+        {% if pageDetails.isMainMenu == true %}
+        {% comment %} See Details hover button {% endcomment %}
+            <div class="more-details flex-container">
+                <h3>Passo a passo?</h3>
+                <a><i class="fa-solid fa-hand-pointer"></i>Clique</a>
+            </div>
+        {% endif %}
+        <img src={{ receita.imageReceita }} alt="Receita do título">
     </div>
-    <div class="more-details-hover"></div>
 
     {% comment %} detalhes em texto {% endcomment %}
     <div class="receita-details-container flex-container">
         <div>
-            <h4 class="receitas-details-title"> '{{ receita.titleReceita }}' </h4>
+            {% if pageDetails.isMainMenu == true %}
+                <a class="decorated-link" href="">    
+                    <h4 class="receitas-details-title"> '{{ receita.titleReceita }}' </h4>
+                </a>
+            {% elif pageDetails.isDetailMenu == true %}
+                <h4 class="receitas-details-title"> '{{ receita.titleReceita }}' </h4>
+            {% endif %}
+
             <div class="receita-publicationDetails-container flex-container">
                 <b><i class="fa fa-user" aria-hidden="true"></i> '{{ receita.userFirstName }}' </b>
                 <time datetime="{{ receita.publicationDate }} 00:00">
@@ -33,5 +43,3 @@
         </div>
     </div>
 </div>
-
-{% comment %} TODO: waiting for implementation with context loading {% endcomment %}

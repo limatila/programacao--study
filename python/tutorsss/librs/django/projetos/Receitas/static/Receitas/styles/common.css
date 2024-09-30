@@ -17,6 +17,16 @@ p, span, li{
 a{
     text-decoration: none;
 }
+a.decorated-link{
+    all: unset;
+    display: block;
+    cursor: pointer;
+    transition: color 0.1s ease-out;
+    width: fit-content;
+}
+a.decorated-link:hover{
+    color: var(--color-primary-hover-text);
+}
 .no-decoration{
     all: unset;
     text-decoration: none;

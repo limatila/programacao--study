@@ -51,7 +51,7 @@ main div.wrapper h1{
 /* Focus on search bar */
 .search-container:focus-within{
     width: 56%;
-    background-color: var(--color-primary-hover);
+    background-color: var(--color-primary-focus);
 }
 .search-container:focus-within #main-search-bar,
 .search-container:focus-within #main-search-bar-button{
