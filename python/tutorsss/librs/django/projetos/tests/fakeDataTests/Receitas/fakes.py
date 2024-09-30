@@ -15,7 +15,7 @@ def main(num: int = 0) -> dict[Any, Any]:
     return {
         "idPage": num,
         "titleReceita": randomFood,
-        "imageReceita": f"https://loremflickr.com/{imagePos1}/{imagePos2}/food",
+        "imageReceita": f"https://loremflickr.com/{imagePos1}/{imagePos2}/food,cook,{randomFood}",
         "userName": firstNameGenerated + lastNameGenerated,
         "userFirstName": firstNameGenerated,
         "userLastName": lastNameGenerated,
