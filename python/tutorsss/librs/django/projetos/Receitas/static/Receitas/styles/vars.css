@@ -1,6 +1,8 @@
 :root {
     --color-primary: rgba(56, 36, 24, 0.829);
-    --color-primary-hover: #cead6570;
+    --color-primary-hover: #cead65;
+    --color-primary-hover-text: #746035;
+    --color-primary-focus: #cead6570;
     --color-primary-dark: #13141f;
     --color-primary-dark-hover: #212336;
     --color-primary-light: #d4ecfa;
@@ -37,6 +39,9 @@
 
     --color-link-light: #132a74;
     --color-link-dark: #4665ca;
+
+    --color-button-primary: #b69f6d;
+    --color-button-light: rgb(12, 28, 117);
 
     --font-primary: sans-serif;
     --font-headings: 'Roboto Slab', serif;
