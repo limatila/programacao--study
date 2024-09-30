@@ -7,13 +7,13 @@ foods: list[Any] = ['pizza', 'burger', 'sushi', 'pasta', 'salad', 'dessert', 'st
 def getRandomImageTuple() -> tuple[int, int]:
     return (randint(500,1024), randint(300, 600))
 
-def main(num: int = 0) -> dict[Any, Any]:
+def main(idAtual: int = 0) -> dict[Any, Any]:
     firstNameGenerated: str = fake.first_name()
     lastNameGenerated: str = fake.last_name()
     randomFood:str = choice(foods)
     imagePos1, imagePos2 = getRandomImageTuple();
     return {
-        "idPage": num,
+        "idPage": idAtual,
         "titleReceita": randomFood,
         "imageReceita": f"https://loremflickr.com/{imagePos1}/{imagePos2}/food,cook,{randomFood}",
         "userName": firstNameGenerated + lastNameGenerated,
