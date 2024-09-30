@@ -1,7 +1,7 @@
 //First creation and insertion
 
 //! IMPORTANT: need to use it in MongoShell.
-// example in mongosh: load( "connect-and-insert.js" )
+// example in mongosh: load( "first.js" )
 
 //* Connecting to local mongo for shell.
 db = connect("mongodb://localhost/")
