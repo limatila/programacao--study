@@ -18,7 +18,7 @@
 .receita-card img{
     margin-top: 0rem;
     width: 100%;
-    max-height: 240px;
+    height: 195px;
     object-fit: cover;
 }
 
