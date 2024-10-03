@@ -1,8 +1,6 @@
 //First creation and insertion
 
-//! IMPORTANT: need to use it in MongoShell.
-// example in mongosh: load( "firstMongo.mongodb.js" )
-
+// run on mongosh: load( "firstMongo.mongodb.js" )
 //* Connecting to local mongo for shell.
 db = connect("mongodb://localhost/")
 
