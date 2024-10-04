@@ -13,9 +13,9 @@ def HOME(request):
                   content_type="text/html")
 
 def RECEITA(request, idReceita):
-    return render(request, "pages/receita.html/{{ idReceita }}",
+    return render(request, "pages/receita.html/",
                   context={
-                      "receita": genFakeData(idReceita),
+                      "receita": genFakeData(idReceita), #TODO: Ao implementar BD, idReceita deve ser usado para consultar ela.
                       "pageDetails": {"isReceita": True,
                                       "isHome": False},
                     },
