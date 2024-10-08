@@ -1,3 +1,5 @@
+{% load static %}
+
 <head>
     {% include "partials/heads/default-head.html" %}
     
@@ -7,7 +9,7 @@
 <body>
     <header class="flex-container flex-header">
         <div class="wrapper flex-container">
-            <a href="" class="flex-container white-text" id="header-logo">
+            <a href={% url "Home" %} class="flex-container white-text" id="header-logo">
                 <span class="fas fa-utensils logo-icon"></span>
                 <h1 class="main-logo-text">Receitas</h1>
             </a>
@@ -22,9 +24,24 @@
     </main>
 
     <hr>
-    <footer class="wrapper flex-container">
-        <a href="#top" tabindex="-1">
-            <button tabindex="-1">Voltar ao Topo</button>
-        </a>
+    <div class="footer-background">
+    <footer class="wrapper flex-container main-footer">
+        <div class="column-footer flex-container">
+            <a href="#top" tabindex="-1">
+                <button tabindex="-1">Voltar ao Topo</button>
+            </a>
+            <div class="flex-container"><img width="40px" height="auto" src="{% static "Receitas/imgs/main-icon.png" %}" alt="Site logo"> Receitas </div>
+        </div>
+
+        <div class="column-footer flex-container">
+            <a href="https://www.djangoproject.com/" class="no-decoration flex-container engineLinkBox">
+                Powered by
+                <img width="auto" height="30px" src="{% static "Receitas/imgs/djangoLogo.png" %}" alt="django logo">
+            </a>
+            <a href="https://github.com/limatila/" class="no-decoration">
+                @Atila Lima, 2024.
+            </a>
+        </div>
     </footer>
+    </div>
 </body>
