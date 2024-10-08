@@ -7,6 +7,7 @@ from tests.fakeDataTests.Receitas.fakes import main as genFakeData
 def HOME(request):
     return render(request, "pages/home-receitas.html",
                   context={
+                      "title": "Home",
                       "pageDetails": {"isHome": True},
                       "receitas": [ genFakeData(num) for num in range(5) ],
                     },
@@ -15,6 +16,7 @@ def HOME(request):
 def RECEITA(request, idReceita):
     return render(request, "pages/receita.html/",
                   context={
+                      "title": f"Receita id{idReceita}",
                       "receita": genFakeData(idReceita), #TODO: Ao implementar BD, idReceita deve ser usado para consultar ela.
                       "pageDetails": {"isReceita": True,
                                       "isHome": False},
