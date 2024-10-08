@@ -123,12 +123,15 @@ div.footer-background{
 footer.main-footer{
     justify-content: space-between;
     margin-top: 0.2rem;
-    padding: 3.4rem 0px;
+    height: 10rem;
     border-top: 2px thin var(--color-gray-8);
 }
 .column-footer{
+    font-size: 1rem;
     flex-direction: column;
     align-items: flex-start;
+    justify-content: space-evenly;
+    height: 75%;
 }
 
 
@@ -141,6 +144,9 @@ footer.main-footer .column-footer:last-child a:nth-child(2){ /* Signature */
     opacity: 70%;
 }
 
+.engineLinkBox{
+    font-family: 'Open Sans', sans-serif;
+}
 .engineLinkBox img{
     padding-left: 0.4rem;
 }
