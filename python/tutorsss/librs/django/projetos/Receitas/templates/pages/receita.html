@@ -1,9 +1,17 @@
 {% extends "common/base-template.html" %}
 
+{% block titleCustom %}{{ receita.titleReceita }}{% endblock titleCustom %}
+
 {% block headCustom %}
-    a
+    {% include "partials/heads/default-head.html" %}
+    {% include "partials/heads/head-components/style-receita.html" %}
+
+    {% include "partials/heads/head-components/style-search.html" %}
+    {% include "partials/heads/head-components/style-cards.html" %}
 {% endblock headCustom %}
 
 {% block content %}
-    a
+    {% include "partials/components/search-bar.html" %}
+
+    {% include "partials/components/receita-card.html" %}
 {% endblock content %}
