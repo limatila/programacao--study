@@ -63,7 +63,7 @@
 
 
 .receita-description{
-    place-self: center center;
+    place-self: flex-start;
 }
 .receita-description h4{
     margin: 0px;
