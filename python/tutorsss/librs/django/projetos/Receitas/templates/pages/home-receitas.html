@@ -1,15 +1,17 @@
 {% extends "common/base-template.html" %}
 
+{% block titleCustom %}Home{% endblock titleCustom %}
+
 {% block headCustom %}
     {% include "partials/heads/head-components/style-home.html" %}
+
+    {% include "partials/heads/head-components/style-search.html" %}
     {% include "partials/heads/head-components/style-cards.html" %}
 {% endblock headCustom %}
 
 {% block content %}
     {% comment %} insert here the page content {% endcomment %}
-    <nav>
-        {% include "partials/components/search-bar.html" %}
-    </nav>
+    {% include "partials/components/search-bar.html" %}
     
     <div>
         <h1>Em Alta</h1>

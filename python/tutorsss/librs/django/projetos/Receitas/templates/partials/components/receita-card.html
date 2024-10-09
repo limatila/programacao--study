@@ -1,7 +1,7 @@
 {% comment %} {% load static %} {% endcomment %}
  
 {% comment %} cards de receitas interativos, para o Menu principal {% endcomment %}
-<div class="receita-card flex-container no-decoration" href="">
+<div class="receita-card flex-container no-decoration">
     {% comment %} imagem apresentação {% endcomment %}
     <div class="img-cropper">
         {% if pageDetails.isMainMenu == true %}
@@ -9,7 +9,7 @@
             <div class="more-details flex-container">
                 <h3>Passo a passo?</h3>
                 <a href="{% url "Receita" receita.idPage %}">
-                    <i class="fa-solid fa-hand-pointer"></i>
+                    <i>👆🏼</i>
                     Clique
                 </a>
             </div>
@@ -21,19 +21,19 @@
     <div class="receita-details-container flex-container">
         <div>
             {% if pageDetails.isMainMenu == true %}
-                <a class="decorated-link" href="">
-                    <h4 class="receitas-details-title"> '{{ receita.titleReceita }}' </h4>
+                <a class="decorated-link" href="{% url "Receita" receita.idPage %}">
+                    <h4 class="receitas-details-title"> {{ receita.titleReceita }} </h4>
                 </a>
             {% elif pageDetails.isDetailMenu == true %}
-                <h4 class="receitas-details-title"> '{{ receita.titleReceita }}' </h4>
+                <h4 class="receitas-details-title"> {{ receita.titleReceita }} </h4>
             {% endif %}
 
             <div class="receita-publicationDetails-container flex-container">
-                <b><i class="fa fa-user" aria-hidden="true"></i> '{{ receita.userFirstName }}' </b>
+                <b><i class="fa fa-user" aria-hidden="true"></i> {{ receita.userFirstName }} </b>
                 <time datetime="{{ receita.publicationDate }} 00:00">
                     <i class="fa fa-calendar" aria-hidden="true"></i> '{{ receita.publicationDate }}' 
                 </time>
-                <a href={{ receita.userEmail }}><i class="fa fa-envelope no-decoration" aria-hidden="true"></i> '{{ receita.userEmail }}' </a>
+                <a href={{ receita.userEmail }}><i class="fa fa-envelope no-decoration" aria-hidden="true"></i> {{ receita.userEmail }} </a>
             </div>
         </div>
 
