@@ -25,5 +25,5 @@ def main(idAtual: int = 0) -> dict[Any, Any]:
     }
 
 if __name__ == "__main__":
-    print(main().get("publicationDate"))
+    print(main().get("publicationDate"), " is a fake date.")
     print("** Fake Data Generated **")
