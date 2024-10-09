@@ -10,11 +10,11 @@ def getRandomImageTuple() -> tuple[int, int]:
 def main(idAtual: int = 0) -> dict[Any, Any]:
     firstNameGenerated: str = fake.first_name()
     lastNameGenerated: str = fake.last_name()
-    randomFood:str = choice(foods)
+    randomFood: str = choice(foods)
     imagePos1, imagePos2 = getRandomImageTuple();
     return {
         "idPage": idAtual,
-        "titleReceita": randomFood,
+        "titleReceita": randomFood.title(),
         "imageReceita": f"https://loremflickr.com/{imagePos1}/{imagePos2}/food,cook,{randomFood}",
         "userName": firstNameGenerated + lastNameGenerated,
         "userFirstName": firstNameGenerated,
