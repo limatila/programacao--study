@@ -1,16 +1,27 @@
 from django.db import models
 
 # Create your models here.
-class receita(models.Model):
+class Receita(models.Model):
     idPage = models.IntegerField(primary_key=True)
     titleReceita = models.CharField(max_length=150)
-    imageReceita = models.ImageField(upload_to="static/Receitas/imgs/", editable=True)
+    imageReceita = models.ImageField(upload_to="static/Receitas/imgs/%d/%m/%Y", editable=True)
     userName = models.CharField(max_length=100)
     userEmail = models.CharField(max_length=60)
     publicationDate = models.DateField(auto_now_add=True)
-    description = models.TextField(editable=False, max_length=3000)
+    descriptionResumed = models.TextField(max_length=80)
+    description = models.TextField(max_length=3000)
 
-class user(models.Model):
+    # tempo de preparo
+    preparationTimeUnit_Values = {'minutos': 'minutos', 
+                                  'horas': 'horas', 
+                                  'dias': 'dias', 
+                                  'meses': 'meses'}
+    preparationTime = models.IntegerField(max=43200) #máximo 1 mês em minutos
+    preparationTimeUnit = models.CharField(max_length=7, 
+                                           choices=preparationTimeUnit_Values, 
+                                           default='minutos')
+
+class User(models.Model):
     idUser = models.IntegerField(primary_key=True)
     firstName = models.CharField(max_length=50)
     lastName = models.CharField(max_length=50)
