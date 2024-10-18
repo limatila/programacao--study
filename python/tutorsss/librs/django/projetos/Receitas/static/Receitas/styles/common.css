@@ -82,6 +82,7 @@ header * * .main-logo-text{
 
 /* Header hover Transition */
 #header-logo{
+    padding-left: 0.6rem;
     transition: transform 0.2s cubic-bezier(0, 1.03, 1, 1);
 }
 #header-logo:hover{
