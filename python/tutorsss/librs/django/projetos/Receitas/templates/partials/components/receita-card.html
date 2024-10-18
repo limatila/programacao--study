@@ -3,6 +3,8 @@
 {% comment %} cards de receitas interativos, para o Menu principal {% endcomment %}
 <div class="receita-card flex-container no-decoration">
     {% comment %} imagem apresentação {% endcomment %}
+
+    {% comment %} TODO: criar pop-up para ver mais imagens da receita {% endcomment %}
     <div class="img-cropper">
         {% if pageDetails.isMainMenu %}
         {% comment %} See Details hover button {% endcomment %}
@@ -20,15 +22,23 @@
     {% comment %} detalhes em texto {% endcomment %}
     <div class="receita-details-container flex-container">
         <div>
-            {% if pageDetails.isMainMenu %}
-                {% comment %} Título com link {% endcomment %}
-                <a class="decorated-link" href="{% url "Receita" receita.idPage %}">
+            <header class="receita-header flex-container">
+                {% if pageDetails.isMainMenu %}
+                    {% comment %} Título com link {% endcomment %}
+                    <a class="decorated-link" href="{% url "Receita" receita.idPage %}">
+                        <h4 class="receitas-details-title"> {{ receita.titleReceita }} </h4>
+                    </a>
+                {% elif pageDetails.isDetailMenu %}
+                    {% comment %} Título sem link {% endcomment %}
                     <h4 class="receitas-details-title"> {{ receita.titleReceita }} </h4>
-                </a>
-            {% elif pageDetails.isDetailMenu %}
-                {% comment %} Título sem link {% endcomment %}
-                <h4 class="receitas-details-title"> {{ receita.titleReceita }} </h4>
-            {% endif %}
+                {% endif %}
+
+                <div class="receita-details-preparation">
+                    
+                    <b> <i class="fa fa-clock-o" aria-hidden="true"></i> {% comment %} !icon not showing{% endcomment %}
+                         {{ receita.preparationTime }} min. </b>
+                </div>
+            </header>
 
             <div class="receita-publicationDetails-container flex-container">
                 <b><i class="fa fa-user" aria-hidden="true"></i> {{ receita.userFirstName }} </b>
