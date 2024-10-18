@@ -8,8 +8,9 @@ def HOME(request):
     return render(request, "pages/home-receitas.html",
                   context={
                       "title": "Home",
-                      "pageDetails": {"isHome": True},
-                      "receitas": [ genFakeData(num) for num in range(5) ],
+                      "pageDetails": {"isMainMenu": True,
+                                      "isDetailMenu": False},
+                      "receitas": [ genFakeData(num) for num in range(5) ], #* gera 5 fakes pra uso
                     },
                   content_type="text/html")
 
@@ -18,7 +19,7 @@ def RECEITA(request, idReceita):
                   context={
                       "title": f"Receita id{idReceita}",
                       "receita": genFakeData(idReceita), #TODO: Ao implementar BD, idReceita deve ser usado para consultar ela.
-                      "pageDetails": {"isReceita": True,
-                                      "isHome": False},
+                      "pageDetails": {"isMainMenu": False,
+                                      "isDetailMenu": True},
                     },
                   content_type="text/html")

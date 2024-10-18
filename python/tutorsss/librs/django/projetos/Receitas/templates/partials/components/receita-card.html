@@ -4,7 +4,7 @@
 <div class="receita-card flex-container no-decoration">
     {% comment %} imagem apresentação {% endcomment %}
     <div class="img-cropper">
-        {% if pageDetails.isMainMenu == true %}
+        {% if pageDetails.isMainMenu %}
         {% comment %} See Details hover button {% endcomment %}
             <div class="more-details flex-container">
                 <h3>Passo a passo?</h3>
@@ -20,11 +20,13 @@
     {% comment %} detalhes em texto {% endcomment %}
     <div class="receita-details-container flex-container">
         <div>
-            {% if pageDetails.isMainMenu == true %}
+            {% if pageDetails.isMainMenu %}
+                {% comment %} Título com link {% endcomment %}
                 <a class="decorated-link" href="{% url "Receita" receita.idPage %}">
                     <h4 class="receitas-details-title"> {{ receita.titleReceita }} </h4>
                 </a>
-            {% elif pageDetails.isDetailMenu == true %}
+            {% elif pageDetails.isDetailMenu %}
+                {% comment %} Título sem link {% endcomment %}
                 <h4 class="receitas-details-title"> {{ receita.titleReceita }} </h4>
             {% endif %}
 
@@ -37,7 +39,10 @@
             </div>
         </div>
 
-        {% comment %} space-between here {% endcomment %}
+        {% if pageDetails.isDetailMenu %}
+            <hr>
+        {% endif %}
+
         <div class="receita-description">
             <h4>Description</h4>
             <p class="receita-description-content">
