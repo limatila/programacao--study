@@ -21,7 +21,8 @@ def main(idAtual: int = 0) -> dict[Any, Any]:
         "userLastName": lastNameGenerated,
         "userEmail": fake.email(),
         "publicationDate": fake.date_time(end_datetime="now").strftime("%d/%m/%Y"),
-        "description": fake.paragraph(nb_sentences=3)
+        "description": fake.paragraph(nb_sentences=3),
+        "preparationTime": randint(5, 240),
     }
 
 if __name__ == "__main__":
