@@ -16,7 +16,7 @@ class Receita(models.Model):
                                   'horas': 'horas', 
                                   'dias': 'dias', 
                                   'meses': 'meses'}
-    preparationTime = models.IntegerField(max=43200) #máximo 1 mês em minutos
+    preparationTime = models.IntegerField() #máximo 1 mês em minutos
     preparationTimeUnit = models.CharField(max_length=7, 
                                            choices=preparationTimeUnit_Values, 
                                            default='minutos')
