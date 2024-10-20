@@ -8,7 +8,6 @@ from random import randint
 def HOME(request):
     return render(request, "pages/home-receitas.html",
                   context={
-                      "title": "Home",
                       "pageDetails": {"isMainMenu": True,
                                       "isDetailMenu": False},
                       "receitas": [ genFakeData(num) for num in range(5) ], #* gera 5 fakes pra uso
@@ -19,7 +18,6 @@ def HOME(request):
 def RECEITA(request, idReceita):
     return render(request, "pages/receita.html/",
                   context={
-                      "title": f"Receita id{idReceita}",
                       "pageDetails": {"isMainMenu": False,
                                       "isDetailMenu": True},
                       "receita": genFakeData(idReceita), 
