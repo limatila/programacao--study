@@ -1,24 +1,63 @@
-{% load static %}
-
+{% comment %} {% load static %} {% endcomment %}
+ 
 {% comment %} cards de receitas interativos, para o Menu principal {% endcomment %}
-<a class="receita-card flex-container no-decoration" href="">
-    <div class="img-cropper">
-        <img src={{ receita.imageReceita }} alt="Tapioca de Frango">
-    </div>
-    <div class="more-details-hover"></div>
-    <div class="receita-details-container flex-container">
-        <h4 class="receitas-details-title"> '{{ receita.titleReceita }}' </h4>
-        <div class="receita-publicationDetails-container flex-container">
-            <b><i class="fa fa-user" aria-hidden="true"></i> '{{ receita.userFirstName }}' </b>
-            <time datetime="{{ receita.publicationDate }} 00:00">
-                <i class="fa fa-calendar" aria-hidden="true"></i> '{{ receita.publicationDate }}' 
-            </time>
-            <b><i class="fa fa-envelope" aria-hidden="true"></i> '{{ receita.userEmail }}' </b>
-        </div>
-        <p class="receita-details-description">
-            {{ receita.description }}
-        </p>
-    </div>
-</a>
+<div class="receita-card flex-container no-decoration">
+    {% comment %} imagem apresentação {% endcomment %}
 
-{% comment %} TODO: waiting for implementation with context loading {% endcomment %}
+    {% comment %} TODO: criar pop-up para ver mais imagens da receita {% endcomment %}
+    <div class="img-cropper">
+        {% if pageDetails.isMainMenu %}
+        {% comment %} See Details hover button {% endcomment %}
+            <div class="more-details flex-container">
+                <h3>Passo a passo?</h3>
+                <a href="{% url "Receita" receita.idPage %}">
+                    <i>👆🏼</i>
+                    Clique
+                </a>
+            </div>
+        {% endif %}
+        <img width="auto" height="auto" src={{ receita.imageReceita }} alt="Receita do título">
+    </div>
+
+    {% comment %} detalhes em texto {% endcomment %}
+    <div class="receita-details-container flex-container">
+        <div>
+            <header class="receita-header flex-container">
+                {% if pageDetails.isMainMenu %}
+                    {% comment %} Título com link {% endcomment %}
+                    <a class="decorated-link" href="{% url "Receita" receita.idPage %}">
+                        <h4 class="receitas-details-title"> {{ receita.titleReceita }} </h4>
+                    </a>
+                {% elif pageDetails.isDetailMenu %}
+                    {% comment %} Título sem link {% endcomment %}
+                    <h4 class="receitas-details-title"> {{ receita.titleReceita }} </h4>
+                {% endif %}
+
+                <div class="receita-details-preparation">
+                    
+                    <b> <i class="fa fa-clock-o" aria-hidden="true"></i> {% comment %} !icon not showing{% endcomment %}
+                         {{ receita.preparationTime }} min. </b>
+                </div>
+            </header>
+
+            <div class="receita-publicationDetails-container flex-container">
+                <b><i class="fa fa-user" aria-hidden="true"></i> {{ receita.userFirstName }} </b>
+                <time datetime="{{ receita.publicationDate }} 00:00">
+                    <i class="fa fa-calendar" aria-hidden="true"></i> '{{ receita.publicationDate }}' 
+                </time>
+                <a href={{ receita.userEmail }}><i class="fa fa-envelope no-decoration" aria-hidden="true"></i> {{ receita.userEmail }} </a>
+            </div>
+        </div>
+
+        {% if pageDetails.isDetailMenu %}
+            <hr>
+        {% endif %}
+
+        <div class="receita-description">
+            <h4>Description</h4>
+            <p class="receita-description-content">
+                {{ receita.description }}
+            </p>
+        </div>
+    </div>
+</div>
