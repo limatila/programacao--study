@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-9##n0o+jme15=-qdoo$059^)ie1u%o#a!-ex-!=2f-5zhldmb=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost","localhost:32555", "127.0.0.1"]
+ALLOWED_HOSTS = ["localhost", "localhost:32555", "127.0.0.1"]
 
 
 # Application definition
@@ -130,10 +130,9 @@ STATICFILES_DIRS = (
     BASE_DIR / "Receitas" / "static",
 
 )
-
 # Path for static files to be saved when 'manage.py collectstatic' for production
 STATIC_ROOT = BASE_DIR / 'static/'
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_URL = '/media/' 
+MEDIA_ROOT = BASE_DIR / 'static' / 'Receitas' / 'media'

@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from django.conf.urls.static import static as staticLoader
+from django.conf import settings
 
 """
 * Here will be registered all URLs for the
@@ -34,3 +36,12 @@ urlpatterns = [  # * all available URLs. Apply 'path(url, view, other args)'
     path('reclame-aqui/', include('ReclameAqui.urls')),
     path('', include('Receitas.urls'))
 ]
+
+if settings.DEBUG == True:
+    urlpatterns.extend(
+        #So the server can see into the static files, in DEBUG mode.
+        staticLoader(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    )
+    urlpatterns.extend(
+        staticLoader(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    )
