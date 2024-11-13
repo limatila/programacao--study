@@ -1,2 +1,0 @@
-don't 'python' folder as a workspace, it wont work that way
-open it separetely (select only this current folder)

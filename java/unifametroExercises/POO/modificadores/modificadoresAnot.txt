@@ -1,6 +1,0 @@
-classe principal com todos os conteudos: A.java
-
-public - visivel a todos os packages
-default - visivel ao package atual
-protected - visivel á qualquer subclasse
-private - visivel á classe
