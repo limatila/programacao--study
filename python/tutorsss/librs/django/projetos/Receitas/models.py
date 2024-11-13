@@ -29,12 +29,12 @@ class Category(models.Model):
     def __str__(self) -> str:
         return f"{self.get_categoryType_display()} ({self.categoryType})"
 
-class Receita(models.Model):
+class Receita(models.Model): #TODO: formatar entrys conforme necessidade no Front.
     idPage = models.AutoField(primary_key=True)
     titleReceita = models.CharField(max_length=150)
     imageReceita = models.ImageField(upload_to="receitaCovers/", editable=True)
     publicationDate = models.DateField(auto_now_add=True, null=False, blank=False, editable=False)
-    descriptionResumed = models.TextField(max_length=80, name="Description Resumed")
+    descriptionResumed = models.TextField(max_length=80)
     description = models.TextField(max_length=3000)
     # tempo de preparo
     preparationTimeUnit_Values = {'minutos': 'minutos', 
