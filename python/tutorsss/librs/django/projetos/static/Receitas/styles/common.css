@@ -17,6 +17,21 @@ p, span, li{
 a{
     text-decoration: none;
 }
+
+/* Links */
+a.decorated-link{
+    all: unset;
+    display: block;
+    cursor: pointer;
+    transition: color 0.1s ease-out;
+    width: fit-content;
+}
+a.decorated-link:hover{
+    color: var(--color-primary-hover-text);
+}
+a.decorated-link-black{
+    color: black;
+}
 .no-decoration{
     all: unset;
     text-decoration: none;
@@ -67,6 +82,7 @@ header * * .main-logo-text{
 
 /* Header hover Transition */
 #header-logo{
+    padding-left: 0.6rem;
     transition: transform 0.2s cubic-bezier(0, 1.03, 1, 1);
 }
 #header-logo:hover{
@@ -76,7 +92,7 @@ header * * .main-logo-text{
 /* Flex */
 .flex-container{
     display: flex;
-    flex-flow: row nowrap;
+    flex-direction: row;
     justify-content: flex-start;
     align-items: center;
 }
@@ -99,13 +115,52 @@ header * * .main-logo-text{
 }
 
 /* Footer */
-footer.wrapper{
-    margin-top: 0.2rem;
-    padding: 3.4rem 0px;
-    border-top: 2px thin var(--color-gray-8);
-}
 hr{
     opacity: 90%;
+    width: 50%;
+    
     border: 1px solid var(--color-black);
-    margin: 1rem 0rem 0.5rem
+    margin: 2.5rem auto 0.5rem;
+}
+div.footer-background{
+    background-color: var(--color-primary-hover);
+
+}
+footer.main-footer{
+    justify-content: space-between;
+    margin-top: 0.2rem;
+    height: 10rem;
+    border-top: 2px thin var(--color-gray-8);
+}
+.column-footer{
+    font-size: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    height: 75%;
+}
+
+/* Footer Columns: */
+/* Right side column */
+footer.main-footer .column-footer:first-child a img{ 
+    padding-right: 0.4rem;
+    border-radius: 0.3rem;
+}
+/* Left side column   */
+footer.main-footer .column-footer:last-child{ 
+    align-items: flex-end;
+    opacity: 70%;
+}
+
+footer.main-footer .column-footer a{
+    all: unset;
+    cursor: pointer;
+}
+
+.engineLinkBox{
+    font-family: 'Open Sans', sans-serif;
+    font-size: medium;
+}
+.engineLinkBox img{
+    padding-left: 0.4rem;
 }

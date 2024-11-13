@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Receita
 
 from tests.fakeDataTests.Receitas.fakes import main as genFakeData
 from random import randint
@@ -6,11 +7,13 @@ from random import randint
 # Create your views here.
 
 def HOME(request):
+    receitaQueried = Receita.objects.get(idPage=1)
+
     return render(request, "pages/home-receitas.html",
                   context={
                       "pageDetails": {"isMainMenu": True,
                                       "isDetailMenu": False},
-                      "receitas": [ genFakeData(num) for num in range(5) ], #* gera 5 fakes pra uso
+                      "receitas": [ genFakeData(num) for num in range(5) ] + [receitaQueried], #* gera 5 fakes pra uso, e adiciona a última também!
                       #? receitas devem ser pegues do DB, categorizando por número de cliques
                     },
                   content_type="text/html")
