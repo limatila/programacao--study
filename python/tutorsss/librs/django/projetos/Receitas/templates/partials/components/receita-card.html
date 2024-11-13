@@ -36,16 +36,16 @@
                 <div class="receita-details-preparation">
                     
                     <b> <i class="fa fa-clock-o" aria-hidden="true"></i> {% comment %} !icon not showing{% endcomment %}
-                         {{ receita.preparationTime }} min. </b>
+                         {{ receita.preparationTime }} {{ receita.preparationTimeUnit }}</b> {% comment %} TODO: personalizar unidade com fonte menor {% endcomment %}
                 </div>
             </header>
 
             <div class="receita-publicationDetails-container flex-container">
-                <b><i class="fa fa-user" aria-hidden="true"></i> {{ receita.userFirstName }} </b>
-                <time datetime="{{ receita.publicationDate }} 00:00">
-                    <i class="fa fa-calendar" aria-hidden="true"></i> '{{ receita.publicationDate }}' 
-                </time>
-                <a href={{ receita.userEmail }}><i class="fa fa-envelope no-decoration" aria-hidden="true"></i> {{ receita.userEmail }} </a>
+                <b><i class="fa fa-user" aria-hidden="true"></i> {{ receita.userSubmitted.first_name }} </b>
+                <date datetime="{{ receita.publicationDate }}">
+                    <i class="fa fa-calendar" aria-hidden="true"></i> {{ receita.publicationDate }} 
+                </date>
+                <a href={{ receita.userSubmitted.email }}><i class="fa fa-envelope no-decoration" aria-hidden="true"></i> {{ receita.userSubmitted.email }} </a>
             </div>
         </div>
 
@@ -56,7 +56,7 @@
         <div class="receita-description">
             <h4>Description</h4>
             <p class="receita-description-content">
-                {{ receita.description }}
+                {{ receita.description }} {% comment %}! FIX THE MODEL {% endcomment %}
             </p>
         </div>
     </div>
