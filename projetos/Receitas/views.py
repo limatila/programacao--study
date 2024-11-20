@@ -1,33 +1,86 @@
 from django.shortcuts import render
-from .models import Receita
+from .models import Receita, Category
 
-from tests.fakeDataTests.Receitas.fakes import main as genFakeData
 from random import randint
+from tests.fakeDataTests.Receitas.fakes import main as genFakeData
+from .utils.contextGenerators import genMainContext
 
 # Create your views here.
 
 def HOME(request):
-    receitaQueried = Receita.objects.get(idPage=1)
+    receitasQueried = Receita.objects.all()[:12] #TODO: adicionar filtro por número de likes
 
     return render(request, "pages/home-receitas.html",
                   context={
-                      "pageDetails": {"isMainMenu": True,
-                                      "isDetailMenu": False},
-                      "receitas": [ genFakeData(num) for num in range(5) ] + [receitaQueried], #* gera 5 fakes pra uso, e adiciona a última também!
-                      #? receitas devem ser pegues do DB, categorizando por número de cliques
+                      "pageDetails": genMainContext(1),
+                      "receitas": receitasQueried
                     },
                   content_type="text/html")
+
 
 def RECEITA(request, idReceita):
-    return render(request, "pages/receita.html/",
-                  context={
-                      "pageDetails": {"isMainMenu": False,
-                                      "isDetailMenu": True},
-                      "receita": genFakeData(idReceita), 
-                      #? receita deve ser peque do DB, onde idReceita deve ser o ID PK 
-                    },
-                  content_type="text/html")
+    receitaQueried = Receita.objects.get(id=idReceita)
 
-def randomRECEITA(request): # Para botão 'Me mostre uma nova!'
+    return render(
+        request, "pages/receita.html/",
+        context={
+            "pageDetails": genMainContext(2),
+            "receita": receitaQueried,
+        },
+        content_type="text/html")
+
+
+
+#TODO: outras views de receitas
+def CATEGORIA_LISTING(request): #* Para um menu de cards, com cada uma das categorias
+    allCategorys = Category.objects.all()
+    allNames = [category.get_categoryType_display() for category in allCategorys]
+
+    return render(
+        request, "pages/home-receitas.html",
+        context={
+            "pageDetails": genMainContext(1),
+            "receitas": allNames
+        },
+        content_type="text/html")
+
+def CATEGORIA(request, idCategoria): #* Para selecionar categorias por cards de cada uma.
+    receitasQueried = Receita.objects.filter(categoria=idCategoria)
+
+    return render(
+        request, "pages/home-receitas.html",
+        context={
+            "pageDetails": genMainContext(3),
+            "receitas": receitasQueried
+        },
+        content_type="text/html"
+    )
+
+def COLECAO_LISTING(request, idColecao): #* Para mostrar coleções de receitas (Menu de coleções -> Menu com query definida de receitas)
+    receitasQueried = Receita.objects.all()[:12] #TODO: mostrar as com mais likes em suas receitas
+
+    return render(
+        request, "pages/home-receitas.html",
+        context={
+            "pageDetails": genMainContext(1),
+            "receitas": receitasQueried
+        },
+        content_type="text/html"
+    )
+
+def COLECAO(request, idColecao): #* Para selecionar categorias por cards de cada uma.
+    receitasQueried = Receita.objects.filter(categoria=idColecao)
+
+    return render(
+        request, "pages/home-receitas.html",
+        context={
+            "pageDetails": genMainContext(1),
+            "receitas": receitasQueried
+        },
+        content_type="text/html"
+    )
+
+
+def randomRECEITA(request):  #TODO: Para botão 'Me mostre uma nova!'
     randomID = randint(0, 5)
-    return RECEITA(request, randomID)
+    return RECEITA(request, randomID) #? Vai enviar pro url certo? provavel que não.

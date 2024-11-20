@@ -1,6 +1,8 @@
 {% extends "common/base-template.html" %}
 
-{% block titleCustom %}Home{% endblock titleCustom %}
+{% block titleCustom %}
+    {% if pageDetails.isHomeMenu %}Home{% endif %} 
+{% endblock titleCustom %}
 
 {% block headCustom %}
     {% include "partials/heads/head-components/style-home.html" %}
