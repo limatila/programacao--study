@@ -1,0 +1,1 @@
+//* A demonstration on how to use the 'mongojs' to quickly load a connection and run a query
