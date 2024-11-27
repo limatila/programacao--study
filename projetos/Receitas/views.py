@@ -18,8 +18,8 @@ def HOME(request):
                   content_type="text/html")
 
 
-def RECEITA(request, idReceita):
-    receitaQueried = Receita.objects.get(id=idReceita)
+def RECEITA(request, idRequest):
+    receitaQueried = Receita.objects.get(idPage=idRequest)
 
     return render(
         request, "pages/receita.html/",
@@ -56,7 +56,7 @@ def CATEGORIA(request, idCategoria): #* Para selecionar categorias por cards de 
         content_type="text/html"
     )
 
-def COLECAO_LISTING(request, idColecao): #* Para mostrar coleções de receitas (Menu de coleções -> Menu com query definida de receitas)
+def COLECAO_LISTING(request): #* Para mostrar coleções de receitas (Menu de coleções -> Menu com query definida de receitas)
     receitasQueried = Receita.objects.all()[:12] #TODO: mostrar as com mais likes em suas receitas
 
     return render(
@@ -80,7 +80,8 @@ def COLECAO(request, idColecao): #* Para selecionar categorias por cards de cada
         content_type="text/html"
     )
 
-
+## USER
+## USER_LISTING #por likes totais
 def randomRECEITA(request):  #TODO: Para botão 'Me mostre uma nova!'
     randomID = randint(0, 5)
     return RECEITA(request, randomID) #? Vai enviar pro url certo? provavel que não.
