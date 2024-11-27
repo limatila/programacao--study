@@ -2,11 +2,11 @@
  
 {% comment %} cards de receitas interativos, para o Menu principal {% endcomment %}
 <div class="receita-card flex-container no-decoration">
-    {% comment %} imagem apresentação {% endcomment %}
 
+    {% comment %} imagem apresentação {% endcomment %}
     {% comment %} TODO: criar pop-up para ver mais imagens da receita {% endcomment %}
     <div class="img-cropper">
-        {% if pageDetails.isMainMenu %}
+        {% if pageDetails.isHomeMenu %}
         {% comment %} See Details hover button {% endcomment %}
             <div class="more-details flex-container">
                 <h3>Passo a passo?</h3>
@@ -16,7 +16,7 @@
                 </a>
             </div>
         {% endif %}
-        <img width="auto" height="auto" src={{ receita.imageReceita.url }} alt="Receita do título">
+    <img width="auto" height="auto" src={{ receita.imageReceita.url }} alt="Receita do título">
     </div>
 
 
@@ -25,12 +25,12 @@
     <div class="receita-details-container flex-container">
         <div>
             <header class="receita-header flex-container">
-                {% if pageDetails.isMainMenu %}
+                {% if pageDetails.isHomeMenu %}
                     {% comment %} Título com link {% endcomment %}
                     <a class="decorated-link" href="{% url "Receita" receita.idPage %}">
                         <h4 class="receitas-details-title"> {{ receita.titleReceita }} </h4>
                     </a>
-                {% elif pageDetails.isDetailMenu %}
+                {% elif pageDetails.isReceitaDetail %}
                     {% comment %} Título sem link {% endcomment %}
                     <h4 class="receitas-details-title"> {{ receita.titleReceita }} </h4>
                 {% endif %}
@@ -38,7 +38,7 @@
                 <div class="receita-details-preparation">
                     
                     <b> <i class="fa fa-clock-o" aria-hidden="true"></i> {% comment %} !icon not showing{% endcomment %}
-                         {{ receita.preparationTime }} {{ receita.preparationTimeUnit }}</b> {% comment %} TODO: personalizar unidade com fonte menor {% endcomment %}
+                        {{ receita.preparationTime }} {{ receita.preparationTimeUnit }}</b> {% comment %} TODO: personalizar unidade com fonte menor {% endcomment %}
                 </div>
             </header>
 
@@ -51,15 +51,16 @@
             </div>
         </div>
 
-        {% if pageDetails.isDetailMenu %}
+        {% if pageDetails.isReceitaDetail %}
             <hr>
         {% endif %}
 
         <div class="receita-description">
             <h4>Description</h4>
             <p class="receita-description-content">
-                {{ receita.description }} {% comment %}! FIX THE MODEL {% endcomment %}
+                {{ receita.descriptionResumed }}
             </p>
         </div>
     </div>
+    
 </div>

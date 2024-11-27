@@ -52,7 +52,7 @@ a.decorated-link-black{
 body{
     margin: 0;
     background: linear-gradient(
-        to bottom, white 0%, #ccc 105%
+        to bottom, var(--color-primary-hover), white
     );
     margin-top: 4.5rem;
     
@@ -100,7 +100,7 @@ header * * .main-logo-text{
     position: relative;
     margin: 0 auto;
     width: 85%;
-    max-width: 1200px; 
+    max-width: 1300px; 
     max-height: fit-content;
 }
 .search-form-outter-container{
@@ -110,6 +110,11 @@ header * * .main-logo-text{
     justify-content: space-evenly;
 }
 
+main.wrapper{
+    background-color: white;
+    width: 90%;
+    padding: 0 2rem;
+}
 .main-receitas-section{
     min-height: 100rem;
 }
