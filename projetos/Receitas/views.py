@@ -30,22 +30,8 @@ def RECEITA(request, idRequest):
         content_type="text/html")
 
 
-
-#TODO: outras views de receitas
-def CATEGORIA_LISTING(request): #* Para um menu de cards, com cada uma das categorias
-    allCategorys = Category.objects.all()
-    allNames = [category.get_categoryType_display() for category in allCategorys]
-
-    return render(
-        request, "pages/home-receitas.html",
-        context={
-            "pageDetails": genMainContext(1),
-            "receitas": allNames
-        },
-        content_type="text/html")
-
-def CATEGORIA(request, idCategoria): #* Para selecionar categorias por cards de cada uma.
-    receitasQueried = Receita.objects.filter(categoria=idCategoria)
+def CATEGORIA(request, idRequest): #* Para selecionar categorias por cards de cada uma.
+    receitasQueried = Receita.objects.filter(category__categoryType=idRequest) # double _ para 'objeto.attr'
 
     return render(
         request, "pages/home-receitas.html",
@@ -57,7 +43,7 @@ def CATEGORIA(request, idCategoria): #* Para selecionar categorias por cards de 
     )
 
 def COLECAO_LISTING(request): #* Para mostrar coleções de receitas (Menu de coleções -> Menu com query definida de receitas)
-    receitasQueried = Receita.objects.all()[:12] #TODO: mostrar as com mais likes em suas receitas
+    receitasQueried = Receita.objects.all()[:18] #TODO: mostrar as com mais likes em suas receitas
 
     return render(
         request, "pages/home-receitas.html",
@@ -68,7 +54,7 @@ def COLECAO_LISTING(request): #* Para mostrar coleções de receitas (Menu de co
         content_type="text/html"
     )
 
-def COLECAO(request, idColecao): #* Para selecionar categorias por cards de cada uma.
+def COLECAO(request, idRequest): #* Para selecionar categorias por cards de cada uma.
     receitasQueried = Receita.objects.filter(categoria=idColecao)
 
     return render(
@@ -81,7 +67,7 @@ def COLECAO(request, idColecao): #* Para selecionar categorias por cards de cada
     )
 
 ## USER
-## USER_LISTING #por likes totais
+## USER_LISTING #por likes totais \ #TODO Fazer css específico de users
 def randomRECEITA(request):  #TODO: Para botão 'Me mostre uma nova!'
     randomID = randint(0, 5)
     return RECEITA(request, randomID) #? Vai enviar pro url certo? provavel que não.
