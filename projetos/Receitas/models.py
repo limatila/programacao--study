@@ -6,7 +6,8 @@ from .utils import modelFormatters as formatters
 # Create your models here.
 
 #1 User to Many Receitas
-#?to costumize..?
+#?to costumize.. deve ser só herdar
+
 
 #1 Category to Many Receitas
 class Category(models.Model):
@@ -33,7 +34,6 @@ class Category(models.Model):
     #Exibição - Admin
     def __str__(self) -> str:
         return formatters.formatCategoryName(self)
-
 
 class Receita(models.Model):
     idPage = models.AutoField(primary_key=True)
