@@ -1,14 +1,16 @@
 from django.shortcuts import render
-from .models import Receita, Category
+
+from .models import Receita
+#test: from tests.fakeDataTests.Receitas.fakes import main as genFakeData
 
 from random import randint
-from tests.fakeDataTests.Receitas.fakes import main as genFakeData
 from .utils.contextGenerators import genMainContext
+from .utils.queryFormatters import topLikes
 
 # Create your views here.
 
 def HOME(request):
-    receitasQueried = Receita.objects.all()[:12] #TODO: adicionar filtro por número de likes
+    receitasQueried = topLikes(Receita.objects.all())[:12] #TODO: adicionar filtro por número de likes
 
     return render(request, "pages/home-receitas.html",
                   context={
@@ -67,7 +69,13 @@ def COLECAO(request, idRequest): #* Para selecionar categorias por cards de cada
     )
 
 ## USER
-## USER_LISTING #por likes totais \ #TODO Fazer css específico de users
-def randomRECEITA(request):  #TODO: Para botão 'Me mostre uma nova!'
-    randomID = randint(0, 5)
-    return RECEITA(request, randomID) #? Vai enviar pro url certo? provavel que não.
+## USER_LISTING #por likes totais \ #TODO: Fazer css específico de users & coleções
+
+def randomRECEITA(request):  #TODO: Colocar em botão 'Me mostre uma nova!'
+    maxReceitas = len(Receita.objects.all())
+    randomID = randint(0, maxReceitas)
+
+    return (
+        RECEITA(request, 
+                randomID)
+    )
