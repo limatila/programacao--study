@@ -57,7 +57,7 @@ def COLECAO_LISTING(request): #* Para mostrar coleções de receitas (Menu de co
     )
 
 def COLECAO(request, idRequest): #* Para selecionar categorias por cards de cada uma.
-    receitasQueried = Receita.objects.filter(categoria=idColecao)
+    receitasQueried = Receita.objects.filter(categoria=idRequest)
 
     return render(
         request, "pages/home-receitas.html",
