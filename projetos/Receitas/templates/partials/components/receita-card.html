@@ -18,8 +18,6 @@
         {% endif %}
     <img width="auto" height="auto" src={{ receita.imageReceita.url }} alt="Receita do título">
     </div>
-
-
     
     {% comment %} detalhes em texto {% endcomment %}
     <div class="receita-details-container flex-container">
@@ -37,8 +35,8 @@
 
                 <div class="receita-details-preparation">
                     
-                    <b> <i class="fa fa-clock-o" aria-hidden="true"></i> {% comment %} !icon not showing{% endcomment %}
-                        {{ receita.preparationTime }} {{ receita.preparationTimeUnit }}</b> {% comment %} TODO: personalizar unidade com fonte menor {% endcomment %}
+                    <b> <i class="fa fa-clock-o" aria-hidden="true"></i>{% comment %} !icon not showing{% endcomment %}
+                         {{ receita.preparationTime }} {{ receita.preparationTimeUnit }}</b> {% comment %} TODO: personalizar unidade com fonte menor {% endcomment %}
                 </div>
             </header>
 

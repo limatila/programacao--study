@@ -10,10 +10,16 @@
 <body>
     <header class="flex-container flex-header">
         <div class="wrapper flex-container">
-            <a href={% url "Home" %} class="flex-container white-text" id="header-logo">
-                <span class="fas fa-utensils logo-icon"></span>
-                <h1 class="main-logo-text">Receitas</h1>
-            </a>
+            <div class="flex-container" id="header-logo-container">
+                <a href={% url "Home" %} class="flex-container white-text" id="header-logo">
+                    <span class="fas fa-utensils logo-icon"></span>
+                    <h1 class="main-logo-text">Receitas</h1>
+                </a>
+            </div>
+
+            <nav class="wrapper flex-container" id="header-nav-container">
+                {% include "partials/components/search-bar.html" %}
+            </nav>
         </div>
     </header>
     
