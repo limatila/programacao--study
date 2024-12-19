@@ -71,6 +71,7 @@ def COLECAO(request, idRequest): #* Para selecionar categorias por cards de cada
 ## USER
 ## USER_LISTING #por likes totais \ #TODO: Fazer css específico de users & coleções
 
+
 def randomRECEITA(request):  #TODO: Colocar em botão 'Me mostre uma nova!'
     maxReceitas = len(Receita.objects.all())
     randomID = randint(0, maxReceitas)

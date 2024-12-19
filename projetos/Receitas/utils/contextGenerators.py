@@ -25,6 +25,8 @@ def genMainContext(pageToContext: int) -> dict[str, bool]:
             generatedContext.update({"isCategoryMenu": True})
         case 4:
             generatedContext.update({"isCollectionMenu": True})
+        case 5:
+            generatedContext.update({"isSimpleMenu": True}) # Users / Coleções
         case _:
             raise Exception(
                 "Bad choice for genMainContext generator. Only allowed integers between 1 and 4."
