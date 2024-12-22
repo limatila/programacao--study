@@ -6,8 +6,8 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 
 /* Search bar  */
 .search-container{
-    position: relative;
-    width: 50%;
+    position: relative; 
+    height: 100%;
     flex-direction: row;
     border: 2px solid var(--color-gray-3);
     border-radius: 0.2rem;
@@ -43,7 +43,6 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 
 /* Focus on search bar */
 .search-container:focus-within{
-    width: 56%;
     background-color: var(--color-primary-focus);
 }
 .search-container:focus-within #main-search-bar,
