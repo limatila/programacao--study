@@ -12,7 +12,7 @@ from .utils.queryFormatters import topLikes
 def HOME(request):
     receitasQueried = topLikes(Receita.objects.all())[:12] #TODO: adicionar filtro por número de likes
 
-    return render(request, "pages/home-receitas.html",
+    return render(request, "pages/menu.html",
                   context={
                       "pageDetails": genMainContext(1),
                       "receitas": receitasQueried
@@ -26,7 +26,7 @@ def RECEITA(request, idRequest):
     return render(
         request, "pages/receita.html/",
         context={
-            "pageDetails": genMainContext(2),
+            "pageDetails": genMainContext(3),
             "receita": receitaQueried,
         },
         content_type="text/html")
@@ -36,9 +36,9 @@ def CATEGORIA(request, idRequest): #* Para selecionar categorias por cards de ca
     receitasQueried = Receita.objects.filter(category__categoryType=idRequest) # double _ para 'objeto.attr'
 
     return render(
-        request, "pages/home-receitas.html",
+        request, "pages/menu.html",
         context={
-            "pageDetails": genMainContext(3),
+            "pageDetails": genMainContext(2),
             "receitas": receitasQueried
         },
         content_type="text/html"
@@ -48,7 +48,7 @@ def COLECAO_LISTING(request): #* Para mostrar coleções de receitas (Menu de co
     receitasQueried = Receita.objects.all()[:18] #TODO: mostrar as com mais likes em suas receitas
 
     return render(
-        request, "pages/home-receitas.html",
+        request, "pages/menu.html",
         context={
             "pageDetails": genMainContext(1),
             "receitas": receitasQueried
@@ -60,7 +60,7 @@ def COLECAO(request, idRequest): #* Para selecionar categorias por cards de cada
     receitasQueried = Receita.objects.filter(categoria=idRequest)
 
     return render(
-        request, "pages/home-receitas.html",
+        request, "pages/menu.html",
         context={
             "pageDetails": genMainContext(1),
             "receitas": receitasQueried

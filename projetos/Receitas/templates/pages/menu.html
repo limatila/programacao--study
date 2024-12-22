@@ -2,12 +2,11 @@
 
 {% block titleCustom %}
     {% if pageDetails.isHomeMenu %}Home{% endif %} 
+    {% if pageDetails.isHomeMenu %}{% endif %} 
 {% endblock titleCustom %}
 
 {% block headCustom %}
     {% include "partials/heads/head-components/style-home.html" %}
-
-    {% include "partials/heads/head-components/style-search.html" %}
     {% include "partials/heads/head-components/style-cards.html" %}
 {% endblock headCustom %}
 

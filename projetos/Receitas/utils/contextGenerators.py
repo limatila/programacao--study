@@ -1,6 +1,6 @@
-MAIN_BASE_CONTEXT = {"isHomeMenu": False, #TODO: Padronizar em: receita-card.html, def generateContext, home-receitas.html, models.py(?)
+MAIN_BASE_CONTEXT = {"isDefaultMenu": False,
+                     "isSimpleMenu": False,
                      "isReceitaDetail": False,
-                     "isCategoryMenu": False,
                      "isCollectionMenu": False}
 
 #Geradores padronizados de 'Context's para Views.py
@@ -18,15 +18,13 @@ def genMainContext(pageToContext: int) -> dict[str, bool]:
 
     match (pageToContext):
         case 1:
-            generatedContext.update({"isHomeMenu": True})
+            generatedContext.update({"isDefaultMenu": True}) #Home, Lista - Coleções
         case 2:
-            generatedContext.update({"isReceitaDetail": True})
+            generatedContext.update({"isSimpleMenu": True}) # Users / Coleções / Categorias
         case 3:
-            generatedContext.update({"isCategoryMenu": True})
+            generatedContext.update({"isReceitaDetail": True})
         case 4:
             generatedContext.update({"isCollectionMenu": True})
-        case 5:
-            generatedContext.update({"isSimpleMenu": True}) # Users / Coleções
         case _:
             raise Exception(
                 "Bad choice for genMainContext generator. Only allowed integers between 1 and 4."
