@@ -10,6 +10,7 @@
 <body>
     <header class="flex-container flex-header">
         <div class="wrapper flex-container">
+            {% comment %} Logo {% endcomment %}
             <div class="flex-container" id="header-logo-container">
                 <a href={% url "Home" %} class="flex-container white-text" id="header-logo">
                     <span class="fas fa-utensils logo-icon"></span>
@@ -17,7 +18,10 @@
                 </a>
             </div>
 
-            <nav class="wrapper flex-container" id="header-nav-container">
+            <nav class="flex-container" id="header-nav-menu"></nav>
+
+            {% comment %} Search {% endcomment %}
+            <nav class="flex-container" id="header-nav-search">
                 {% include "partials/components/search-bar.html" %}
             </nav>
         </div>
