@@ -11,10 +11,12 @@ from .utils.queryFormatters import topLikes
 
 def HOME(request):
     receitasQueried = topLikes(Receita.objects.all())[:12] #TODO: adicionar filtro por número de likes
+    contextGenerated = genMainContext(1)
+    contextGenerated.update({"isHome": True})
 
     return render(request, "pages/menu.html",
                   context={
-                      "pageDetails": genMainContext(1),
+                      "pageDetails": contextGenerated,
                       "receitas": receitasQueried
                     },
                   content_type="text/html")

@@ -6,7 +6,7 @@
     {% comment %} imagem apresentação {% endcomment %}
     {% comment %} TODO: criar pop-up para ver mais imagens da receita {% endcomment %}
     <div class="img-cropper">
-        {% if pageDetails.isHomeMenu %}
+        {% if pageDetails.isDefaultMenu %}
         {% comment %} See Details hover button {% endcomment %}
             <div class="more-details flex-container">
                 <h3>Passo a passo?</h3>
@@ -23,7 +23,7 @@
     <div class="receita-details-container flex-container">
         <div>
             <header class="receita-header flex-container">
-                {% if pageDetails.isHomeMenu %}
+                {% if pageDetails.isDefaultMenu %}
                     {% comment %} Título com link {% endcomment %}
                     <a class="decorated-link" href="{% url "Receita" receita.idPage %}">
                         <h4 class="receitas-details-title"> {{ receita.titleReceita }} </h4>

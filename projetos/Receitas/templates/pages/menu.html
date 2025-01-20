@@ -1,8 +1,8 @@
 {% extends "common/base-template.html" %}
 
 {% block titleCustom %}
-    {% if pageDetails.isHomeMenu %}Home{% endif %} 
-    {% if pageDetails.isHomeMenu %}{% endif %} 
+    {% if pageDetails.isHome %}Home{% endif %} 
+    {% if pageDetails.isCollection %} {{ collection.titleCollection }} {% endif %} 
 {% endblock titleCustom %}
 
 {% block headCustom %}
