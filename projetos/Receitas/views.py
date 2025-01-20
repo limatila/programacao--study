@@ -34,6 +34,8 @@ def RECEITA(request, idRequest):
         content_type="text/html")
 
 
+#! faltando reorganizar templates para as seguintes Views:
+#TODO: Fazer css específico de users & coleções -- consultar diagrama
 def CATEGORIA(request, idRequest): #* Para selecionar categorias por cards de cada uma.
     receitasQueried = Receita.objects.filter(category__categoryType=idRequest) # double _ para 'objeto.attr'
 
@@ -47,7 +49,7 @@ def CATEGORIA(request, idRequest): #* Para selecionar categorias por cards de ca
     )
 
 def COLECAO_LISTING(request): #* Para mostrar coleções de receitas (Menu de coleções -> Menu com query definida de receitas)
-    receitasQueried = Receita.objects.all()[:18] #TODO: mostrar as com mais likes em suas receitas
+    receitasQueried = topLikes(Receita.objects.all())[:18] #TODO: mostrar as com mais likes em suas receitas
 
     return render(
         request, "pages/menu.html",
@@ -71,7 +73,7 @@ def COLECAO(request, idRequest): #* Para selecionar categorias por cards de cada
     )
 
 ## USER
-## USER_LISTING #por likes totais \ #TODO: Fazer css específico de users & coleções
+## USER_LISTING #por likes totais \
 
 
 def randomRECEITA(request):  #TODO: Colocar em botão 'Me mostre uma nova!'

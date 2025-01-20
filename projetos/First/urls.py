@@ -33,7 +33,6 @@ from django.conf import settings
 
 urlpatterns = [  # * all available URLs. Apply 'path(url, view, other args)'
     path('admin/', admin.site.urls),
-    path('reclame-aqui/', include('ReclameAqui.urls')),
     path('', include('Receitas.urls'))
 ]
 
