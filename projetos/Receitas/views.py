@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render
 
 from .models import Receita
@@ -6,6 +7,12 @@ from .models import Receita
 from random import randint
 from .utils.contextGenerators import genMainContext
 from .utils.queryFormatters import topLikes
+
+# View padrão code 404
+def NOT_FOUND(request):
+    return render(
+        request, "404.html",
+        status=404 )
 
 # Create your views here.
 
@@ -23,7 +30,9 @@ def HOME(request):
 
 
 def RECEITA(request, idRequest):
-    receitaQueried = Receita.objects.get(idPage=idRequest)
+    try: receitaQueried = Receita.objects.get(idPage=idRequest)
+    except Receita.DoesNotExist:
+        return NOT_FOUND(request)
 
     return render(
         request, "pages/receita.html/",

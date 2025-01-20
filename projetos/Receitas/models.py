@@ -29,7 +29,7 @@ class Category(models.Model):
     categoryType = models.CharField(choices=CategoryTypes.choices,
                                     default=CategoryTypes.OTHERS,
                                     max_length=15,
-                                    unique=True)
+                                    unique=True, null=False, blank=False)
 
     #Exibição - Admin
     def __str__(self) -> str:
@@ -37,17 +37,16 @@ class Category(models.Model):
 
 class Receita(models.Model):
     idPage = models.AutoField(primary_key=True)
-    titleReceita = models.CharField(max_length=150)
-    likes = models.IntegerField(default=0)
+    titleReceita = models.CharField(max_length=150, null=False, blank=False)
+    likes = models.IntegerField(default=0, null=False)
     imageReceita = models.ImageField(upload_to="receita-covers/",
-                                     editable=True)
+                                     editable=True, null=False)
     publicationDate = models.DateField(auto_now_add=True,
                                        null=False,
                                        blank=False,
                                        editable=False)
     descriptionResumed = models.TextField(max_length=80)
-
-    description = models.TextField(max_length=3000)
+    description = models.TextField(max_length=1000)
     # tempo de preparo
     preparationTimeUnit_Values = {
         'minutos': 'minutos',
@@ -55,19 +54,27 @@ class Receita(models.Model):
         'dias': 'dias',
         'meses': 'meses'
     }
-    preparationTime = models.IntegerField()  #máximo 1 mês em minutos
+    preparationTime = models.IntegerField(null=True)  #máximo 1 mês em minutos
     preparationTimeUnit = models.CharField(max_length=7,
                                            choices=preparationTimeUnit_Values,
-                                           default='minutos')
+                                           default='minutos',
+                                           null=True)
 
     #Foreigns
     userSubmitted = models.ForeignKey(User,
-                                      on_delete=models.CASCADE,
+                                      on_delete=models.SET_NULL, #! lidar erro
                                       null=True)
     category = models.ForeignKey(Category,
-                                 on_delete=models.SET_NULL,
+                                 on_delete=models.SET_NULL, #! lidar erro
                                  null=True)
 
     #Exibição - Admin
     def __str__(self) -> str:
         return formatters.formatReceitaName(self)
+
+#1 Receita to Many Step
+class Step(models.Model):
+    idStep = models.AutoField(primary_key=True)
+    stepNumber = models.IntegerField(null=False, blank=False) #! necessário saber como pular para o próximo id a cada adição
+    stepDescription = models.TextField(max_length=500, null=False, blank=False)
+    receita = models.ForeignKey(Receita, on_delete=models.SET_NULL, null=True)

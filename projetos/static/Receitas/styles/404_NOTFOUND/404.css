@@ -1,0 +1,19 @@
+main.wrapper{
+    max-height: none;
+    height: 900px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+main.wrapper > h1{
+    font-size: 5rem;
+    margin-bottom: 5rem;
+    color: var(--color-error-dark)
+}
+main.wrapper > h2{
+    font-size: 2.5rem;
+    margin: 0;
+    padding-top: 0rem;
+    color: var(--color-primary-hover)
+}
