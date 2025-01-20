@@ -10,5 +10,5 @@ class CategoryAdmin(admin.ModelAdmin):
 class ReceitaAdmin(admin.ModelAdmin):
     pass
 @admin.register(Step)
-class ReceitaAdmin(admin.ModelAdmin):
+class StepAdmin(admin.ModelAdmin):
     pass
