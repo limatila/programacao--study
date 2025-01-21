@@ -36,11 +36,11 @@ urlpatterns = [  # * all available URLs. Apply 'path(url, view, other args)'
     path('', include('Receitas.urls'))
 ]
 
-if settings.DEBUG == True:
-    urlpatterns.extend(
-        #So the server can see into the static files, in DEBUG mode.
-        staticLoader(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    )
-    urlpatterns.extend(
-        staticLoader(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    )
+#!statics, remove for production
+urlpatterns.extend(
+    #So the server can see into the static files, in DEBUG mode.
+    staticLoader(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+)
+urlpatterns.extend(
+    staticLoader(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+)

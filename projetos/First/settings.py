@@ -125,10 +125,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 #All dirs that include static files are required to be here.
-STATICFILES_DIRS = (
+STATICFILES_DIRS = [
     BASE_DIR / "Receitas" / "static",
+]
 
-)
 # Path for static files to be saved when 'manage.py collectstatic' for production
 STATIC_ROOT = BASE_DIR / 'static/'
 
