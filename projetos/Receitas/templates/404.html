@@ -12,7 +12,15 @@
 
 {% block content %}
     {% comment %} insert here the page content {% endcomment %}
-    <h1>Error 404</h1>
-    <h2> Desculpa, essa página não existe. </h2>
-    <h3>Tente denovo a partir do botão de início na parte superior</h3>     
+
+    {% if 404_message %}
+        <h1>Error 404</h1>
+        <h2>Desculpa, {{ 404_message }}. </h2>
+        <h3>Tente denovo a partir do botão de início na parte superior</h3>     
+    {% else %}
+        <h1>Error 404</h1>
+        <h2>Desculpa, essa página não existe. </h2>
+        <h3>Tente denovo a partir do botão de início na parte superior</h3>     
+    {% endif %}
+
 {% endblock content %}
