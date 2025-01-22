@@ -6,7 +6,6 @@ from django.shortcuts import redirect
 def ROOT(request):
     return redirect('Home')
 
-
 urlpatterns = [
     path('', ROOT, name="Root"),
     path('home/', views.HOME, name="Home"),
