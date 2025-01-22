@@ -1,6 +1,5 @@
 from django.test import TestCase #Derivado do módulo unittest
 
-
 class DefaultTestTemplate(TestCase):
     def test_default_unit_test(self):
         self.assertTrue(True)
@@ -16,3 +15,9 @@ class DefaultTestTemplate(TestCase):
         self.assertGreater(10, 5)
         self.assertGreaterEqual(10, 10)  #e mais
         self.assertLess(5, 10)
+
+        #Comentário em caso de erro
+        self.assertFalse(False, "O desejado não aconteceu")
+
+        #Testando print
+        print("\nTeste de unidade padrão executado com sucesso\n")
