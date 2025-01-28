@@ -1,8 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from django.conf import settings
-
 class TestPageURLs(TestCase):
     def test_shallReturnCorrectRootUrl(self):
         url = reverse('Root')
