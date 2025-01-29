@@ -57,8 +57,6 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             BASE_DIR / 'Receitas' / 'templates',
-            
-            BASE_DIR / 'Reclame_aqui' / 'templates',
             ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -86,6 +84,9 @@ DATABASES = {
         "PASSWORD": "32238142Ab",
         "HOST": "localhost",
         "PORT": "8088",
+        "TEST": {       #! pesquisar sobre daqui a pouco
+            "NAME": "tests_receitas"
+        }
     }
 }
 
