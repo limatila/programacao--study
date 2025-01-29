@@ -56,3 +56,4 @@ java/**/*.class
 venv
 data.json
 python/tutorsss/librs/django/projetos/static/admin/
+.coverage
