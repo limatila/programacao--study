@@ -22,7 +22,7 @@ def HOME(request):
                                12]  #TODO: adicionar filtro por número de likes
 
     if not receitasQueried:
-        return 'NOT_FOUND'(request, 1)
+        return NOT_FOUND(request, 1)
     else:
         contextGenerated = genMainContext(1)
         contextGenerated.update({"isHome": True})
@@ -54,6 +54,9 @@ def RECEITA(request, idRequest: int):
 #TODO: Fazer css específico de users & coleções -- consultar diagrama
 def CATEGORIA(request, idRequest): #* Para selecionar categorias por cards de cada uma.
     receitasQueried = Receita.objects.filter(category__categoryType=idRequest) # double _ para 'objeto.attr'
+
+    if not receitasQueried:
+        return NOT_FOUND(request, 3)
 
     return render(
         request, "pages/menu.html",
