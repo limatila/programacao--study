@@ -84,7 +84,7 @@ DATABASES = {
         "PASSWORD": "32238142Ab",
         "HOST": "localhost",
         "PORT": "8088",
-        "TEST": {       #! pesquisar sobre daqui a pouco
+        "TEST": {       #define o nome da DB de test para TestCases
             "NAME": "tests_receitas"
         }
     }
