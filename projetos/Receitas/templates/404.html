@@ -1,8 +1,7 @@
 {% extends "common/base-template.html" %}
 
 {% block titleCustom %}
-    {% if pageDetails.isHome %}Home{% endif %} 
-    {% if pageDetails.isCollection %} {{ collection.titleCollection }} {% endif %} 
+    [404] Not Found
 {% endblock titleCustom %}
 
 {% block headCustom %}
@@ -20,7 +19,12 @@
     {% else %}
         <h1>Error 404</h1>
         <h2>Desculpa, essa página não existe. </h2>
-        <h3>Tente denovo a partir do botão de início na parte superior</h3>     
+        <h3>Tente denovo a partir 
+            <a href={% url "Home" %}>
+                <button style="padding: 0px 5px; margin: 0px 2px;">
+                    Deste Botão
+                </button>   
+            </a></h3>     
     {% endif %}
 
 {% endblock content %}
