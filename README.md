@@ -45,7 +45,7 @@ Ao ter um projeto criado, vários <i>Apps</i> podem ser criados no mesmo diretó
 * <code>manage.py startapp myapp</code> (Cria um app, com todos seus conteúdos específicos)
 logo, a estrutura deve ser apresentar assim: 
  
-<a href="https://imgbb.com/"><img src="https://i.ibb.co/2k7tvN9/Image.png" alt="Comando tree na pasta" border="0" title="Usando Comando tree na pasta do MyProject"></a> 
+<a href="[https://imgbb.com/](https://i.ibb.co/2k7tvN9/Image.png)"><img src="https://i.ibb.co/2k7tvN9/Image.png" alt="Comando tree na pasta" border="0" title="Usando Comando tree na pasta do MyProject"></a> 
 <sub>*ou similar, no fim o server é só para desenvolvimento.</sub>
 
 ---
