@@ -25,8 +25,8 @@ for i in range(len(soma)):
 print('são', len(soma), "combinações para 2 lugares, \nrepetindo pessoas(como tipos)")
 
 tspac(); line(30)
-print("product:")
-soma = list(product(b, a, [1]))#will group the variables to a tuple
+print("cartesian product:") # all combinations of iterables
+soma = list(product(b, a, [2, 3]))#will group the combinated values to tuples
 print(soma)
 
 tspac()
