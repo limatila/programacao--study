@@ -1,4 +1,4 @@
-from fcts5 import endCode, tspac, line
+from fcts8 import endCode, tspac, line
 from itertools import permutations, combinations, product, accumulate, groupby, count, cycle, repeat
 from itertools import combinations_with_replacement
 import operator
@@ -49,25 +49,3 @@ soma = groupby(a, key=minor_2)#first: var, second: my func/expecification #creat
 for key, value in soma:
     print(key, list(value))#need to list values object
 
-tspac(); line(51)
-print("loops:")
-
-for i in count(3): #starts at arg
-    print("to", i)
-    if i == 5: 
-        print("finished counting")
-        break
-
-print("")
-for i in cycle(a):
-    print(i)
-    if i == 5:
-        print("finished cycling") #else it will go to infinity
-        break
-
-print("")
-for i in repeat(a, 3): #repeat given value, second arg stops it
-    print(i)
-print('finished repeating')
-
-endCode()
