@@ -11,24 +11,28 @@ def genMainContext(pageToContext: int) -> dict[str, bool]:
     generatedContext = dict(MAIN_BASE_CONTEXT)
 
     ##Pra cada view:
-    # 1: Home Menu
-    # 2: Receita Detailed
-    # 3: Category Menu
+    # 1: Menu
+    # 2: Simple Menu
+    # 3: Receita Detailed
     # 4: Collection Menu
     ## Diferenças: Menu para visualizar cards de receitas, Detail para visualizar amplicação do card.
 
     match (pageToContext):
-        case 1:
-            generatedContext.update({"isDefaultMenu": True}) #Home, Lista - Coleções
-        case 2:
-            generatedContext.update({"isSimpleMenu": True}) # Users / Coleções / Categorias
-        case 3:
+        case None:
+            pass
+        case "DefaultMenu":
+            generatedContext.update({"isDefaultMenu": True}) # Home
+        case "SimpleMenu":
+            generatedContext.update({"isSimpleMenu": True}) # Users / Categorias
+        case "ReceitaDetail":
             generatedContext.update({"isReceitaDetail": True})
-        case 4:
+        case "CollectionMenu":
+            generatedContext.update({"isDefaultMenu": True})
             generatedContext.update({"isCollectionMenu": True})
         case _:
             raise Exception(
-                "Bad choice for genMainContext generator. Only allowed integers between 1 and 4."
+                "Bad choice for genMainContext generator. " +
+                "Allowed: \"DefaultMenu\", \"SimpleMenu\", \"ReceitaDetail\", \"CollectionMenu\"."
             )
 
     return generatedContext
@@ -36,22 +40,25 @@ def genMainContext(pageToContext: int) -> dict[str, bool]:
 
 def genNotFoundContext(pageToContext: int) -> str:
     ##Pra cada 404:
-    # 1: Home Menu -- receitas não encontradas
-    # 2: Receita Detailed -- receita não encontrada
-    # 3: Category Menu -- receitas não encontradas
+    # 1: Menu -- receitas não encontradas
+    # 2: Simple Menu -- receitas não encontradas
+    # 3: Receita Detailed -- receita não encontrada
     # 4: Collection Menu -- coleções não encontradas
     ## Diferenças: Menu para visualizar cards de receitas, Detail para visualizar amplicação do card.
 
     match (pageToContext):
-        case 1:
+        case None:
+            return None
+        case "DefaultMenu":
             return "não há receitas aqui"
-        case 2:
+        case "SimpleMenu":
+            return "não há receitas aqui"
+        case "ReceitaDetail":
             return "essa receita não existe"
-        case 3:
-            return "não há receitas aqui"
-        case 4:
+        case "CollectionMenu":
             return "não há coleções aqui"
         case _:
             raise Exception(
-                "Bad choice for genMainContext generator. Only allowed integers between 1 and 4."
+                "Bad choice for genMainContext generator. " +
+                "Allowed: \"DefaultMenu\", \"SimpleMenu\", \"ReceitaDetail\", \"CollectionMenu\"."
             )
