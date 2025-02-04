@@ -1,4 +1,4 @@
-from locale import setlocale, LC_ALL, strxfrm #*For use in sorting arrays of strings in Portuguese-BR
+from locale import setlocale, LC_ALL, strxfrm #*For use in sorting lists of strings in Portuguese-BR
 from datetime import date
 from random import randint
 

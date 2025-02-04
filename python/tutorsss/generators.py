@@ -45,7 +45,7 @@ def listCount_generator(n):
         yield start
         start +=1
 
-print(sum(listCount_generator(3))) #a diferença é que eu não atribui nada a um array, e sim só usei o gerador.
+print(sum(listCount_generator(3))) #a diferença é que eu não atribui nada a um list, e sim só usei o gerador.
 soma = [x for x in listCount_generator(3)]#list comprehension
 print(soma)#aqui eu salvei(usando mais memória)
 
@@ -65,7 +65,7 @@ print(sys.getsizeof(newGenList)) #for a significative ammount, generators is muc
 print(newGenRange)
 print(newGenList[0], newGenList[-1])
 
-#to get a specific value, i can use an array and erase it..
+#to get a specific value, i can use an list and erase it..
 selected = newGenList[3609] #0 = 0, 1 = 1, index 3609 = 3609
 print(selected)
 del newGenList

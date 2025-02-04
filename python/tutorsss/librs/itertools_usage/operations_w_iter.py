@@ -38,7 +38,7 @@ print(soma)#opera na diagonal /, coloca o resultado no segundo slot
 print(""); line(40)
 soma = list(accumulate(a, func = operator.mul))#object, will multiply in / with .mul... will sub with .sub
 print(f"accumulate multiplicando: \n{a} \n{soma}")
-soma = list(accumulate(a, func = max)); print(f"accumulate decidindo máximo: \n{a} \n{soma}")#coloque um numero maior antes no array
+soma = list(accumulate(a, func = max)); print(f"accumulate decidindo máximo: \n{a} \n{soma}")#coloque um numero maior antes no list
 
 tspac(); line(46)
 def minor_2(val):
