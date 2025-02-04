@@ -13,6 +13,5 @@ java/**/*.class
 venv
 data.json
 python/tutorsss/librs/django/projetos/static/admin/
-**/node_modules/
-typescript/**/*.js
-**/output
+.coverage
+fixtures
