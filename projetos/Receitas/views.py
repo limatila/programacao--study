@@ -8,14 +8,13 @@ from random import randint
 from .utils.contextGenerators import *
 from .utils.queryFormatters import topLikes
 
-# View padrão code 404
-def NOT_FOUND(request, pageNumberForGen: int):
+# View padrão code 404, para querys não encontradas
+def NOT_FOUND(request, contextChoiceInserted: str):
     return render(request, "404.html", status=404,
-    context={"pageDetails": genMainContext(pageNumberForGen),
-             "404_message": genNotFoundContext(pageNumberForGen)} )
+    context={"pageDetails": genMainContext(None),
+             "404_message": genNotFoundContext(contextChoiceInserted)} )
 
 # Create your views here.
-
 
 def HOME(request):
     CONTEXT_CHOICE = "DefaultMenu"

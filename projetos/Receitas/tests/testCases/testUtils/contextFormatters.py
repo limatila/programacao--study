@@ -1,4 +1,4 @@
-
+#formatters for context generation
 from projetos.Receitas.utils.contextGenerators import MAIN_BASE_CONTEXT
 
 def filterDefaultContextKeys(generatedContext: dict[str, bool]) -> dict:
