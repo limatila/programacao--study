@@ -6,7 +6,7 @@ import time
 
 myList = [0, "name", 18, False]
 myList2 = [0, 1, 0, 24]
-#array/list: list()
+#list: list()
 myListAdd = myList + myList2
 print(type(myListAdd))#list
 
@@ -22,8 +22,8 @@ print(f'{myList}\n{myList3}')
 tspac()
 line(26)
 myList4 = list(myList)#copy the list
-myList4.append(myTuple)#tuple inside array
-myList += myTuple#new array value
+myList4.append(myTuple)#tuple inside list
+myList += myTuple#new list value
 print(myList4)
 print(myList)
 
@@ -138,7 +138,7 @@ tspac(); line(138)
 twArra= [d[5], d[3], 1, 58]
 print(twArra)
 onArra= ["ok", "NO"]
-twArra.append(onArra)#if inserted an array, will go entirely. if +=, will only add vars (clean)
+twArra.append(onArra)#if inserted an list, will go entirely. if +=, will only add vars (clean)
 print(twArra)
 
 tspac(); line(145)

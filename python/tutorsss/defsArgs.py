@@ -19,7 +19,7 @@ print(2, 3, 'a', '5', attr(20))
 
 tspac(); line(21) 
 def print_theargs(*args, **kwargs): 
-    #args é um array, kwargs é um dict:
+    #args é um list, kwargs é um dict:
     argsArra = []
     kwargsDict = {}
     print('args:')
