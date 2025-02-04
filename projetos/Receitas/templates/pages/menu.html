@@ -2,7 +2,8 @@
 
 {% block titleCustom %}
     {% if pageDetails.isHome %}Home{% endif %} 
-    {% if pageDetails.isCollection %} {{ collection.titleCollection }} {% endif %} 
+    {% if pageDetails.isCategory %} {{ titleCategory }} {% endif %} 
+    {% if pageDetails.isCollectionMenu %} {{ collection.titleCollection }} {% endif %} 
 {% endblock titleCustom %}
 
 {% block headCustom %}
@@ -13,7 +14,11 @@
 {% block content %}
     {% comment %} insert here the page content {% endcomment %}
     <div>
-        <h1>Em Alta</h1>
+        {% if pageDetails.isHome %}
+            <h1>Em Alta</h1>
+        {% elif pageDetails.isCategory %}
+            <h1>Categoria: {{ titleCategory }} </h1>
+        {% endif %}
         <section class="main-receitas-section grid-container">
             {% for receita in receitas %}
                 {% include "partials/components/receita-card.html" %}

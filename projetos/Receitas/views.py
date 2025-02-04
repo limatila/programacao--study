@@ -18,9 +18,7 @@ def NOT_FOUND(request, contextChoiceInserted: str):
 
 def HOME(request):
     CONTEXT_CHOICE = "DefaultMenu"
-    receitasQueried = topLikes(
-        Receita.objects.all())[:
-                               12]  #TODO: adicionar filtro por número de likes
+    receitasQueried = topLikes(Receita.objects.all())[:12]  #TODO: adicionar filtro por número de likes
 
     if not receitasQueried:
         return NOT_FOUND(request, CONTEXT_CHOICE)
@@ -43,11 +41,13 @@ def RECEITA(request, idRequest: int):
         receitaQueried = Receita.objects.get(idPage=idRequest)
     except Receita.DoesNotExist:
         return NOT_FOUND(request, CONTEXT_CHOICE)
+    
+    contextGenerated = genMainContext(CONTEXT_CHOICE)
 
     return render(request,
                   "pages/receita.html/",
                   context={
-                      "pageDetails": genMainContext(CONTEXT_CHOICE),
+                      "pageDetails": contextGenerated,
                       "receita": receitaQueried,
                   },
                   content_type="text/html")
@@ -56,17 +56,23 @@ def RECEITA(request, idRequest: int):
 #! faltando reorganizar templates para as seguintes Views:
 #TODO: Fazer css específico de users & coleções -- consultar diagrama
 def CATEGORIA(request, idRequest): #* Para selecionar categorias por cards de cada uma.
-    CONTEXT_CHOICE = "SimpleMenu"
+    CONTEXT_CHOICE = "DefaultMenu"
     receitasQueried = Receita.objects.filter(category__categoryType=idRequest) # double _ para 'objeto.attr'
+    categoriaTitleQueried: str = receitasQueried.first().category.get_categoryType_display()
 
     if not receitasQueried:
         return NOT_FOUND(request, CONTEXT_CHOICE)
+    else:
+        contextGenerated = genMainContext(CONTEXT_CHOICE)
+        contextGenerated.update({"isCategory": True})
+
 
     return render(
         request, "pages/menu.html",
         context={
-            "pageDetails": genMainContext(CONTEXT_CHOICE),
-            "receitas": receitasQueried
+            "pageDetails": contextGenerated,
+            "receitas": receitasQueried,
+            "titleCategory": categoriaTitleQueried
         },
         content_type="text/html"
     )
