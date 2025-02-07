@@ -1,0 +1,18 @@
+services:
+  db:
+    container_name: pgsql_receitas
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "32238142Ab" #! unsafe
+      POSTGRES_DB: "db_receitas"
+    ports:
+      - "8088:5432"
+    volumes:
+      - pg_receitas-vol:/var/lib/postgresql/data
+ 
+# Referencing volume created in Docker Desktop
+volumes:
+  pg_receitas-vol:
+    external: true
