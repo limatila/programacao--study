@@ -7,7 +7,7 @@ from Receitas.urls import ROOT
 class TestViewFunctions(TestCase):
     #* Testes estáticos para assegurar nomes de URL e função de View
     def test_shallResolveCorrectRootView(self) -> None:
-        view = resolve('/')  #Resolve a URL para a       view correspondente
+        view = resolve('/')  #Resolve a URL para a view correspondente
         
         self.assertIs(view.func, ROOT)
         print(f'Func {view.func.__name__} está designada.')
