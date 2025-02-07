@@ -9,7 +9,7 @@ from testUtils.contextCheckers import checkAllFalse_NotFound
 #Generators padrões
 class TestContextGenerationFunctions(TestCase):
     #Carregando dados de teste -> receitas existentes
-    fixtures: list[str] = ["projetos/Receitas/tests/fixtures/dump_receita_1.json"]
+    fixtures: list[str] = ["projetos/fixtures/old_test_data.json"]
     
     def test_shallGenerateCorrectContextForHome(self) -> None:
         detailsAttr = "pageDetails"

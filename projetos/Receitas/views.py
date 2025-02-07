@@ -56,9 +56,8 @@ def RECEITA(request, idRequest: int):
 #! faltando reorganizar templates para as seguintes Views:
 #TODO: Fazer css específico de users & coleções -- consultar diagrama
 def CATEGORIA(request, idRequest): #* Para selecionar categorias por cards de cada uma.
-    CONTEXT_CHOICE = "DefaultMenu"
+    CONTEXT_CHOICE = "SimpleMenu"
     receitasQueried = Receita.objects.filter(category__categoryType=idRequest) # double _ para 'objeto.attr'
-    categoriaTitleQueried: str = receitasQueried.first().category.get_categoryType_display()
 
     if not receitasQueried:
         return NOT_FOUND(request, CONTEXT_CHOICE)
@@ -66,6 +65,7 @@ def CATEGORIA(request, idRequest): #* Para selecionar categorias por cards de ca
         contextGenerated = genMainContext(CONTEXT_CHOICE)
         contextGenerated.update({"isCategory": True})
 
+    categoriaTitleQueried: str = receitasQueried.first().category.get_categoryType_display()
 
     return render(
         request, "pages/menu.html",
