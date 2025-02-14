@@ -45,8 +45,8 @@ class Receita(models.Model):
                                        null=False,
                                        blank=False,
                                        editable=False)
-    descriptionResumed = models.TextField(max_length=80)
-    description = models.TextField(max_length=1000)
+    descriptionResumed = models.TextField(max_length=80) # pro Menu
+    description = models.TextField(max_length=1000)      # pra Receita View
     # tempo de preparo
     preparationTimeUnit_Values = {
         'minutos': 'minutos',
