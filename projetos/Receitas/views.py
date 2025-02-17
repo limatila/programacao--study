@@ -66,13 +66,15 @@ def CATEGORIA(request, idRequest): #* Para selecionar categorias por cards de ca
         contextGenerated.update({"isCategory": True})
 
     categoriaTitleQueried: str = receitasQueried.first().category.get_categoryType_display()
+    categoriaImageQueried: str = receitasQueried.first().category.imageCategory
 
     return render(
         request, "pages/menu.html",
         context={
             "pageDetails": contextGenerated,
             "receitas": receitasQueried,
-            "titleCategory": categoriaTitleQueried
+            "categoriaTitle": categoriaTitleQueried,
+            "categoriaImageUrl": categoriaImageQueried.url,
         },
         content_type="text/html"
     )
