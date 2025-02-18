@@ -1,5 +1,7 @@
 {% extends "common/base-template.html" %}
 
+{% load static %}
+
 {% block titleCustom %}
     {% if pageDetails.isHome %}Home{% endif %} 
     {% if pageDetails.isCategory %} {{ titleCategory }} {% endif %} 
@@ -16,8 +18,10 @@
     <div>
         {% if pageDetails.isHome %}
             <h1>Em Alta</h1>
+            <img src={% static "/receita-covers/default.jpg" %} alt="default-home">
         {% elif pageDetails.isCategory %}
             <h1>Categoria: {{ titleCategory }} </h1>
+            <img src={{ categoriaImageUrl }} alt="default-categoria">
         {% endif %}
         <section class="main-receitas-section grid-container">
             {% for receita in receitas %}
