@@ -1,3 +1,10 @@
+/* unificando tamanhos de fonte */
+:root{
+    --receita-details-small-font: 0.7rem;
+    --receita-details-medium-font: 1rem;
+    --receita-details-bigger-font: 1.7rem;
+}
+
 /* Cards de Receitas */
 .receita-card{
     position: relative;
@@ -34,42 +41,62 @@
     justify-content: space-between;    
 }
 .receitas-details-title{
-    width: fit-content;
-    font-size: 2rem;
-    align-self: flex-start;
     margin: 0px;
-    margin-bottom: 0.4rem;
+    width: fit-content;
+    font-size: var(--receita-details-bigger-font);
+    align-self: flex-start;
 }
+
+/* tempo de preparo */
 .receita-details-preparation{
-    place-self: center flex-end;
+    flex-grow: 0;
+    flex-shrink: 0;
+    place-self: start end;
+    width: fit-content;
+    height: fit-content;
+
+    padding-top: auto;
+
+    & b{
+        font-size: var(--receita-details-medium-font);
+    }
+    & .fa, .fa-solid{
+        font-size: var(--receita-details-medium-font);
+    }
+    & .timeUnitContent{
+        font-size: calc( var(--receita-details-small-font) - 0.2rem );
+    }
 }
-.receita-details-preparation b{
-    font-size: 1rem;
+
+.receita-details-preparation div.inner-preparation-content{
+    flex-direction: column;
+    position: relative;
+    top: 10px;
 }
+
+/* detalhes - abaixo do título */
 .receita-publicationDetails-container{
     line-height: 2rem;
     flex-wrap: wrap;  
     width: 100%;
     margin: 0.6rem 0rem;
     font-family: 'Open Sans', sans-serif;
-}
-.receita-publicationDetails-container b, 
-.receita-publicationDetails-container a, 
-.receita-publicationDetails-container time{
-    word-break: keep-all;
-    word-wrap: none;
-    font-size: 0.7rem;
-    padding-right: 0.7rem;
-}
-.receita-publicationDetails-container .fa{
-    font-size: 0.8rem;
-}
-.receita-publicationDetails-container a{
-    color: var(--color-link-light);
-    font-weight: bolder !important;
+
+    & b, a, date{
+        word-break: keep-all;
+        font-size: var(--receita-details-small-font);
+        padding-right: 0.7rem;
+    }
+    & .fa{
+        font-size: 0.8rem;
+    }
+    & a{
+        color: var(--color-link-light);
+        font-weight: bolder !important;
+    }
 }
 
-
+/* descrição */
 .receita-description{
     place-self: flex-start;
 }
@@ -78,7 +105,7 @@
 }
 .receita-description-content{
     font-size: 0.7rem;
-    margin-bottom: 0.2rem;
+    margin: 0.2rem 0px;
 }
 
 /* Show More div */
@@ -98,7 +125,7 @@
     transition: all 0.2s ease-out;
 }
 .more-details h3{
-    font-size: xx-large;
+    font-size: var(--receita-details-bigger-font);
     margin: 0px 0px 0.4rem;
 }
 .more-details a{

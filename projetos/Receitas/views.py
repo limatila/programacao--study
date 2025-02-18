@@ -53,7 +53,6 @@ def RECEITA(request, idRequest: int):
                   content_type="text/html")
 
 
-#! faltando reorganizar templates para as seguintes Views:
 #TODO: Fazer css específico de users & coleções -- consultar diagrama
 def CATEGORIA(request, idRequest): #* Para selecionar categorias por cards de cada uma.
     CONTEXT_CHOICE = "SimpleMenu"
@@ -73,12 +72,13 @@ def CATEGORIA(request, idRequest): #* Para selecionar categorias por cards de ca
         context={
             "pageDetails": contextGenerated,
             "receitas": receitasQueried,
-            "categoriaTitle": categoriaTitleQueried,
-            "categoriaImageUrl": categoriaImageQueried.url,
+            "titleCategory": categoriaTitleQueried,
+            "imageCategory": categoriaImageQueried,
         },
         content_type="text/html"
     )
 
+#! faltando reorganizar templates para as seguintes Views:
 def COLECAO_LISTING(request): #* Para mostrar coleções de receitas (Menu de coleções -> Menu com query definida de receitas)
     #! Todo: verificar como vão ficar os templates para decidir qual é o contexto
     CONTEXT_CHOICE = None

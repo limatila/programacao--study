@@ -33,19 +33,23 @@
                     <h4 class="receitas-details-title"> {{ receita.titleReceita }} </h4>
                 {% endif %}
 
-                <div class="receita-details-preparation">
-                    
-                    <b> <i class="fa fa-clock-o" aria-hidden="true"></i>{% comment %} !icon not showing{% endcomment %}
-                         {{ receita.preparationTime }} {{ receita.preparationTimeUnit }}</b> {% comment %} TODO: personalizar unidade com fonte menor {% endcomment %}
+                <div class="receita-details-preparation ">
+                    <div class="inner-preparation-content flex-container">
+                        <i class="fa-solid fa-clock"></i>
+                        <b> 
+                                {{ receita.preparationTime }} 
+                                <span class="timeUnitContent">{{ receita.preparationTimeUnit }}</span>
+                        </b>
+                    </div>
                 </div>
             </header>
 
             <div class="receita-publicationDetails-container flex-container">
                 <b><i class="fa fa-user" aria-hidden="true"></i> {{ receita.userSubmitted.first_name }} </b>
-                <date datetime="{{ receita.publicationDate }}">
+                <a href={{ receita.userSubmitted.email }}><i class="fa fa-envelope no-decoration" aria-hidden="true"></i> {{ receita.userSubmitted.email }} </a>
+                <date date="{{ receita.publicationDate }}">
                     <i class="fa fa-calendar" aria-hidden="true"></i> {{ receita.publicationDate }} 
                 </date>
-                <a href={{ receita.userSubmitted.email }}><i class="fa fa-envelope no-decoration" aria-hidden="true"></i> {{ receita.userSubmitted.email }} </a>
             </div>
         </div>
 
@@ -54,7 +58,7 @@
         {% endif %}
 
         <div class="receita-description">
-            <h4>Description</h4>
+            <h4>Descrição</h4>
             <p class="receita-description-content">
                 {{ receita.descriptionResumed }}
             </p>
