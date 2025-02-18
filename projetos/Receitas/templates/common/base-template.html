@@ -39,18 +39,18 @@
         <footer class="wrapper flex-container main-footer">
             <div class="column-footer flex-container">
                 <a href="#top" tabindex="-1">
-                    <button tabindex="-1">Voltar ao Topo</button>   
+                    <button id="back-top-button" tabindex="-1">Voltar ao Topo</button>   
                 </a>
-                <a class="flex-container no-decoration" href="{% url "Home" %}">
-                    <img width="40px" height="auto" src="{% static "Receitas/imgs/main-icon.png" %}" alt="Site logo">
+                <a class="no-decoration flex-container black-text" href="{% url "Home" %}">
+                    <img width="30px" height="auto" src="{% static "Receitas/imgs/main-icon.png" %}" alt="Site logo">
                      Receitas 
                 </a>
             </div>
 
             <div class="column-footer flex-container">
-                <a href="https://www.djangoproject.com/" class="flex-container engineLinkBox">
+                <a href="https://www.djangoproject.com/" class="flex-container engineLinkBox no-decoration">
                     Powered by
-                    <img width="auto" height="30px" src="{% static "Receitas/imgs/djangoLogo.png" %}" alt="django logo">
+                    <img width="auto" height="25px" src="{% static "Receitas/imgs/djangoLogo.png" %}" alt="django logo">
                 </a>
                 <a href="https://github.com/limatila/" class="no-decoration">
                     @Atila Lima, 2024.
