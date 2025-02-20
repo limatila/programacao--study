@@ -37,7 +37,7 @@ class Category(models.Model):
 
 class Receita(models.Model):
     idPage = models.AutoField(primary_key=True)
-    titleReceita = models.CharField(max_length=150, null=False, blank=False)
+    titleReceita = models.CharField(max_length=40, null=False, blank=False)
     likes = models.IntegerField(default=0, null=False)
     imageReceita = models.ImageField(upload_to="receita-covers/",
                                      editable=True, null=False)
