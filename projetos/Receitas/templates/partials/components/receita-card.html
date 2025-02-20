@@ -9,7 +9,7 @@
         {% if pageDetails.isDefaultMenu %}
         {% comment %} See Details hover button {% endcomment %}
             <div class="more-details flex-container">
-                <h3>Passo a passo?</h3>
+                <h3 class="white-text">Passo a passo?</h3>
                 <a href="{% url "Receita" receita.idPage %}">
                     <i>👆🏼</i>
                     Clique
@@ -46,7 +46,7 @@
 
             <div class="receita-publicationDetails-container flex-container">
                 <b><i class="fa fa-user" aria-hidden="true"></i> {{ receita.userSubmitted.first_name }} </b>
-                <a href={{ receita.userSubmitted.email }}><i class="fa fa-envelope no-decoration" aria-hidden="true"></i> {{ receita.userSubmitted.email }} </a>
+                <a href="https://{{ receita.userSubmitted.email }}"><i class="fa fa-envelope no-decoration" aria-hidden="true"></i> {{ receita.userSubmitted.email }} </a>
                 <date date="{{ receita.publicationDate }}">
                     <i class="fa fa-calendar" aria-hidden="true"></i> {{ receita.publicationDate }} 
                 </date>
