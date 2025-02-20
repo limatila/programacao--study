@@ -12,7 +12,14 @@ form{
 button{
     cursor: pointer;
 }
-
+/* Body Background and screen*/
+body{
+    margin: 0;
+    background: linear-gradient(
+        to bottom, var(--color-primary-hover), white
+    );
+    margin-top: 4.5rem;
+}
 /* Fonts */
 h1, h2, h3{
     font-family: 'Montserrat', sans-serif;
@@ -22,6 +29,17 @@ p, span, li{
 }
 a{
     text-decoration: none;
+}
+
+/* Color for texts */
+.brown-text{
+    color: var(--color-primary);
+}
+.blue-text{
+    color: rgb(41, 104, 175);
+}
+.white-text{
+    color: var(--color-white);
 }
 
 /* Links */
@@ -43,25 +61,26 @@ a.decorated-link-black{
     text-decoration: none;
 }
 
-/* Color for texts */
-.brown-text{
-    color: var(--color-primary);
-}
-.blue-text{
-    color: rgb(41, 104, 175);
-}
-.white-text{
-    color: var(--color-white);
-}
+.link-button{ /* use in: <button> inside <a> */
+    all: unset;
 
-/* Body Background and screen*/
-body{
-    margin: 0;
-    background: linear-gradient(
-        to bottom, var(--color-primary-hover), white
-    );
-    margin-top: 4.5rem;
-    
+    border: solid black 1px;
+    padding: 5px 10px;
+    background-color: white;
+    border-radius: 0.4rem;
+
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.1rem;
+    color: black;
+
+    transition: transform 0.2s ease-in-out; /** !deve ter transform nesses botões! */
+}
+.link-button:active{
+    color: white;
+    background-color: var(--color-primary-hover);
+}
+.link-button:hover{
+    transform: translateY(-5px); /* default, deve mudar por contexto */
 }
 
 /* Header */
@@ -172,29 +191,6 @@ footer.main-footer .column-footer:first-child a{
         margin-right: 0.4rem;
         border-radius: 0.3rem;
     }
-}
-
-#back-top-button{
-    all: unset;
-
-    border: solid black 1px;
-    padding: 5px 10px;
-    background-color: white;
-    border-radius: 0.4rem;
-
-    font-family: 'Open Sans', sans-serif;
-    font-size: 1.1rem;
-    color: black;
-
-    transition: transform 0.2s ease-in-out;
-}
-#back-top-button:active{
-    color: white;
-    background-color: var(--color-primary-hover);
-}
-
-#back-top-button:hover{
-    transform: translateY(-5px);
 }
 
 /* Left side column   */
