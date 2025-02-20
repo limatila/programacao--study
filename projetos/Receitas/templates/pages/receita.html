@@ -4,16 +4,20 @@
 
 {% block headCustom %}
     {% include "partials/heads/default-head.html" %}
-    {% include "partials/heads/head-components/style-receita.html" %}
-
+    
     {% include "partials/heads/head-components/style-search.html" %}
     {% include "partials/heads/head-components/style-cards.html" %}
+    {% include "partials/heads/head-components/style-switcher.html" %}
+
+    {% include "partials/heads/head-components/style-receita.html" %}
 {% endblock headCustom %}
 
 {% block content %}
-    {% comment %} TODO: create '< home' and 'next >' buttons here {% endcomment %}
-
+    {% include "partials/components/receita-switcher.html" %}
+    
     <section class="main-receitaPage-section">
         {% include "partials/components/receita-card.html" %}
     </section>
+
+    {% include "partials/components/receita-switcher.html" %}
 {% endblock content %}

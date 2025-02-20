@@ -1,0 +1,23 @@
+<nav class="receita-switcher flex-container">
+    <a href="">
+        <button class="link-button" id="last-receita">
+            <- last
+        </button>
+    </a>
+
+    {% comment %} count retrieved by View {% endcomment %}
+    {% if pageDetails.isReceitaDetail %}
+        <span class="counter-receitas">
+            {{ receitasDetails.currentNumberReceita }} / {{ receitasDetails.countReceitas }} de <i>todas</i>
+        </span>
+    {% elif pageDetails.isCategoria %}
+        {% comment %} ! montar lógica para receitas de acordo com a view de origem {% endcomment %}
+    
+    {% endif %}
+
+    <a href="">
+        <button class="link-button" id="next-receita">
+            next ->
+        </button>
+    </a>
+</nav>

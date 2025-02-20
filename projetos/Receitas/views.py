@@ -42,12 +42,25 @@ def RECEITA(request, idRequest: int):
     except Receita.DoesNotExist:
         return NOT_FOUND(request, CONTEXT_CHOICE)
     
+    try:
+        countReceitas: int = len( Receita.objects.all() )
+    except Receita.DoesNotExist as err: 
+        raise err
+    
+    currentNumberReceita = receitaQueried.idPage + 1
+
+    contextReceitas = {
+        "countReceitas": countReceitas,
+        "currentNumberReceita": currentNumberReceita,
+    }
+    
     contextGenerated = genMainContext(CONTEXT_CHOICE)
 
     return render(request,
                   "pages/receita.html/",
                   context={
                       "pageDetails": contextGenerated,
+                      "receitasDetails": contextReceitas,
                       "receita": receitaQueried,
                   },
                   content_type="text/html")

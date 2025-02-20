@@ -63,6 +63,8 @@ a.decorated-link-black{
 
 .link-button{ /* use in: <button> inside <a> */
     all: unset;
+    position: static;
+    display: block;
 
     border: solid black 1px;
     padding: 5px 10px;
@@ -71,6 +73,7 @@ a.decorated-link-black{
 
     font-family: 'Open Sans', sans-serif;
     font-size: 1.1rem;
+    font-weight: bold;
     color: black;
 
     transition: transform 0.2s ease-in-out; /** !deve ter transform nesses botões! */

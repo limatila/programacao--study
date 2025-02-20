@@ -1,0 +1,30 @@
+/* botões Next e Last */
+nav.receita-switcher{
+    justify-content: space-between;
+    padding: 2rem 0 1rem;
+    font-weight: lighter;
+
+    & a > button{ /* custom */
+        border: solid 2px black;
+        scale: 80%;
+    }
+
+    /* invisible counter, displayed by page style */
+    & .counter-receitas{
+        display: none;
+        font-size: 1rem;
+    }
+
+    & .counter-receitas i{
+        all: inherit;
+        font-style: italic;
+        font-weight: bold;
+    }
+}
+
+#last-receita:hover{
+    transform: translateX(-10px);
+}
+#next-receita:hover{
+    transform: translateX(+10px);
+}
