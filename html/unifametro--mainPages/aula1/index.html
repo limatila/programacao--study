@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        body{
+            justify-content: center;
+            background-color: black;
+            color:aqua;
+            margin: 3px;
+        }
+        /* 1° part */
+        section.main{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            height: 4rem;
+            width: 50%;
+            flex-grow: 0;
+            margin: 0 auto;
+        }
+        #img1{
+            height: auto;
+        }
+        marquee{
+            display: block;
+            font-size: 4rem;
+            color: inherit;
+        }
+        
+        /* 2° part */
+        div.inner{
+            background-color: brown;
+            height: 100px;
+            width: 100px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- <marquee height="100%" direction="down">oi</marquee> -->
+    <section class="main">
+        <img id="img1" src="./1.jpg" alt="">
+        <button> BOTÃO </button>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </section>
+    <div class="inner">
+        <p>Olá iai tudo bem</p>
+    </div>
+</body>
+</html>
