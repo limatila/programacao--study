@@ -43,6 +43,7 @@
 .receitas-details-title{
     margin: 0px;
     width: fit-content;
+    max-width: 21rem;
     font-size: var(--receita-details-bigger-font);
     align-self: flex-start;
 }

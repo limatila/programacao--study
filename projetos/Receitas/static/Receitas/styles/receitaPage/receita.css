@@ -1,5 +1,4 @@
 .main-receitaPage-section{
-    height: calc(100% + 20rem);
     max-height: 300rem;
 }
 
@@ -11,12 +10,11 @@ section.main-receitaPage-section + nav.receita-switcher{
 }
 
 /* Cards custom for individual recipe */
-.receita-card img{
-    height: 450px;
+.receita-details-container img{
+    width: 100%;
 }
 .receita-details-container{
     width: calc(100% - 10rem);
-    margin: 2rem 0px;
     justify-content: flex-start;
 }    
 

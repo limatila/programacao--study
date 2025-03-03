@@ -3,22 +3,10 @@
 {% comment %} cards de receitas interativos, para o Menu principal {% endcomment %}
 <div class="receita-card flex-container no-decoration">
 
-    {% comment %} imagem apresentação {% endcomment %}
-    {% comment %} TODO: criar pop-up para ver mais imagens da receita {% endcomment %}
-    <div class="img-cropper">
-        {% if pageDetails.isDefaultMenu %}
-        {% comment %} See Details hover button {% endcomment %}
-            <div class="more-details flex-container">
-                <h3 class="white-text">Passo a passo?</h3>
-                <a href="{% url "Receita" receita.idPage %}">
-                    <i>👆🏼</i>
-                    Clique
-                </a>
-            </div>
-        {% endif %}
-    <img width="auto" height="auto" src={{ receita.imageReceita.url }} alt="Receita do título">
-    </div>
-    
+    {% if pageDetails.isDefaultMenu %}
+        {% include "partials/components/sub-components/interactive-card-image.html" %}
+    {% endif %}
+
     {% comment %} detalhes em texto {% endcomment %}
     <div class="receita-details-container flex-container">
         <div>
@@ -33,6 +21,7 @@
                     <h4 class="receitas-details-title"> {{ receita.titleReceita }} </h4>
                 {% endif %}
 
+                
                 <div class="receita-details-preparation ">
                     <div class="inner-preparation-content flex-container">
                         <i class="fa-solid fa-clock"></i>
@@ -43,7 +32,11 @@
                     </div>
                 </div>
             </header>
-
+            
+            {% if pageDetails.isReceitaDetail %}
+                {% include "partials/components/sub-components/interactive-card-image.html" %}
+            {% endif %}
+            
             <div class="receita-publicationDetails-container flex-container">
                 <b><i class="fa fa-user" aria-hidden="true"></i> {{ receita.userSubmitted.first_name }} </b>
                 <a href="https://{{ receita.userSubmitted.email }}"><i class="fa fa-envelope no-decoration" aria-hidden="true"></i> {{ receita.userSubmitted.email }} </a>
