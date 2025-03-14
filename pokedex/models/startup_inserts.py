@@ -1,6 +1,6 @@
 from sqlmodel import select
 from models import *
-from models.initial import get_engine, Session
+from .models import get_engine, Session
 
 #! Startup data: only execute once!
 if __name__ == "__main__":
