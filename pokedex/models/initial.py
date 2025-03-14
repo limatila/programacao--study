@@ -16,8 +16,8 @@ def get_engine(engineChoice: str  = "sqlite3" ):
     match(engineChoice):
         case "pgsql":
             return create_engine(f"postgresql://{pgsql_heading['user']}:{pgsql_heading['password']}" +
-                                    f"@{pgsql_heading['adress']}/{pgsql_heading['db']}",
-                                    echo=True, pool_pre_ping=True)
+                                 f"@{pgsql_heading['adress']}/{pgsql_heading['db']}",
+                                 echo=True, pool_pre_ping=True)
         case "sqlite" | "sqlite3":
             return create_engine(f"sqlite:///{sqlite_filename}")
         case _:
@@ -28,6 +28,8 @@ engine = get_engine("pgsql")
 class Pokemon(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True, ge=1, le=1025) # 1025 max n° pokemon as of 13-03-2025
     name: str
+    weight: Optional[float]   #Kg
+    height: Optional[float]   #Meter
     description: Optional[str]
     abilities: List['AbilityCompatibility'] = Relationship(back_populates="pokemon")
     
@@ -39,8 +41,8 @@ class Ability(SQLModel, table=True):
     compatibility: List['AbilityCompatibility'] = Relationship(back_populates="ability")
 
     #FKs
-    FK_category_1: Optional[int] = Field(foreign_key="abilitycategory.id")
-    FK_category_2: Optional[int] = Field(foreign_key="abilitycategory.id")
+    FK_category: int = Field(foreign_key="abilitycategory.id")
+    FK_type: Optional[int] = Field(foreign_key="abilitytype.id")
 
 class AbilityCompatibility(SQLModel, table=True): #Many pokemons can have Many abilities
     id: Optional[int] = Field(default=None, primary_key=True)
@@ -56,6 +58,12 @@ class AbilityCategory(SQLModel, table=True):
     name: str
     color: str #hex color
 
+class AbilityType(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    name: str
+    fotoPngUrl: str
+
+#! new classes: need to add then in models/__init__.py
 
 if __name__ == "__main__":
     #* Migration: AVAILABLE FIRST TIME ONLY!

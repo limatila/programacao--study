@@ -1,6 +1,8 @@
 from sqlmodel import select
-from initial import *
+from models import *
+from models.initial import get_engine, Session
 
+#! Startup data: only execute once!
 if __name__ == "__main__":
     pgsql = get_engine("pgsql")
 

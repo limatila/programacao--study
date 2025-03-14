@@ -1,10 +1,9 @@
-from .initial import Pokemon, Ability, AbilityCategory, AbilityCompatibility
-from .initial import get_engine, Session
+from .initial import Pokemon, Ability, AbilityCategory, AbilityCompatibility, AbilityType
 
-all = ["initial",
+__all__: list[str] = ["initial",
     "Pokemon",
     "Ability",
     "AbilityCompatibility",
     "AbilityCategory",
-    "get_engine",
-    "Session"]
+    "AbilityType",
+]
