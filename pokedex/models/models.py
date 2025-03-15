@@ -13,6 +13,19 @@ pgsql_heading: dict[str, str] = {
 
 #* Engines: for usage
 def get_engine(engineChoice: str  = "sqlite3" ):
+    """
+    Returns a engine for SQLModel Sessions.
+        Will Accept:
+        #SQLite:
+        - 'sqlite'
+        - 'sqlite3'
+
+        #PostgreSQL
+        - 'pgsql'
+
+        #Others:
+        - will return an Anon-Exception.
+    """
     match(engineChoice):
         case "pgsql":
             return create_engine(f"postgresql://{pgsql_heading['user']}:{pgsql_heading['password']}" +
@@ -22,8 +35,6 @@ def get_engine(engineChoice: str  = "sqlite3" ):
             return create_engine(f"sqlite:///{sqlite_filename}")
         case _:
             raise Exception("Not a valid choice of engine, please select between \"sqlite\" and \"pgsql\".")
-
-engine = get_engine("pgsql")
 
 class Pokemon(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True, ge=1, le=1025) # 1025 max n° pokemon as of 13-03-2025
@@ -41,7 +52,7 @@ class Ability(SQLModel, table=True):
     compatibility: List['AbilityCompatibility'] = Relationship(back_populates="ability")
 
     #FKs
-    FK_category: int = Field(foreign_key="abilitycategory.id")
+    FK_category: Optional[int] = Field(foreign_key="abilitycategory.id")
     FK_type: Optional[int] = Field(foreign_key="abilitytype.id")
 
 class AbilityCompatibility(SQLModel, table=True): #Many pokemons can have Many abilities
@@ -63,15 +74,5 @@ class AbilityType(SQLModel, table=True):
     name: str
     fotoPngUrl: str
 
+
 #! new classes: need to add then in models/__init__.py
-
-if __name__ == "__main__":
-    #* Migration: AVAILABLE FIRST TIME ONLY!
-    # SQLModel.metadata.create_all(engine)
-    
-    with Session(engine) as session:
-        newPokemon_1 = Pokemon(name="squirtle")
-        newPokemon_2 = Pokemon(name="charizard")
-
-        session.add_all([newPokemon_1, newPokemon_2])
-        session.commit()

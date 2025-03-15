@@ -1,24 +1,31 @@
-from sqlmodel import select
+from sqlmodel import SQLModel, select, Session
 from models import *
-from .models import get_engine, Session
+from .models import get_engine
 
 #! Startup data: only execute once!
 if __name__ == "__main__":
-    pgsql = get_engine("pgsql")
-
-    #pokemons 3 and 4
-    with Session(pgsql) as session:
-        session.add(Pokemon(id=3, name="Venusaur"))
-        session.add(Pokemon(id=4, name="Charmander"))
+    #Create table by defined models.py
+    from main.api_pokedex import DB_ENGINE_CHOICE
+    engine = get_engine(DB_ENGINE_CHOICE)
+    SQLModel.metadata.create_all(engine)
+    
+    #adding first 4 pokemons
+    with Session(engine) as session:
+        session.add_all([
+            Pokemon(id=1, name="Bulbasaur", weight=6.9, height=0.7, ),
+            Pokemon(id=2, name="Ivysaur", weight=13.0, height=1.0),
+            Pokemon(id=3, name="Venusaur", weight=100.0, height=2.0),
+            Pokemon(id=4, name="Charmander", weight=8.5, height=0.6)
+        ])
         session.commit()
 
     #pokemon ability Tackle (common in pokemons 1 and 3)
-    with Session(pgsql) as session: 
+    with Session(engine) as session: 
         session.add(Ability(name="Tackle", effect="damage", generation=1))
         session.commit()
 
     #adding compatibility to pokemons 1 and 3
-    with Session(pgsql) as session:
+    with Session(engine) as session:
         #* Selecting Tackle ability
         tackleStatement = select(Ability).where(Ability.name == "Tackle")
         tackleAbility = session.exec(statement=tackleStatement).one_or_none() #.fetchall(), .all(), .one(), .first(), and some more
@@ -28,8 +35,8 @@ if __name__ == "__main__":
         session.add(AbilityCompatibility(FK_pokemon_id=3, FK_ability_id=tackleAbility.id))
         session.commit()
 
-    #adding categorys to the Tackle ability
-    with Session(pgsql) as session:
+    #adding categorys to the Tackle ability + testing select querys
+    with Session(engine) as session:
         categoryToAdd = AbilityCategory(name="Normal", color="#B6B6A8")
         session.add(categoryToAdd)
         session.commit()
@@ -43,7 +50,7 @@ if __name__ == "__main__":
             tackleStatement = select(Ability).where(Ability.name == "Tackle")
             tackleAbilityToAdd = session.exec(tackleStatement).one_or_none()
 
-            tackleAbilityToAdd.FK_category_1 = physicalCategory.id #* UPDATE
+            tackleAbilityToAdd.FK_category = physicalCategory.id #* UPDATE
             session.add(tackleAbilityToAdd)
             session.commit()
         
