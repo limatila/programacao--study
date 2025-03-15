@@ -4,7 +4,7 @@ from sqlmodel import select, Session
 from models import *
 from models.models import get_engine
 
-DB_ENGINE_CHOICE: str = "sqlite" #change later
+DB_ENGINE_CHOICE: str = "pgsql" #! Global db configuration var, need to be replaced later.
 
 def engine_generator():
     """
