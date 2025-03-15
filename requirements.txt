@@ -2,3 +2,4 @@ fastapi
 sqlmodel
 alembic #new migrations 
 psycopg2 #postgres
+uvicorn[standard] #ASGI server to run the api
