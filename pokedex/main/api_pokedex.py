@@ -2,29 +2,7 @@ from fastapi import FastAPI, Depends
 from sqlmodel import select, Session
 
 from models import *
-from models.models import get_engine
-
-DB_ENGINE_CHOICE: str = "pgsql" #! Global db configuration var, need to be replaced later.
-
-def engine_generator():
-    """
-    Yields a created session for use in FastAPI decorated Functions\n
-    Expects that DB_ENGINE_CHOICE global variable is either:
-        #SQLite:
-        - 'sqlite'
-        - 'sqlite3'
-
-        #PostgreSQL
-        - 'pgsql'
-    """
-    if DB_ENGINE_CHOICE == "sqlite" or DB_ENGINE_CHOICE == "sqlite3":
-        with Session(get_engine("sqlite3")) as session:
-            yield session
-    elif DB_ENGINE_CHOICE == "pgsql":
-        with Session(get_engine("pgsql")) as session:
-            yield session
-    else:
-        raise Exception("Not a valid choice of engine for the generator, please select between \"sqlite\" and \"pgsql\".")
+from dependencies.connections import engine_generator
 
 app = FastAPI()
 
