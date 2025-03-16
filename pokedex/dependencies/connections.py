@@ -1,5 +1,5 @@
 from sqlmodel import create_engine, Session 
-from .config import DB_ENGINE_CHOICE, sqlite_filename, pgsql_heading
+from .config import DB_ENGINE_CHOICE, sqlite_heading, pgsql_heading
 
 #* Engines: for usage
 def get_engine(engineChoice: str  = "sqlite3" ):
@@ -22,7 +22,7 @@ def get_engine(engineChoice: str  = "sqlite3" ):
                                  f"@{pgsql_heading['adress']}/{pgsql_heading['db']}",
                                  echo=True, pool_pre_ping=True)
         case "sqlite" | "sqlite3":
-            return create_engine(f"sqlite:///{sqlite_filename}")
+            return create_engine(f"sqlite:///{sqlite_heading['filename']}")
         case _:
             raise Exception("Not a valid choice of engine, please select between \"sqlite\" and \"pgsql\".")
 

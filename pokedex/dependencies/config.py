@@ -1,7 +1,10 @@
 
 #* for Connections - data for db string connection
-sqlite_filename: str = "data.db"  #change for desired db file name
-pgsql_heading: dict[str, str] = { #entrys must not change, only the values!
+#Recommended to not change keys, only values.
+sqlite_heading: dict[str, str] = {
+        "filename": "data.db"
+}
+pgsql_heading: dict[str, str] = {
     "user": "root",
     "password": "3223",
     "adress": "127.0.0.1:8089", 
