@@ -1,14 +1,5 @@
 from sqlmodel import create_engine, Session 
-from .config import DB_ENGINE_CHOICE
-
-#* Connections
-sqlite_filename: str = "data.db"
-pgsql_heading: dict[str, str] = {
-    "user": "root",
-    "password": "3223",
-    "adress": "127.0.0.1:8089", 
-    "db": "pokedex_data"
-}
+from .config import DB_ENGINE_CHOICE, sqlite_filename, pgsql_heading
 
 #* Engines: for usage
 def get_engine(engineChoice: str  = "sqlite3" ):
