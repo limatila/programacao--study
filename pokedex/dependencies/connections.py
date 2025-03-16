@@ -26,7 +26,7 @@ def get_engine(engineChoice: str  = "sqlite3" ):
         case _:
             raise Exception("Not a valid choice of engine, please select between \"sqlite\" and \"pgsql\".")
 
-def engine_generator():
+def get_db_session_dependency():
     """
     Yields a created session for use in FastAPI decorated Functions\n
     Expects that DB_ENGINE_CHOICE global variable is either:
