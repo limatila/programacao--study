@@ -1,8 +1,8 @@
 from fastapi import FastAPI, Depends
 from sqlmodel import select, Session
 
-from models import Pokemon, Ability, AbilityCategory, AbilityType, AbilityCompatibility #And many more if wanted for the apis.
-from dependencies.connections import get_db_session_dependency
+from pokedex.models import Pokemon, Ability, AbilityCategory, AbilityType, AbilityCompatibility #And many more if wanted for the apis.
+from pokedex.dependencies.connections import get_db_session_dependency
 
 app = FastAPI()
 

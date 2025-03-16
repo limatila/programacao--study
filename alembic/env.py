@@ -17,7 +17,7 @@ if config.config_file_name is not None:
 # add your model's MetaData object here
 # for 'autogenerate' support
 from sqlmodel import SQLModel
-from pokedex.models import *
+from pokedex.models.models import *
 target_metadata = SQLModel.metadata
 
 # other values from the config, defined by the needs of env.py,

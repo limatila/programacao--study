@@ -26,3 +26,5 @@ elif result_2 != 0:
         now = datetime.datetime.now()
         file.write(f"\n[{now}] -- Migration created (ready to migrate): {migrationMessage}")
         print("Migration created. Migrate with: \'alembic upgrade head\'")
+
+#! if any error occurs in first cmd(), it'll still log "Migration Created".

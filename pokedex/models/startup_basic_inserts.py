@@ -1,5 +1,5 @@
 from sqlmodel import SQLModel, select, Session
-from models import *
+from pokedex.models import *
 from dependencies import get_engine, DB_ENGINE_CHOICE
 
 #! Startup data: only execute once!
