@@ -1,7 +1,8 @@
 from sqlmodel import create_engine, Session 
+
 from .config import DB_ENGINE_CHOICE, sqlite_heading, pgsql_heading
 
-#* Engines: for usage
+#* Engines: for manual usage
 def get_engine(engineChoice: str  = "sqlite3" ):
     """
     Returns a engine for SQLModel Sessions.
@@ -26,6 +27,7 @@ def get_engine(engineChoice: str  = "sqlite3" ):
         case _:
             raise Exception("Not a valid choice of engine, please select between \"sqlite\" and \"pgsql\".")
 
+#* For FastAPI.Depends
 def get_db_session_dependency():
     """
     Yields a created session for use in FastAPI decorated Functions\n
