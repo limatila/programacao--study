@@ -1,7 +1,5 @@
-from models.models import get_engine
-
-# global consts
-DB_ENGINE_CHOICE: str = "pgsql" # Global db choice configuration for get_engine.
+from sqlmodel import create_engine, Session 
+from .config import DB_ENGINE_CHOICE
 
 #* Connections
 sqlite_filename: str = "data.db"
@@ -56,3 +54,6 @@ def engine_generator():
             yield session
     else:
         raise Exception("Not a valid choice of engine for the generator, please select between \"sqlite\" and \"pgsql\".")
+    
+if __name__ == "__main__":
+    an_engine = get_engine(DB_ENGINE_CHOICE)

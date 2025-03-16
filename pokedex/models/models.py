@@ -1,6 +1,6 @@
-from typing import List, Optional #For Relationships
-from sqlmodel import SQLModel, Field, Relationship  #Builders
-from sqlmodel import create_engine, Session #Usage
+from typing import List, Optional #* For Relationships
+from sqlmodel import SQLModel, Field, Relationship  #* Builders
+#from sqlmodel import create_engine, Session #* Usage
 
 class Pokemon(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True, ge=1, le=1025) # 1025 max n° pokemon as of 13-03-2025
