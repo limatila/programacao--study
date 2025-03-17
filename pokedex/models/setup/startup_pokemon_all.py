@@ -53,7 +53,7 @@ def insert_all_pokemons(engine = get_engine(DB_ENGINE_CHOICE), skip_startup_inse
                 currentDescription = currentDescriptionArray.get( list(currentDescriptionArray.keys())[0] ) #First available description
                 currentDescription = currentDescription.replace('\n', ' ')
 
-                session.add(Pokemon(id=i, name=currentPokemon.name, weight=(currentPokemon.weight / 10), height=(currentPokemon.height / 10),
+                session.add(Pokemon(id=i, name=currentPokemon.name.title(), weight=(currentPokemon.weight / 10), height=(currentPokemon.height / 10),
                                     description=currentDescription)
                                 )
                 
