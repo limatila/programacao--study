@@ -38,7 +38,7 @@ def get_ability_by_id(id_inserted: int, session: Session = Depends(get_db_sessio
     statement = select(Ability).where(Ability.id == id_inserted)
     queryResult = session.exec(statement).one()
 
-    #! not finished
+    #! not finished -- add decorator
     return queryResult
 
 @app.get(BASE_URLS['get'] + '/ability/name/{name_inserted}')
@@ -54,17 +54,17 @@ def get_ability_by_name(name_inserted: str, session: Session = Depends(get_db_se
         statement = select(AbilityCategory).where(AbilityCategory.id == queryResult.FK_category)
         CategoryResult = session.exec(statement).one()
 
-    return { #! Temporary
+    return { 
             "id": queryResult.id,
             "name": queryResult.name,
             "effect": queryResult.effect,
             "generation": queryResult.generation,
             "AbilityType": TypeResult.name,
             "AbilityCategory": CategoryResult.name
-        }
+        } #! Temporary
 
 #models.AbilityCompatibilities
-@app.get(BASE_URLS['get'] + '/abilitycompatibility/')
+@app.get(BASE_URLS['get'] + '/abilitycompatibility/') #to be used with ?pokemon=[name]&ability=[name]
 def get_ability_by_id(pokemon: str, ability: str, session: Session = Depends(get_db_session_dependency)):   
     if pokemon and ability:
         selectPokeId = select(Pokemon).where(func.lower(Pokemon.name) == func.lower(pokemon))
@@ -89,14 +89,59 @@ def get_ability_by_id(pokemon: str, ability: str, session: Session = Depends(get
         }
 
 
-#* Puts
-#models.AbilityTypes
-#models.AbilityCompatibility
-
 #* Posts
-#models.AbilityTypes
+#? Base response: {'result': 'message'}
 #models.AbilityCategories
+@app.post({BASE_URLS['post']} + "/abilitycategory/") #to be used with ?name=[]&color=[hex], mainly
+def add_new_ability_category(name: str, color: str, id: int, session: Session = Depends(get_db_session_dependency)):
+    #Check if id already exists
+    if id:
+        id = int(id)
+        idExistsStatement = select(AbilityCategory).where(AbilityCategory.id == id)
+        idExists = session.exec(idExistsStatement).one()
+        if idExists:
+            return {"result": f"{name.title()} was not inserted, the id of category already exists!"}
+    else: 
+        id = None #Ensuring
+        
+    if name and color:
+        session.add(AbilityCategory(id=id, name=name.title(), color=color))
+        session.commit()
+    else:
+        return {"result": f"{name.title()} was not inserted. Please add name and color to request"}
+    
+    return {"result": f"{name.title()} inserted sucesfully."}
+
+#models.AbilityCompatibility
+@app.post({BASE_URLS['post']} + "/abilitycategory/") #to be used with ?pokemon=[name]&ability=[name], mainly
+def add_new_compatibility(pokemon: str, ability: str, id: int, session: Session = Depends(get_db_session_dependency)):
+    #Check if id already exists
+    if id:
+        id = int(id)
+        idExistsStatement = select(AbilityCompatibility).where(AbilityCompatibility.id == id)
+        idExists = session.exec(idExistsStatement).one()
+        if idExists:
+            return {"result": f"The compatibility was not added, the id of compatibility already exists!"}
+    else: 
+        id = None #Ensuring
+        
+    if pokemon and ability:
+        selectPokeId = select(Pokemon).where(func.lower(Pokemon.name) == func.lower(pokemon))
+        selectAbilityId = select(Ability).where(func.lower(Ability.name) == func.lower(ability))
+        pokemon_id = session.exec(selectPokeId).first().id
+        ability_id = session.exec(selectAbilityId).first().id
+
+        session.add(AbilityCompatibility(id=id, FK_pokemon_id=pokemon_id, FK_ability_id=ability_id))
+        session.commit()
+        return {"result": f"{pokemon.title()} added sucesfully."}
+    else:
+        return {"result": f"{pokemon.title()} was not added. Please add pokemon and ability to request"}
 
 #* Deletes
 #models.Pokemon
 #models.AbilityCompatibility
+
+
+#TODO: Puts - to be considered
+#models.AbilityTypes
+#models.AbilityCategories
