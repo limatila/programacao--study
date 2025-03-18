@@ -69,10 +69,10 @@ def get_ability_by_id(pokemon: str, ability: str, session: Session = Depends(get
     if pokemon and ability:
         selectPokeId = select(Pokemon).where(func.lower(Pokemon.name) == func.lower(pokemon))
         selectAbilityId = select(Ability).where(func.lower(Ability.name) == func.lower(ability))
-        pokemon_id = session.exec(selectPokeId).first().id
-        ability_id = session.exec(selectAbilityId).first().id
-    # else:
-    #     return HTTPException
+        pokemon_id = session.exec(selectPokeId).one().id
+        ability_id = session.exec(selectAbilityId).one().id
+    #! else:
+    #!     return HTTPException
     
     compatibilityStatement = (
             select(Ability) \
@@ -89,8 +89,35 @@ def get_ability_by_id(pokemon: str, ability: str, session: Session = Depends(get
         }
 
 
+
 #* Posts
 #? Base response: {'result': 'message'}
+#models.Abilities
+@app.post(BASE_URLS['post'] + "/ability/") #to be used with ?name=[name]&effect=[name]&generation=[number], along with &category=[name]&type=[name]
+def add_new_ability(name: str, effect: str, generation: int, id: int = None, category: str = None, type: str = None, session: Session = Depends(get_db_session_dependency)):
+    #Check if id already exists
+    if id:
+        id = int(id)
+        idExistsStatement = select(Ability).where(Ability.id == id)
+        idExists = session.exec(idExistsStatement).one_or_none()
+        if idExists:
+            return {"result": f"The compatibility was not added, the id of compatibility already exists!"}
+        
+    if name and effect and generation:
+        if type: 
+            selectAbilityTypeId = select(AbilityType).where(func.lower(AbilityType.name) == func.lower(type))
+            type_id = session.exec(selectAbilityTypeId).one_or_none().id
+        if category: 
+            selectAbilityCategoryId = select(AbilityCategory).where(func.lower(AbilityCategory.name) == func.lower(category))
+            category_id = session.exec(selectAbilityCategoryId).one_or_none().id
+
+        session.add(Ability(id=id, name=name.title(), effect=effect, generation=int(generation),
+                            FK_category=category_id, FK_type=type_id))
+        session.commit()
+        return {"result": f"{name.title()} added sucesfully."}
+    else:
+        return {"result": f"{name.title()} was not added. Please check parameters sent in request"}
+
 #models.AbilityCategories
 @app.post(BASE_URLS['post'] + "/abilitycategory/") #to be used with ?name=[]&color=[hex], mainly
 def add_new_ability_category(name: str, color: str, id: int = None, session: Session = Depends(get_db_session_dependency)):
@@ -105,12 +132,12 @@ def add_new_ability_category(name: str, color: str, id: int = None, session: Ses
     if name and color:
         session.add(AbilityCategory(id=id, name=name.title(), color=color))
         session.commit()
+        return {"result": f"{name.title()} inserted sucesfully."}
     else:
         return {"result": f"{name.title()} was not inserted. Please add name and color to request"}
     
-    return {"result": f"{name.title()} inserted sucesfully."}
 
-#models.AbilityCompatibility
+#models.AbilityCompatibilities
 @app.post(BASE_URLS['post'] + "/abilitycompatibility/") #to be used with ?pokemon=[name]&ability=[name], mainly
 def add_new_compatibility(pokemon: str, ability: str, id: int = None, session: Session = Depends(get_db_session_dependency)):
     #Check if id already exists
@@ -124,8 +151,8 @@ def add_new_compatibility(pokemon: str, ability: str, id: int = None, session: S
     if pokemon and ability:
         selectPokeId = select(Pokemon).where(func.lower(Pokemon.name) == func.lower(pokemon))
         selectAbilityId = select(Ability).where(func.lower(Ability.name) == func.lower(ability))
-        pokemon_id = session.exec(selectPokeId).first().id
-        ability_id = session.exec(selectAbilityId).first().id
+        pokemon_id = session.exec(selectPokeId).one().id
+        ability_id = session.exec(selectAbilityId).one().id
 
         session.add(AbilityCompatibility(id=id, FK_pokemon_id=pokemon_id, FK_ability_id=ability_id))
         session.commit()
@@ -133,10 +160,45 @@ def add_new_compatibility(pokemon: str, ability: str, id: int = None, session: S
     else:
         return {"result": f"{pokemon.title()} was not added. Please add pokemon and ability to request"}
 
+
+
 #* Deletes
-#models.AbilityCompatibility
+#models.AbilityCompatibilities
+@app.delete(BASE_URLS['delete'] + "/abilitycompatibility/") #to be used with ?pokemon=[name]&ability=[name], mainly
+def delete_compatibility(id: int = None, pokemon: str = None, ability: str = None, session: Session = Depends(get_db_session_dependency)):
+    if id:
+        id = int(id)
+        selectCompatibility = select(AbilityCompatibility).where(AbilityCompatibility.id == id)
+        compatibilityToDelete = session.exec(selectCompatibility).one()
+
+    elif pokemon and ability:
+        selectPokeId = select(Pokemon).where(func.lower(Pokemon.name) == func.lower(pokemon))
+        selectAbilityId = select(Ability).where(func.lower(Ability.name) == func.lower(ability))
+        pokemon_id = session.exec(selectPokeId).one().id
+        ability_id = session.exec(selectAbilityId).one().id
+
+        selectCompatibility = (
+            select(AbilityCompatibility)
+            .where(AbilityCompatibility.FK_pokemon_id == pokemon_id)
+            .where(AbilityCompatibility.FK_ability_id == ability_id)
+        )
+        compatibilityToDelete = session.exec(selectCompatibility).one()
+    else: return {"result": "Compatibility was not deleted. Please check parameters sent in request."}
+    
+    if compatibilityToDelete:
+        session.delete(compatibilityToDelete)
+        session.commit()
+        return {
+            "result": f"Compatibility was sucessfully deleted.",
+            "compatibilityId": compatibilityToDelete.id
+        }
+    else: 
+        return {"result": "Compatibility not found. Please check with GET the compatibilities that exist."}
+
+#TODO: replace wheres with suitable joins
 
 
-#TODO: Puts - to be considered
+#Puts - to be considered
 #models.AbilityTypes
 #models.AbilityCategories
+

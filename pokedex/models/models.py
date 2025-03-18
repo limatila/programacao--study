@@ -18,6 +18,7 @@ class Ability(SQLModel, table=True):
     compatibility: List['AbilityCompatibility'] = Relationship(back_populates="ability")
 
     #FKs
+    #! need to add _id in column name
     FK_category: Optional[int] = Field(foreign_key="abilitycategory.id")
     FK_type: Optional[int] = Field(foreign_key="abilitytype.id")
 
@@ -30,6 +31,7 @@ class AbilityCompatibility(SQLModel, table=True): #Many pokemons can have Many a
     FK_pokemon_id: int = Field(foreign_key="pokemon.id")
     FK_ability_id: int = Field(foreign_key="ability.id")
 
+#!!! TYPE AND CATEGORY ARE INVERTED! NEED REWORK
 class AbilityCategory(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     name: str
