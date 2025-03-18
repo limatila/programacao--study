@@ -8,7 +8,7 @@ from pokedex.tests.utils import write_output_local
 if __name__ == "__main__":
     #* It's wise that you run this after DB has some data inserted.
     now = datetime.now()
-    write_output_local(f"- Output from date: [{now}]", and_print=True, reset_output_file=False)
+    write_output_local(f"- GET Output from date: [{now}]", and_print=True, reset_output_file=False)
 
     #Pokemons w/ id
     resultIvysaur = get(f"http://localhost:8000/{API_VERSION}/get/pokemon/id/2/").content
@@ -40,6 +40,6 @@ if __name__ == "__main__":
     abilityToVerify = "tackle"
     resultCompatibility = get(f"http://localhost:8000/{API_VERSION}/get/abilitycompatibility?pokemon={pokemonToVerify}&ability={abilityToVerify}").content
     
-    compatibility = loads(resultCompatibility)
-    write_output_local(compatibility, and_print=True)
-    assert compatibility["isCompatible"] == True
+    Compatibility = loads(resultCompatibility)
+    write_output_local(Compatibility, and_print=True)
+    assert Compatibility["isCompatible"] == True
