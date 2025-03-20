@@ -47,11 +47,11 @@ def get_ability_by_name(name_inserted: str, session: Session = Depends(get_db_se
     queryResult = session.exec(statement).one_or_none()
 
     #! Temporary -- move to decorator
-    if queryResult.FK_type:
-        statement = select(AbilityType).where(AbilityType.id == queryResult.FK_type)
+    if queryResult.FK_type_id:
+        statement = select(AbilityType).where(AbilityType.id == queryResult.FK_type_id)
         TypeResult = session.exec(statement).one_or_none()
-    if queryResult.FK_category:
-        statement = select(AbilityCategory).where(AbilityCategory.id == queryResult.FK_category)
+    if queryResult.FK_category_id:
+        statement = select(AbilityCategory).where(AbilityCategory.id == queryResult.FK_category_id)
         CategoryResult = session.exec(statement).one_or_none()
 
     return { 
@@ -112,29 +112,29 @@ def add_new_ability(name: str, effect: str, generation: int, id: int = None, cat
             category_id = session.exec(selectAbilityCategoryId).one_or_none().id
 
         session.add(Ability(id=id, name=name.title(), effect=effect, generation=int(generation),
-                            FK_category=category_id, FK_type=type_id))
+                            FK_category_id=category_id, FK_type_id=type_id))
         session.commit()
-        return {"result": f"{name.title()} added sucesfully."}
+        return {"result": f"{name.title()} ability added sucesfully."}
     else:
-        return {"result": f"{name.title()} was not added. Please check parameters sent in request"}
+        return {"result": f"{name.title()} ability was not added. Please check parameters sent in request"}
 
-#models.AbilityCategories
-@app.post(BASE_URLS['post'] + "/abilitycategory/") #to be used with ?name=[]&color=[hex], mainly
-def add_new_ability_category(name: str, color: str, id: int = None, session: Session = Depends(get_db_session_dependency)):
+#models.AbilityTypes
+@app.post(BASE_URLS['post'] + "/abilitytype/") #to be used with ?name=[]&color=[hex], mainly
+def add_new_ability_type(name: str, color: str, id: int = None, session: Session = Depends(get_db_session_dependency)):
     #Check if id already exists
     if id:
         id = int(id)
-        idExistsStatement = select(AbilityCategory).where(AbilityCategory.id == id)
+        idExistsStatement = select(AbilityType).where(AbilityType.id == id)
         idExists = session.exec(idExistsStatement).one_or_none()
         if idExists:
-            return {"result": f"{name.title()} was not inserted, the id of category already exists!"}
+            return {"result": f"{name.title()} was not inserted, the id of type already exists!"}
         
     if name and color:
-        session.add(AbilityCategory(id=id, name=name.title(), color=color))
+        session.add(AbilityType(id=id, name=name.title(), color=color))
         session.commit()
-        return {"result": f"{name.title()} inserted sucesfully."}
+        return {"result": f"{name.title()} type inserted sucesfully."}
     else:
-        return {"result": f"{name.title()} was not inserted. Please add name and color to request"}
+        return {"result": f"{name.title()} type was not inserted. Please add name and color to request"}
     
 
 #models.AbilityCompatibilities
@@ -154,11 +154,15 @@ def add_new_compatibility(pokemon: str, ability: str, id: int = None, session: S
         pokemon_id = session.exec(selectPokeId).one().id
         ability_id = session.exec(selectAbilityId).one().id
 
-        session.add(AbilityCompatibility(id=id, FK_pokemon_id=pokemon_id, FK_ability_id=ability_id))
+        compatibilityToAdd = AbilityCompatibility(id=id, FK_pokemon_id=pokemon_id, FK_ability_id=ability_id)
+        session.add(compatibilityToAdd)
         session.commit()
-        return {"result": f"{pokemon.title()} added sucesfully."}
+        return {
+            "result": f"Compatibility added sucesfully.",
+            "compatibilityId": compatibilityToAdd.id
+            }
     else:
-        return {"result": f"{pokemon.title()} was not added. Please add pokemon and ability to request"}
+        return {"result": f"{pokemon.title()} compatibility was not added. Please add pokemon and ability to request"}
 
 
 
