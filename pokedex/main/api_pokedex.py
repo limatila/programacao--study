@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends #TODO - , HTTPException, status
+from fastapi import FastAPI, Depends, HTTPException, status
 from sqlmodel import select, Session
 from sqlalchemy.sql import func #for db functions
 from sqlalchemy.exc import IntegrityError, NoResultFound
@@ -27,7 +27,7 @@ def get_pokemon_by_id(id_inserted: int, session: Session = Depends(get_db_sessio
     #* FastAPI already handles invalid insertion of ints
 
     if id_inserted < 1 or id_inserted > 1025:
-        return {"result": "Pokemon could not be resolved, please select between valid IDs: 1 - 1025"}
+        return {"result": "Pokemon could not be resolved, please select between valid IDs: 1 - 1025."}
 
     statement = select(Pokemon).where(Pokemon.id == id_inserted)
     queryResult = session.exec(statement).one_or_none()
@@ -35,7 +35,7 @@ def get_pokemon_by_id(id_inserted: int, session: Session = Depends(get_db_sessio
     if queryResult:
         return queryResult
     else: 
-        return {"result": "Pokemon not found in DataBase"} #! 404
+        raise HTTPException(status_code=404, detail="Pokemon not found in DataBase.")
 
 @app.get(BASE_URLS['get'] + '/pokemon/name/{name_inserted}')
 def get_pokemon_by_name(name_inserted: str, session: Session = Depends(get_db_session_dependency)):    
@@ -45,7 +45,7 @@ def get_pokemon_by_name(name_inserted: str, session: Session = Depends(get_db_se
     if queryResult:
         return queryResult
     else: 
-        return {"result": "Pokemon not found in DataBase"} #! 404
+        raise HTTPException(status_code=404, detail="Pokemon not found in DataBase.")
 
 
 #models.Abilities
@@ -72,7 +72,7 @@ def get_ability_by_id(id_inserted: int, session: Session = Depends(get_db_sessio
                 "AbilityCategory": CategoryResult.name
             }
     else: 
-        return {"result": "Ability not found in DataBase"} #! 404
+        raise HTTPException(status_code=404, detail="Ability not found in DataBase.")
 
 @app.get(BASE_URLS['get'] + '/ability/name/{name_inserted}')
 def get_ability_by_name(name_inserted: str, session: Session = Depends(get_db_session_dependency)):    
@@ -97,7 +97,7 @@ def get_ability_by_name(name_inserted: str, session: Session = Depends(get_db_se
                 "AbilityCategory": CategoryResult.name
             }
     else: 
-        return {"result": "Ability not found in DataBase"} #! 404
+        raise HTTPException(status_code=404, detail="Ability not found in DataBase.")
 
 
 #models.AbilityCompatibilities
@@ -108,13 +108,13 @@ def get_compatibility_by_names(pokemon: str, ability: str, session: Session = De
         selectPokeId = select(Pokemon).where(func.lower(Pokemon.name) == func.lower(pokemon))
         pokemon_id = session.exec(selectPokeId).one_or_none().id
     except AttributeError:
-        return {"result": f"Compatibility could not be solved, pokemon \'{pokemon.title()}\' could not be found in DB"} #! 404
+        raise HTTPException(status_code=404, detail=f"Compatibility could not be solved, pokemon \'{pokemon.title()}\' could not be found in DB.")
 
     try:
         selectAbilityId = select(Ability).where(func.lower(Ability.name) == func.lower(ability))
         ability_id = session.exec(selectAbilityId).one_or_none().id
     except AttributeError:
-        return {"result": f"Compatibility could not be solved, ability \'{ability.title()}\' could not be found in DB"} #! 404
+        raise HTTPException(status_code=404, detail=f"Compatibility could not be solved, ability \'{ability.title()}\' could not be found in DB.")
 
     #searching compatibility
     compatibilityStatement = (
@@ -126,18 +126,18 @@ def get_compatibility_by_names(pokemon: str, ability: str, session: Session = De
 
     if queryResult:
         return {
-            "result": f"Compatibility was found, for {pokemon.title()} and ability {ability.title()}",
+            "result": f"Compatibility was found, for {pokemon.title()} and ability {ability.title()}.",
             "isCompatible": True,
             "pokemon_id": pokemon_id,
             "ability_id": ability_id
         }
     else: 
-        return {
-            "result": "Compatibility not found in DataBase",
-            "isCompatible": False,
-            "pokemon_id": pokemon_id,
-            "ability_id": ability_id
-        } #! 404
+        raise HTTPException(status_code=404, detail="Compatibility not found in DataBase.", \
+                            headers={
+                                "isCompatible": False,
+                                "pokemon_id": pokemon_id,
+                                "ability_id": ability_id
+                            })
 
 
 
@@ -152,7 +152,7 @@ def post_new_ability(name: str, effect: str, generation: int, id: int = None, ca
         idExistsStatement = select(Ability).where(Ability.id == id)
         idExists = session.exec(idExistsStatement).one_or_none()
         if idExists:
-            return {"result": "The compatibility was not added, the id of compatibility already exists!"} #!
+            return {"result": "The compatibility was not added, the id of compatibility already exists."} #!
         
     #searching data
     if type: 
@@ -180,7 +180,7 @@ def post_new_ability_type(name: str, color: str, id: int = None, session: Sessio
         idExistsStatement = select(AbilityType).where(AbilityType.id == id)
         idExists = session.exec(idExistsStatement).one_or_none()
         if idExists:
-            return {"result": f"The Ability {name.title()} was not added, the id of type already exists!"} #!
+            return {"result": f"The Ability {name.title()} was not added, the id of type already exists."} #!
         
     try:
         session.add(AbilityType(id=id, name=name.title(), color=color))
@@ -199,20 +199,20 @@ def post_new_compatibility(pokemon: str, ability: str, id: int = None, session: 
         idExistsStatement = select(AbilityCompatibility).where(AbilityCompatibility.id == id)
         idExists = session.exec(idExistsStatement).one_or_none()
         if idExists:
-            return {"result": "Compatibility was not added, the id of compatibility already exists!"} #!
+            return {"result": "Compatibility was not added, the id of compatibility already exists."} #!
         
     #searching data
     try:
         selectPokeId = select(Pokemon).where(func.lower(Pokemon.name) == func.lower(pokemon))
         pokemon_id = session.exec(selectPokeId).one_or_none().id
     except AttributeError:
-        return {"result": f"Compatibility could not be solved, pokemon \'{pokemon.title()}\' could not be found in DB"} #! 404
+        raise HTTPException(status_code=404, detail=f"Compatibility could not be solved, pokemon \'{pokemon.title()}\' could not be found in DB.")
 
     try:
         selectAbilityId = select(Ability).where(func.lower(Ability.name) == func.lower(ability))
         ability_id = session.exec(selectAbilityId).one_or_none().id
     except AttributeError:
-        return {"result": f"Compatibility could not be solved, ability \'{ability.title()}\' could not be found in DB"} #! 404
+        raise HTTPException(status_code=404, detail=f"Compatibility could not be solved, ability \'{ability.title()}\' could not be found in DB.")
 
     #check if combination of compatibility already exists
     compatibilityExistsStatement = (
@@ -260,10 +260,9 @@ def delete_compatibility(id: int = None, pokemon: str = None, ability: str = Non
             )
             compatibilityToDelete = session.exec(selectCompatibility).one()
         else: 
-            return {"result": "Compatibility was not deleted. Please check parameters sent in request."}
+            return {"result": "Compatibility was not deleted. Please check parameters sent in request (needs id of compatibility / pokemon name + ability name)"}
     except NoResultFound as err:
-        print(err)
-
+        raise HTTPException(status_code=404, detail=f"Compatibility does not exists (not found). Please check with GET the compatibilities that exist.")
     
     if compatibilityToDelete:
         session.delete(compatibilityToDelete)
@@ -273,7 +272,8 @@ def delete_compatibility(id: int = None, pokemon: str = None, ability: str = Non
             "compatibilityId": compatibilityToDelete.id
         }
     else: 
-        return {"result": "Compatibility not found. Please check with GET the compatibilities that exist."} #! 404
+        raise Exception("Compatibility 404 was not caught in except NoResultFound block.")
+
 
 #TODO: replace wheres with suitable joins
 
