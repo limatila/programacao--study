@@ -282,6 +282,21 @@ def delete_compatibility(id: int = None, pokemon: str = None, ability: str = Non
 
 
 #TODO: replace wheres with suitable joins
+@app.get(BASE_URLS['get'] + "/abilityjoin/id/{id_ability}")
+def get_ability_joined_with_id(id_ability: int, session: Session = Depends(get_db_session_dependency)):
+    queryStatement = (
+        select(Ability.id, Ability.name, Ability.effect, Ability.generation,
+               AbilityType.name)
+               .join(AbilityType)
+               .where(Ability.id == id_ability)
+    )
+    queryResult = session.exec(queryStatement)
+    
+    if queryResult:
+        return queryResult
+    else:
+        raise HTTPException(status_code=404, detail="Ability not found in DataBase.")
+
 
 
 #Puts - to be considered
