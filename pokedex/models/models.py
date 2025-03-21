@@ -1,5 +1,6 @@
 from typing import List, Optional #* For Relationships
 from sqlmodel import SQLModel, Field, Relationship  #* Builders
+from sqlalchemy import UniqueConstraint
 #from sqlmodel import create_engine, Session #* Usage
 
 class Pokemon(SQLModel, table=True):
@@ -9,6 +10,9 @@ class Pokemon(SQLModel, table=True):
     height: Optional[float]   #Meter
     description: Optional[str]
     abilities: List['AbilityCompatibility'] = Relationship(back_populates="pokemon")
+
+    #other constraints
+    __table_args__ = (UniqueConstraint("name"), )
     
 #? Ability is actually 'Move'.. should i change api and db for that matter?
 class Ability(SQLModel, table=True):
@@ -19,9 +23,11 @@ class Ability(SQLModel, table=True):
     compatibility: List['AbilityCompatibility'] = Relationship(back_populates="ability")
 
     #FKs
-    #! need to add _id in column name
     FK_category_id: Optional[int] = Field(foreign_key="abilitycategory.id")
     FK_type_id: Optional[int] = Field(foreign_key="abilitytype.id")
+
+    #other constraints
+    __table_args__ = (UniqueConstraint("name"), )
 
 class AbilityCompatibility(SQLModel, table=True): #Many pokemons can have Many abilities
     id: Optional[int] = Field(default=None, primary_key=True)
@@ -32,16 +38,20 @@ class AbilityCompatibility(SQLModel, table=True): #Many pokemons can have Many a
     FK_pokemon_id: int = Field(foreign_key="pokemon.id")
     FK_ability_id: int = Field(foreign_key="ability.id")
 
-#!!! TYPE AND CATEGORY ARE INVERTED! NEED REWORK
 class AbilityType(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     name: str
     color: str #hex color
+
+    #other constraints
+    __table_args__ = (UniqueConstraint("name"), )
 
 class AbilityCategory(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     name: str
     fotoPngUrl: str
 
+    #other constraints
+    __table_args__ = (UniqueConstraint("name"), )
 
 #! new classes: need to add then in models/__init__.py
