@@ -27,7 +27,7 @@ def get_pokemon_by_id(id_inserted: int, session: Session = Depends(get_db_sessio
     #* FastAPI already handles invalid insertion of ints
 
     if id_inserted < 1 or id_inserted > 1025:
-        return {"result": "Pokemon could not be resolved, please select between valid IDs: 1 - 1025."}
+        HTTPException("Pokemon could not be resolved, please select between valid IDs: 1 - 1025.")
 
     statement = select(Pokemon).where(Pokemon.id == id_inserted)
     queryResult = session.exec(statement).one_or_none()
@@ -243,7 +243,7 @@ def post_new_compatibility(pokemon: str, ability: str, id: int = None,
 
 
 #* Deletes
-#models.AbilityCompatibilities #TODO: reanalize return and if-else logic
+#models.AbilityCompatibilities
 @app.delete(BASE_URLS['delete'] + "/abilitycompatibility/") #to be used with ?pokemon=[name]&ability=[name], mainly
 def delete_compatibility(id: int = None, pokemon: str = None, ability: str = None, 
                          session: Session = Depends(get_db_session_dependency), token: str = Depends(sec_verify_token)):
@@ -266,9 +266,9 @@ def delete_compatibility(id: int = None, pokemon: str = None, ability: str = Non
             )
             compatibilityToDelete = session.exec(selectCompatibility).one()
         else: 
-            return {"result": "Compatibility was not deleted. Please check parameters sent in request (needs id of compatibility / pokemon name + ability name)"}
-    except NoResultFound as err:
-        raise HTTPException(status_code=404, detail=f"Compatibility does not exists (not found). Please check with GET the compatibilities that exist.")
+            HTTPException(status_code=400, detail="Compatibility was not deleted. Please check parameters sent in request (needs id of compatibility / pokemon name + ability name)")
+    except NoResultFound:
+        raise HTTPException(status_code=404, detail="Compatibility does not exists (not found). Please check with GET the compatibilities that exist.")
     
     if compatibilityToDelete:
         session.delete(compatibilityToDelete)
