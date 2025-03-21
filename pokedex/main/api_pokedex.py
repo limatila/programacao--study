@@ -1,11 +1,11 @@
 from fastapi import FastAPI, Depends, HTTPException
-from fastapi.responses import JSONResponse
 from sqlmodel import select, Session
 from sqlalchemy.sql import func #for db functions
 from sqlalchemy.exc import IntegrityError, NoResultFound
 
 from pokedex.models import * #And many more if wanted for the apis.
 from pokedex.dependencies.connections import get_db_session_dependency
+from pokedex.dependencies.security import verify_token as sec_verify_token
 
 API_VERSION = "v1"
 app = FastAPI()
@@ -145,14 +145,15 @@ def get_compatibility_by_names(pokemon: str, ability: str, session: Session = De
 #? Base response: {'result': 'message'}
 #models.Abilities
 @app.post(BASE_URLS['post'] + "/ability/") #to be used with ?name=[name]&effect=[name]&generation=[number], along with &category=[name]&type=[name]
-def post_new_ability(name: str, effect: str, generation: int, id: int = None, category: str = None, type: str = None, session: Session = Depends(get_db_session_dependency)):
+def post_new_ability(name: str, effect: str, generation: int, id: int = None, category: str = None, type: str = None,
+                      session: Session = Depends(get_db_session_dependency), token: str = Depends(sec_verify_token)):
     #Check if id already exists
     if id:
         id = int(id)
         idExistsStatement = select(Ability).where(Ability.id == id)
         idExists = session.exec(idExistsStatement).one_or_none()
         if idExists:
-            raise HTTPException(status_code=403, detail="The compatibility was not added, the id of compatibility already exists.")
+            raise HTTPException(status_code=409, detail="The compatibility was not added, the id of compatibility already exists.")
         
     #searching data
     if type: 
@@ -168,38 +169,40 @@ def post_new_ability(name: str, effect: str, generation: int, id: int = None, ca
         session.commit()
         return {"result": f"{name.title()} ability added sucesfully."} 
     except IntegrityError: 
-        raise HTTPException(status_code=403, detail=f"Ability '{name.title()}' was not added. The ability name already exists.")
+        raise HTTPException(status_code=409, detail=f"Ability '{name.title()}' was not added. The ability name already exists.")
 
 
 #models.AbilityTypes
 @app.post(BASE_URLS['post'] + "/abilitytype/") #to be used with ?name=[]&color=[hex], mainly
-def post_new_ability_type(name: str, color: str, id: int = None, session: Session = Depends(get_db_session_dependency)):
+def post_new_ability_type(name: str, color: str, id: int = None, 
+                          session: Session = Depends(get_db_session_dependency), token: str = Depends(sec_verify_token)):
     #Check if id already exists
     if id:
         id = int(id)
         idExistsStatement = select(AbilityType).where(AbilityType.id == id)
         idExists = session.exec(idExistsStatement).one_or_none()
         if idExists:
-            raise HTTPException(status_code=403, detail=f"The Ability {name.title()} was not added, the id of type already exists.")
+            raise HTTPException(status_code=409, detail=f"The Ability {name.title()} was not added, the id of type already exists.")
         
     try:
         session.add(AbilityType(id=id, name=name.title(), color=color))
         session.commit()
         return {"result": f"{name.title()} type inserted sucesfully."}
     except IntegrityError:
-        raise HTTPException(status_code=403, detail=f"Type '{name.title()}' was not added. The type name already exists.")
+        raise HTTPException(status_code=409, detail=f"Type '{name.title()}' was not added. The type name already exists.")
     
 
 #models.AbilityCompatibilities
 @app.post(BASE_URLS['post'] + "/abilitycompatibility/") #to be used with ?pokemon=[name]&ability=[name], mainly
-def post_new_compatibility(pokemon: str, ability: str, id: int = None, session: Session = Depends(get_db_session_dependency)):
+def post_new_compatibility(pokemon: str, ability: str, id: int = None, 
+                           session: Session = Depends(get_db_session_dependency), token: str = Depends(sec_verify_token)):
     #Check if id already exists
     if id:
         id = int(id)
         idExistsStatement = select(AbilityCompatibility).where(AbilityCompatibility.id == id)
         idExists = session.exec(idExistsStatement).one_or_none()
         if idExists:
-            raise HTTPException(status_code=403, detail="Compatibility was not added, the id of compatibility already exists.")
+            raise HTTPException(status_code=409, detail="Compatibility was not added, the id of compatibility already exists.")
         
     #searching data
     try:
@@ -223,7 +226,7 @@ def post_new_compatibility(pokemon: str, ability: str, id: int = None, session: 
     compatibilityExists = session.exec(compatibilityExistsStatement).one_or_none()
     if compatibilityExists:
         raise HTTPException(
-            status_code=403,
+            status_code=409,
             detail={
                 "error": "Compatibility was not added, it already exists.",
                 "compatibilityId": str(compatibilityExists.id)
@@ -242,7 +245,8 @@ def post_new_compatibility(pokemon: str, ability: str, id: int = None, session: 
 #* Deletes
 #models.AbilityCompatibilities #TODO: reanalize return and if-else logic
 @app.delete(BASE_URLS['delete'] + "/abilitycompatibility/") #to be used with ?pokemon=[name]&ability=[name], mainly
-def delete_compatibility(id: int = None, pokemon: str = None, ability: str = None, session: Session = Depends(get_db_session_dependency)):
+def delete_compatibility(id: int = None, pokemon: str = None, ability: str = None, 
+                         session: Session = Depends(get_db_session_dependency), token: str = Depends(sec_verify_token)):
     try:
         if id:
             id = int(id)
