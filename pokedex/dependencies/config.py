@@ -12,6 +12,6 @@ pgsql_heading: dict[str, str] = {
 }
 
 #* global consts
-DB_ENGINE_CHOICE: str = "pgsql" # Global db choice configuration for get_engine.
+DB_ENGINE_CHOICE: str = "pgsql" # Global db choice configuration, used in dependencies.connections functions.
 
 MAX_POKEMON_NATIONAL_ID: int = 1025 # as of 13-03-2025, the max number.
