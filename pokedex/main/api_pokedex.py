@@ -6,6 +6,7 @@ from sqlalchemy.exc import IntegrityError, NoResultFound
 from pokedex.models import * #And many more if wanted for the apis.
 from pokedex.dependencies.connections import get_db_session_dependency
 from pokedex.dependencies.security import verify_token as sec_verify_token
+from pokedex.dependencies.config import MAX_POKEMON_NATIONAL_ID
 
 API_VERSION = "v1"
 app = FastAPI()
@@ -26,8 +27,8 @@ BASE_URLS: dict[str, str] = {
 def get_pokemon_by_id(id_inserted: int, session: Session = Depends(get_db_session_dependency)):    
     #* FastAPI already handles invalid insertion of ints
 
-    if id_inserted < 1 or id_inserted > 1025:
-        HTTPException("Pokemon could not be resolved, please select between valid IDs: 1 - 1025.")
+    if id_inserted < 1 or id_inserted > MAX_POKEMON_NATIONAL_ID:
+        HTTPException(f"Pokemon could not be resolved, please select between valid IDs: 1 - {MAX_POKEMON_NATIONAL_ID}.")
 
     statement = select(Pokemon).where(Pokemon.id == id_inserted)
     queryResult = session.exec(statement).one_or_none()

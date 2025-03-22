@@ -2,9 +2,10 @@ from sqlmodel import SQLModel, Field, Relationship  #* Builders
 #from sqlmodel import create_engine, Session #* Usage
 from sqlalchemy import UniqueConstraint #* Additionals
 from typing import List, Optional #* For NOT NULL definition and Relationships
+from pokedex.dependencies.config import MAX_POKEMON_NATIONAL_ID
 
 class Pokemon(SQLModel, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True, ge=1, le=1025) # 1025 max n° pokemon as of 13-03-2025
+    id: Optional[int] = Field(default=None, primary_key=True, ge=1, le=MAX_POKEMON_NATIONAL_ID)
     name: str
     weight: Optional[float]   #Kg
     height: Optional[float]   #Meter
