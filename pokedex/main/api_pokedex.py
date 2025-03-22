@@ -77,25 +77,24 @@ def get_ability_by_id(id_inserted: int, session: Session = Depends(get_db_sessio
 
 @app.get(BASE_URLS['get'] + '/ability/name/{name_inserted}')
 def get_ability_by_name(name_inserted: str, session: Session = Depends(get_db_session_dependency)):    
-    statement = select(Ability).where(func.lower(Ability.name) == func.lower(name_inserted))
+    statement = (
+        select(Ability.id, Ability.name, Ability.effect, Ability.generation,
+               AbilityType.name, AbilityCategory.name)
+               .join(AbilityType)
+               .join(AbilityCategory)
+               .where(func.lower(Ability.name) == func.lower(name_inserted))
+               )         
     queryResult = session.exec(statement).one_or_none()
 
     #? i could refactor the following, into a decorator that apply the the search for the names
     if queryResult: 
-        if queryResult.FK_type_id:
-            statement = select(AbilityType).where(AbilityType.id == queryResult.FK_type_id)
-            TypeResult = session.exec(statement).one_or_none()
-        if queryResult.FK_category_id:
-            statement = select(AbilityCategory).where(AbilityCategory.id == queryResult.FK_category_id)
-            CategoryResult = session.exec(statement).one_or_none()
-
         return { 
                 "id": queryResult.id,
                 "name": queryResult.name,
                 "effect": queryResult.effect,
                 "generation": queryResult.generation,
-                "AbilityType": TypeResult.name,
-                "AbilityCategory": CategoryResult.name
+                "type": queryResult[-2],
+                "category": queryResult[-1]
             }
     else: 
         raise HTTPException(status_code=404, detail="Ability not found in DataBase.")
@@ -104,7 +103,7 @@ def get_ability_by_name(name_inserted: str, session: Session = Depends(get_db_se
 #models.AbilityCompatibilities
 @app.get(BASE_URLS['get'] + '/abilitycompatibility/') #to be used with ?pokemon=[name]&ability=[name]
 def get_compatibility_by_names(pokemon: str, ability: str, session: Session = Depends(get_db_session_dependency)):   
-    #searching data
+    #searching data + detailed erroring
     try:
         selectPokeId = select(Pokemon).where(func.lower(Pokemon.name) == func.lower(pokemon))
         pokemon_id = session.exec(selectPokeId).one_or_none().id
@@ -119,8 +118,10 @@ def get_compatibility_by_names(pokemon: str, ability: str, session: Session = De
 
     #searching compatibility
     compatibilityStatement = (
-            select(AbilityCompatibility) \
-            .where(AbilityCompatibility.FK_pokemon_id == pokemon_id) \
+        select(AbilityCompatibility.id, Pokemon.name, Ability.name)
+            .join(Pokemon)
+            .join(Ability)
+            .where(AbilityCompatibility.FK_pokemon_id == pokemon_id)
             .where(AbilityCompatibility.FK_ability_id == ability_id)
         )
     queryResult = session.exec(compatibilityStatement).one_or_none()
@@ -129,15 +130,15 @@ def get_compatibility_by_names(pokemon: str, ability: str, session: Session = De
         return {
             "result": f"Compatibility was found, for {pokemon.title()} and ability {ability.title()}.",
             "isCompatible": True,
-            "pokemon_id": pokemon_id,
-            "ability_id": ability_id
+            "pokemon_id": queryResult[-2],
+            "ability_id": queryResult[-1]
         }
     else: 
         raise HTTPException(status_code=404, detail={
                                 "error": "Compatibility not found in DataBase.",
                                 "isCompatible": f"{str(False)}",
-                                "pokemon_id": f"{str(pokemon_id)}",
-                                "ability_id": f"{str(ability_id)}"
+                                "pokemon_id": f"{str(queryResult[-2])}",
+                                "ability_id": f"{str(queryResult[-1])}"
                             })
 
 
@@ -205,7 +206,7 @@ def post_new_compatibility(pokemon: str, ability: str, id: int = None,
         if idExists:
             raise HTTPException(status_code=409, detail="Compatibility was not added, the id of compatibility already exists.")
         
-    #searching data
+    #searching data + detailed errors
     try:
         selectPokeId = select(Pokemon).where(func.lower(Pokemon.name) == func.lower(pokemon))
         pokemon_id = session.exec(selectPokeId).one_or_none().id
@@ -245,7 +246,7 @@ def post_new_compatibility(pokemon: str, ability: str, id: int = None,
 
 #* Deletes
 #models.AbilityCompatibilities
-@app.delete(BASE_URLS['delete'] + "/abilitycompatibility/") #to be used with ?pokemon=[name]&ability=[name], mainly
+@app.delete(BASE_URLS['delete'] + "/abilitycompatibility/") #to be used with ?id=[number], or ?pokemon=[name]&ability=[name]
 def delete_compatibility(id: int = None, pokemon: str = None, ability: str = None, 
                          session: Session = Depends(get_db_session_dependency), token: str = Depends(sec_verify_token)):
     try:
@@ -255,15 +256,17 @@ def delete_compatibility(id: int = None, pokemon: str = None, ability: str = Non
             compatibilityToDelete = session.exec(selectCompatibility).one()
 
         elif pokemon and ability:
-            selectPokeId = select(Pokemon).where(func.lower(Pokemon.name) == func.lower(pokemon))
-            selectAbilityId = select(Ability).where(func.lower(Ability.name) == func.lower(ability))
-            pokemon_id = session.exec(selectPokeId).one().id
-            ability_id = session.exec(selectAbilityId).one().id
+            #selectPokeId = select(Pokemon).where(func.lower(Pokemon.name) == func.lower(pokemon))
+            #selectAbilityId = select(Ability).where(func.lower(Ability.name) == func.lower(ability))
+            #pokemon_id = session.exec(selectPokeId).one().id
+            #ability_id = session.exec(selectAbilityId).one().id
 
             selectCompatibility = (
                 select(AbilityCompatibility)
-                .where(AbilityCompatibility.FK_pokemon_id == pokemon_id)
-                .where(AbilityCompatibility.FK_ability_id == ability_id)
+                .join(Pokemon)
+                .join(Ability)
+                .where(func.lower(Pokemon.name) == func.lower(pokemon))
+                .where(func.lower(Ability.name) == func.lower(pokemon))
             )
             compatibilityToDelete = session.exec(selectCompatibility).one()
         else: 
