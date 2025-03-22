@@ -49,29 +49,29 @@ def get_pokemon_by_name(name_inserted: str, session: Session = Depends(get_db_se
 
 
 #models.Abilities
-@app.get(BASE_URLS['get'] + '/ability/id/{id_inserted}')
-def get_ability_by_id(id_inserted: int, session: Session = Depends(get_db_session_dependency)):    
-    statement = select(Ability).where(Ability.id == id_inserted)
+#TODO: replace others in the same principle
+#TODO: stablish a pattern in sql statements variables, and execution
+@app.get(BASE_URLS['get'] + "/ability/id/{id_inserted}") 
+def get_ability_by_id(id_inserted: int, session: Session = Depends(get_db_session_dependency)):
+    statement = (
+        select(Ability.id, Ability.name, Ability.effect, Ability.generation,
+               AbilityType.name, AbilityCategory.name)
+               .join(AbilityType)
+               .join(AbilityCategory)
+               .where(Ability.id == id_inserted)
+    )
     queryResult = session.exec(statement).one_or_none()
-
-    #? i could refactor the following, into a decorator that apply the the search for the names
-    if queryResult: 
-        if queryResult.FK_type_id:
-            statement = select(AbilityType).where(AbilityType.id == queryResult.FK_type_id)
-            TypeResult = session.exec(statement).one_or_none()
-        if queryResult.FK_category_id:
-            statement = select(AbilityCategory).where(AbilityCategory.id == queryResult.FK_category_id)
-            CategoryResult = session.exec(statement).one_or_none()
-
-        return { 
-                "id": queryResult.id,
-                "name": queryResult.name,
-                "effect": queryResult.effect,
-                "generation": queryResult.generation,
-                "AbilityType": TypeResult.name,
-                "AbilityCategory": CategoryResult.name
-            }
-    else: 
+    
+    if queryResult:
+        return {
+            "id": queryResult.id,
+            "name": queryResult.name,
+            "effect": queryResult.effect,
+            "generation": queryResult.generation,
+            "type": queryResult[-2],
+            "category": queryResult[-1]
+        }
+    else:
         raise HTTPException(status_code=404, detail="Ability not found in DataBase.")
 
 @app.get(BASE_URLS['get'] + '/ability/name/{name_inserted}')
@@ -164,7 +164,7 @@ def post_new_ability(name: str, effect: str, generation: int, id: int = None, ca
         category_id = session.exec(selectAbilityCategoryId).one_or_none().id
 
     try:
-        session.add(Ability(id=id, name=name.title(), effect=effect, generation=int(generation),
+        session.add(Ability(id=id, name=name.title(), effect=effect.capitalize(), generation=int(generation),
                             FK_category_id=category_id, FK_type_id=type_id))
         session.commit()
         return {"result": f"{name.title()} ability added sucesfully."} 
@@ -279,23 +279,6 @@ def delete_compatibility(id: int = None, pokemon: str = None, ability: str = Non
         }
     else: 
         raise Exception("Compatibility 404 was not caught in except NoResultFound block.")
-
-
-#TODO: replace wheres with suitable joins
-@app.get(BASE_URLS['get'] + "/abilityjoin/id/{id_ability}")
-def get_ability_joined_with_id(id_ability: int, session: Session = Depends(get_db_session_dependency)):
-    queryStatement = (
-        select(Ability.id, Ability.name, Ability.effect, Ability.generation,
-               AbilityType.name)
-               .join(AbilityType)
-               .where(Ability.id == id_ability)
-    )
-    queryResult = session.exec(queryStatement)
-    
-    if queryResult:
-        return queryResult
-    else:
-        raise HTTPException(status_code=404, detail="Ability not found in DataBase.")
 
 
 
