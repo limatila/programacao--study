@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Depends, HTTPException
 from sqlmodel import select, Session
 from sqlalchemy.sql import func #for db functions
-from sqlalchemy.exc import IntegrityError, NoResultFound
+from sqlalchemy.exc import IntegrityError
 
 from pokedex.models import * #And many more if wanted for the apis.
 from pokedex.dependencies.connections import get_db_session_dependency
@@ -21,6 +21,7 @@ BASE_URLS: dict[str, str] = {
 }
 
 
+#TODO: stablish a pattern in sql statements variables, and execution, along responses also.
 #* Getters
 #models.Pokemons
 @app.get(BASE_URLS['get'] + '/pokemon/id/{id_inserted}')
@@ -50,8 +51,6 @@ def get_pokemon_by_name(name_inserted: str, session: Session = Depends(get_db_se
 
 
 #models.Abilities
-#TODO: replace others in the same principle
-#TODO: stablish a pattern in sql statements variables, and execution
 @app.get(BASE_URLS['get'] + "/ability/id/{id_inserted}") 
 def get_ability_by_id(id_inserted: int, session: Session = Depends(get_db_session_dependency)):
     statement = (
@@ -86,7 +85,6 @@ def get_ability_by_name(name_inserted: str, session: Session = Depends(get_db_se
                )         
     queryResult = session.exec(statement).one_or_none()
 
-    #? i could refactor the following, into a decorator that apply the the search for the names
     if queryResult: 
         return { 
                 "id": queryResult.id,
@@ -128,10 +126,10 @@ def get_compatibility_by_names(pokemon: str, ability: str, session: Session = De
 
     if queryResult:
         return {
-            "result": f"Compatibility was found, for {pokemon.title()} and ability {ability.title()}.",
+            "result": "Compatibility was found.",
             "isCompatible": True,
-            "pokemon_id": queryResult[-2],
-            "ability_id": queryResult[-1]
+            "pokemon": queryResult[-2],
+            "ability": queryResult[-1]
         }
     else: 
         raise HTTPException(status_code=404, detail={
@@ -249,40 +247,33 @@ def post_new_compatibility(pokemon: str, ability: str, id: int = None,
 @app.delete(BASE_URLS['delete'] + "/abilitycompatibility/") #to be used with ?id=[number], or ?pokemon=[name]&ability=[name]
 def delete_compatibility(id: int = None, pokemon: str = None, ability: str = None, 
                          session: Session = Depends(get_db_session_dependency), token: str = Depends(sec_verify_token)):
-    try:
-        if id:
-            id = int(id)
-            selectCompatibility = select(AbilityCompatibility).where(AbilityCompatibility.id == id)
-            compatibilityToDelete = session.exec(selectCompatibility).one()
 
-        elif pokemon and ability:
-            #selectPokeId = select(Pokemon).where(func.lower(Pokemon.name) == func.lower(pokemon))
-            #selectAbilityId = select(Ability).where(func.lower(Ability.name) == func.lower(ability))
-            #pokemon_id = session.exec(selectPokeId).one().id
-            #ability_id = session.exec(selectAbilityId).one().id
+    if id:
+        id = int(id)
+        selectCompatibility = select(AbilityCompatibility).where(AbilityCompatibility.id == id)
+        compatibilityToDelete = session.exec(selectCompatibility).one_or_none()
 
-            selectCompatibility = (
-                select(AbilityCompatibility)
-                .join(Pokemon)
-                .join(Ability)
-                .where(func.lower(Pokemon.name) == func.lower(pokemon))
-                .where(func.lower(Ability.name) == func.lower(pokemon))
-            )
-            compatibilityToDelete = session.exec(selectCompatibility).one()
-        else: 
-            HTTPException(status_code=400, detail="Compatibility was not deleted. Please check parameters sent in request (needs id of compatibility / pokemon name + ability name)")
-    except NoResultFound:
-        raise HTTPException(status_code=404, detail="Compatibility does not exists (not found). Please check with GET the compatibilities that exist.")
-    
+    elif pokemon and ability:
+        selectCompatibility = (
+            select(AbilityCompatibility)
+            .join(Pokemon)
+            .join(Ability)
+            .where(func.lower(Pokemon.name) == func.lower(pokemon))
+            .where(func.lower(Ability.name) == func.lower(ability))
+        )
+        compatibilityToDelete = session.exec(selectCompatibility).one_or_none()
+    else: 
+        return HTTPException(status_code=400, detail="Compatibility was not deleted. Please check parameters sent in request (needs [id] of compatibility / [pokemon] name + [ability] name)")
+
     if compatibilityToDelete:
         session.delete(compatibilityToDelete)
         session.commit()
         return {
-            "result": "Compatibility was sucessfully deleted.",
-            "compatibilityId": compatibilityToDelete.id
-        }
-    else: 
-        raise Exception("Compatibility 404 was not caught in except NoResultFound block.")
+                "result": "Compatibility was sucessfully deleted.",
+                "compatibilityId": compatibilityToDelete.id
+            }
+    else:
+        raise HTTPException(status_code=404, detail="Compatibility does not exist (not found). Please check with GET the compatibilities that exist.")
 
 
 
