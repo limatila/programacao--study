@@ -21,10 +21,10 @@ if result == 0 and result_2 == 0:
     with open('migration-history.log', 'a') as file:
         now = datetime.datetime.now()
         file.write(f"\n[{now}] -- Migration sucessfull: {migrationMessage}")
-elif result_2 != 0:
+elif result == 0 and result_2 == -10:
     with open('migration-history.log', 'a') as file:
         now = datetime.datetime.now()
         file.write(f"\n[{now}] -- Migration created (ready to migrate): {migrationMessage}")
         print("Migration created. Migrate with: \'alembic upgrade head\'")
-
-#! if any error occurs in first cmd(), it'll still log "Migration Created".
+else: 
+    print("Migration was not created.")
