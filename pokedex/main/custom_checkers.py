@@ -11,32 +11,34 @@ def isValidColor(hex_input: str) -> bool:
     #checking hashtag in start
     if hex_input.startswith("#") == False:
         return False
-        
-    #checking only valid hex values
-    hexaPattern = r"^--[0-9a-fA-F]+(--)?\s"
-    hex_extracted: str = findall(hexaPattern, hex_input)
-    if len(hex_input) != len(hex_extracted):
+    else:
+        #For future checkage
+        hex_input = hex_input.replace("#", '')
+    
+    #checking count of values
+    charCount: int = 0
+    for _ in hex_input:
+        charCount += 1
+    if charCount != 6:
         return False
     
-    #checking count of hex values
-    charCount: int = 0
-    for _ in hex_input.replace("#", ''):
-        charCount++
-    if charCount != 6:
+    #checking only valid hex values
+    try:
+        hexaPattern = r'\b[A-Fa-f0-9]{6}\b'
+        hex_extracted: str = findall(hexaPattern, hex_input)
+        if len(hex_extracted[0]) != 6:
+            return False
+    except IndexError: #if 
         return False
     
     #if none of the cases matched
     return True
     
+if __name__ == "__main__":
+    #prints False:
+    print(isValidColor("112123"))
+    print(isValidColor("#11213"))
+    print(isValidColor("#1f12!3"))
+
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    print(isValidColor("#1a2b3d")) #prints True

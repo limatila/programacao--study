@@ -22,7 +22,7 @@ BASE_URLS: dict[str, str] = {
 }
 
 
-#TODO: stablish a pattern in responses
+#TODO: rework a pattern in responses
 #* Getters
 #models.Pokemons
 @app.get(BASE_URLS['get'] + '/pokemon/id/{id_inserted}')
@@ -186,8 +186,8 @@ def post_new_ability_type(name: str, color: str, id: int = None,
         if abilityTypeIdExists:
             raise HTTPException(status_code=409, detail=f"The Ability {name.title()} was not added, the id of type already exists.")
         
-    if isValidColor(color) == False: #! need to be implemented
-        raise HTTPException(status_code=400, detail="The ability type color was not well inserted. Plase insert a valid Hex color, like \'#123456\'")
+    if isValidColor(color) == False:
+        raise HTTPException(status_code=400, detail="The ability type color was not well inserted. Plase insert a valid Hex color, like \'#1f3a6d\'")
         
     try:
         session.add(AbilityType(id=id, name=name.title(), color=color))
