@@ -3,10 +3,11 @@ from sqlmodel import select, Session
 from sqlalchemy.sql import func #for db functions
 from sqlalchemy.exc import IntegrityError
 
-from pokedex.models import * #And many more if wanted for the apis.
+from pokedex.models import * #And many more if wanted for the API.
 from pokedex.dependencies.connections import get_db_session_dependency
 from pokedex.dependencies.security import verify_token as sec_verify_token
 from pokedex.dependencies.config import MAX_POKEMON_NATIONAL_ID
+from .custom_checkers import isValidColor
 
 API_VERSION = "v1"
 app = FastAPI()
@@ -21,7 +22,7 @@ BASE_URLS: dict[str, str] = {
 }
 
 
-#TODO: stablish a pattern in sql statements variables, and execution, along responses also.
+#TODO: stablish a pattern in responses
 #* Getters
 #models.Pokemons
 @app.get(BASE_URLS['get'] + '/pokemon/id/{id_inserted}')
@@ -31,8 +32,8 @@ def get_pokemon_by_id(id_inserted: int, session: Session = Depends(get_db_sessio
     if id_inserted < 1 or id_inserted > MAX_POKEMON_NATIONAL_ID:
         HTTPException(f"Pokemon could not be resolved, please select between valid IDs: 1 - {MAX_POKEMON_NATIONAL_ID}.")
 
-    statement = select(Pokemon).where(Pokemon.id == id_inserted)
-    queryResult = session.exec(statement).one_or_none()
+    selectPokemon = select(Pokemon).where(Pokemon.id == id_inserted)
+    queryResult = session.exec(selectPokemon).one_or_none()
 
     if queryResult:
         return queryResult
@@ -41,8 +42,8 @@ def get_pokemon_by_id(id_inserted: int, session: Session = Depends(get_db_sessio
 
 @app.get(BASE_URLS['get'] + '/pokemon/name/{name_inserted}')
 def get_pokemon_by_name(name_inserted: str, session: Session = Depends(get_db_session_dependency)):    
-    statement = select(Pokemon).where(func.lower(Pokemon.name) == func.lower(name_inserted))
-    queryResult = session.exec(statement).one_or_none()
+    selectPokemon = select(Pokemon).where(func.lower(Pokemon.name) == func.lower(name_inserted))
+    queryResult = session.exec(selectPokemon).one_or_none()
 
     if queryResult:
         return queryResult
@@ -53,14 +54,14 @@ def get_pokemon_by_name(name_inserted: str, session: Session = Depends(get_db_se
 #models.Abilities
 @app.get(BASE_URLS['get'] + "/ability/id/{id_inserted}") 
 def get_ability_by_id(id_inserted: int, session: Session = Depends(get_db_session_dependency)):
-    statement = (
+    selectAbility = (
         select(Ability.id, Ability.name, Ability.effect, Ability.generation,
                AbilityType.name, AbilityCategory.name)
                .join(AbilityType)
                .join(AbilityCategory)
                .where(Ability.id == id_inserted)
     )
-    queryResult = session.exec(statement).one_or_none()
+    queryResult = session.exec(selectAbility).one_or_none()
     
     if queryResult:
         return {
@@ -76,14 +77,14 @@ def get_ability_by_id(id_inserted: int, session: Session = Depends(get_db_sessio
 
 @app.get(BASE_URLS['get'] + '/ability/name/{name_inserted}')
 def get_ability_by_name(name_inserted: str, session: Session = Depends(get_db_session_dependency)):    
-    statement = (
+    selectAbility = (
         select(Ability.id, Ability.name, Ability.effect, Ability.generation,
                AbilityType.name, AbilityCategory.name)
                .join(AbilityType)
                .join(AbilityCategory)
                .where(func.lower(Ability.name) == func.lower(name_inserted))
                )         
-    queryResult = session.exec(statement).one_or_none()
+    queryResult = session.exec(selectAbility).one_or_none()
 
     if queryResult: 
         return { 
@@ -103,8 +104,8 @@ def get_ability_by_name(name_inserted: str, session: Session = Depends(get_db_se
 def get_compatibility_by_names(pokemon: str, ability: str, session: Session = Depends(get_db_session_dependency)):   
     #searching data + detailed erroring
     try:
-        selectPokeId = select(Pokemon).where(func.lower(Pokemon.name) == func.lower(pokemon))
-        pokemon_id = session.exec(selectPokeId).one_or_none().id
+        selectPokemonId = select(Pokemon).where(func.lower(Pokemon.name) == func.lower(pokemon))
+        pokemon_id = session.exec(selectPokemonId).one_or_none().id
     except AttributeError:
         raise HTTPException(status_code=404, detail=f"Compatibility could not be solved, pokemon \'{pokemon.title()}\' could not be found in DB.")
 
@@ -135,8 +136,8 @@ def get_compatibility_by_names(pokemon: str, ability: str, session: Session = De
         raise HTTPException(status_code=404, detail={
                                 "error": "Compatibility not found in DataBase.",
                                 "isCompatible": f"{str(False)}",
-                                "pokemon_id": f"{str(queryResult[-2])}",
-                                "ability_id": f"{str(queryResult[-1])}"
+                                "pokemon": f"{str(queryResult[-2])}",
+                                "ability": f"{str(queryResult[-1])}"
                             })
 
 
@@ -150,18 +151,19 @@ def post_new_ability(name: str, effect: str, generation: int, id: int = None, ca
     #Check if id already exists
     if id:
         id = int(id)
-        idExistsStatement = select(Ability).where(Ability.id == id)
-        idExists = session.exec(idExistsStatement).one_or_none()
-        if idExists:
+        selectAbility = select(Ability).where(Ability.id == id)
+        abilityIdExists = session.exec(selectAbility).one_or_none()
+        if abilityIdExists:
             raise HTTPException(status_code=409, detail="The compatibility was not added, the id of compatibility already exists.")
         
     #searching data
-    if type: 
-        selectAbilityTypeId = select(AbilityType).where(func.lower(AbilityType.name) == func.lower(type))
-        type_id = session.exec(selectAbilityTypeId).one_or_none().id
     if category: 
         selectAbilityCategoryId = select(AbilityCategory).where(func.lower(AbilityCategory.name) == func.lower(category))
         category_id = session.exec(selectAbilityCategoryId).one_or_none().id
+    if type: 
+        selectAbilityTypeId = select(AbilityType).where(func.lower(AbilityType.name) == func.lower(type))
+        type_id = session.exec(selectAbilityTypeId).one_or_none().id
+
 
     try:
         session.add(Ability(id=id, name=name.title(), effect=effect.capitalize(), generation=int(generation),
@@ -179,10 +181,13 @@ def post_new_ability_type(name: str, color: str, id: int = None,
     #Check if id already exists
     if id:
         id = int(id)
-        idExistsStatement = select(AbilityType).where(AbilityType.id == id)
-        idExists = session.exec(idExistsStatement).one_or_none()
-        if idExists:
+        selectType = select(AbilityType).where(AbilityType.id == id)
+        abilityTypeIdExists = session.exec(selectType).one_or_none()
+        if abilityTypeIdExists:
             raise HTTPException(status_code=409, detail=f"The Ability {name.title()} was not added, the id of type already exists.")
+        
+    if isValidColor(color) == False: #! need to be implemented
+        raise HTTPException(status_code=400, detail="The ability type color was not well inserted. Plase insert a valid Hex color, like \'#123456\'")
         
     try:
         session.add(AbilityType(id=id, name=name.title(), color=color))
@@ -199,15 +204,15 @@ def post_new_compatibility(pokemon: str, ability: str, id: int = None,
     #Check if id already exists
     if id:
         id = int(id)
-        idExistsStatement = select(AbilityCompatibility).where(AbilityCompatibility.id == id)
-        idExists = session.exec(idExistsStatement).one_or_none()
-        if idExists:
+        selectCompatibility = select(AbilityCompatibility).where(AbilityCompatibility.id == id)
+        compatibilityIdExists = session.exec(selectCompatibility).one_or_none()
+        if compatibilityIdExists:
             raise HTTPException(status_code=409, detail="Compatibility was not added, the id of compatibility already exists.")
         
     #searching data + detailed errors
     try:
-        selectPokeId = select(Pokemon).where(func.lower(Pokemon.name) == func.lower(pokemon))
-        pokemon_id = session.exec(selectPokeId).one_or_none().id
+        selectPokemonId = select(Pokemon).where(func.lower(Pokemon.name) == func.lower(pokemon))
+        pokemon_id = session.exec(selectPokemonId).one_or_none().id
     except AttributeError:
         raise HTTPException(status_code=404, detail=f"Compatibility could not be solved, pokemon \'{pokemon.title()}\' could not be found in DB.")
 
@@ -218,12 +223,12 @@ def post_new_compatibility(pokemon: str, ability: str, id: int = None,
         raise HTTPException(status_code=404, detail=f"Compatibility could not be solved, ability \'{ability.title()}\' could not be found in DB.")
 
     #check if combination of compatibility already exists
-    compatibilityExistsStatement = (
+    selectCompatibility = (
                 select(AbilityCompatibility) \
                 .where(AbilityCompatibility.FK_pokemon_id == pokemon_id) \
                 .where(AbilityCompatibility.FK_ability_id == ability_id)
             )
-    compatibilityExists = session.exec(compatibilityExistsStatement).one_or_none()
+    compatibilityExists = session.exec(selectCompatibility).one_or_none()
     if compatibilityExists:
         raise HTTPException(
             status_code=409,
