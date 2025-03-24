@@ -51,7 +51,7 @@ This tutorial is gonna assume you use Windows for your OS. If not, please search
 1. Create your secret key and set it as environment variable (need for methods that modify data) 
    1. install OpenSSL, in [mainly here](https://slproweb.com/products/Win32OpenSSL.html), or any other binaries source 
    2. create your new random key with: <code> openssl rand -hex 32 </code> 
-   3. set your environment variable with the key: <code> setx SECRET_KEY_POKEDEX "mY5v8N9sK3pL6qR1eWz2xY7uT0aV4bC8" </code> 
+   3. set your environment variable with the key: <code> setx SECRET_KEY_POKEDEX your_secret_code </code> 
    4. verify the variable setted with: <code> echo %SECRET_KEY_POKEDEX%</code>
 
 2. Initialize your API server:
@@ -131,7 +131,7 @@ Para uso geral, você precisará apenas configurar um banco de dados e executar 
 5. Crie sua chave secreta e defina-a como uma variável de ambiente (necessário para métodos que modificam dados):
    1. Instale o OpenSSL, principalmente [aqui](https://slproweb.com/products/Win32OpenSSL.html), ou qualquer outra fonte de binários.
    2. Crie sua nova chave aleatória com: <code>openssl rand -hex 32</code>   
-   3. Defina sua variável de ambiente com a chave: <code>setx SECRET_KEY_POKEDEX "mY5v8N9sK3pL6qR1eWz2xY7uT0aV4bC8"</code>   
+   3. Defina sua variável de ambiente com a chave: <code>setx SECRET_KEY_POKEDEX seu_codigo_secreto</code>   
    4. Verifique a variável definida com: <code>echo %SECRET_KEY_POKEDEX%</code>
    
 6. Inicialize seu servidor API:
