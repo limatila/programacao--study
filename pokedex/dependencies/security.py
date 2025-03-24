@@ -14,7 +14,7 @@ def verify_token(credentials: HTTPAuthorizationCredentials = Security(bearer)):
     requires a valid Bearer token to be sent, on any method that has verify_token as a Dependency
     """
     if not credentials:
-        raise HTTPException(status_code=401, detail="Invalid authentication credentials of Bearer token")
+        raise HTTPException(status_code=401, detail="No Bearer authenticator token was sent, as required")
 
     if str(credentials.credentials) != str(SECRET_KEY):
         raise HTTPException(status_code=403, detail="Invalid authentication credentials of Bearer token")
