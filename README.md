@@ -26,12 +26,12 @@ This tutorial is gonna assume you use Windows for your OS. If not, please search
 	 powershell  # Needs powershell to run activation script
 	 .\venv\Scripts\activate 
 	 ```
-1. Install main requirements (you can read these if you want):
+3. Install main requirements (you can read these if you want):
    ```bash
    pip install -r requirements.txt
    ```
 
-2. Initialize a default SQLite db with ORM defined structure:
+4. Initialize a default SQLite db with ORM defined structure:
    ```bash
    python -m pokedex.models.models 
 	 ```
@@ -48,13 +48,13 @@ This tutorial is gonna assume you use Windows for your OS. If not, please search
    python -m pokedex.models.setup.startup_pokemon_all # Will insert all pokemons known to date
 	 ```
 
-1. Create your secret key and set it as environment variable (need for methods that modify data) 
+5. Create your secret key and set it as environment variable (need for methods that modify data) 
    1. install OpenSSL, in [mainly here](https://slproweb.com/products/Win32OpenSSL.html), or any other binaries source 
    2. create your new random key with: <code> openssl rand -hex 32 </code> 
    3. set your environment variable with the key: <code> setx SECRET_KEY_POKEDEX your_secret_code </code> 
    4. verify the variable setted with: <code> echo %SECRET_KEY_POKEDEX%</code>
 
-2. Initialize your API server:
+6. Initialize your API server:
   *in powershell (with venv)* \
 	<code> up-server.ps1 </code>
 	
