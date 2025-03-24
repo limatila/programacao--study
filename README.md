@@ -87,7 +87,7 @@ Alguns dados podem ser configurados no banco de dados, com dados eficazes orient
 Criado com FastAPI e SQLModel, além de outros pacotes necessários (descritos em **requirements.txt** e **dev-dependencies.txt**).
 
 ## Instalação e Uso
-Para uso geral, você precisará apenas configurar um banco de dados e executar a API com os pacotes especificados em **requirements.txt**. Este tutorial assumá que você está usando Windows como seu sistema operacional. Caso contrário, procure os comandos equivalentes abaixo.
+Para uso geral, você precisará apenas configurar um banco de dados e executar a API com os pacotes especificados em **requirements.txt**. Esse tutorial assume que você está usando Windows como seu sistema operacional. Caso contrário, procure os comandos equivalentes abaixo.
 
 ### Passo a passo da instalação:
 1. Clone o repositório:
@@ -95,12 +95,12 @@ Para uso geral, você precisará apenas configurar um banco de dados e executar 
    git clone https://github.com/limatila/programacao--study
    ```
 
-2. Mude para este branch:
+2. Acesse esta branch:
    ```bash
    git checkout fastapi-pokedex & git pull
    ```
 
-- Opcional: crie um ambiente virtual para isolar os pacotes necessários:
+- Opcional: crie um VEnv para isolar os pacotes necessários:
    ```bash
    python -m venv venv
    powershell # Necessário para executar o script de ativação
@@ -125,11 +125,11 @@ Para uso geral, você precisará apenas configurar um banco de dados e executar 
    e se desejar:
    ```bash
    pip install -r dev-dependencies.txt # Instala outra API para coleta de dados
-   python -m pokedex.models.setup.startup_pokemon_all # Irá inserir todos os pokémons conhecidos até a data
+   python -m pokedex.models.setup.startup_pokemon_all # Irá inserir todos os pokémons conhecidos
    ```
 
 5. Crie sua chave secreta e defina-a como uma variável de ambiente (necessário para métodos que modificam dados):
-   1. Instale o OpenSSL, principalmente [aqui](https://slproweb.com/products/Win32OpenSSL.html), ou qualquer outra fonte de binários.
+   1. Instale o OpenSSL, [principalmente aqui](https://slproweb.com/products/Win32OpenSSL.html), ou qualquer outra fonte de binários dele.
    2. Crie sua nova chave aleatória com: <code>openssl rand -hex 32</code>   
    3. Defina sua variável de ambiente com a chave: <code>setx SECRET_KEY_POKEDEX seu_codigo_secreto</code>   
    4. Verifique a variável definida com: <code>echo %SECRET_KEY_POKEDEX%</code>
@@ -138,7 +138,7 @@ Para uso geral, você precisará apenas configurar um banco de dados e executar 
    *No PowerShell (com venv):* \
 	<code> up-server.ps1 </code>
 
-   - Se você não confiar neste script (ou ocorrer algum motivo de mau funcionamento), você pode executar neste ponto:
+   - Se você não confiar neste script (ou ocorrer algum motivo de mau funcionamento), você pode executar:
      ```bash
      uvicorn pokedex.main.api_pokedex:app --host 127.0.0.1 --port 55001
      ```
