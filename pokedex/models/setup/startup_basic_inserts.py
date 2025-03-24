@@ -51,7 +51,7 @@ if __name__ == "__main__":
             tackleStatement = select(Ability).where(Ability.name == "Tackle")
             tackleAbilityToAdd = session.exec(tackleStatement).one_or_none()
 
-            tackleAbilityToAdd.FK_category = physicalCategory.id #* UPDATE
+            tackleAbilityToAdd.FK_category_id = physicalCategory.id #* UPDATE
             session.add(tackleAbilityToAdd)
             session.commit()
         
