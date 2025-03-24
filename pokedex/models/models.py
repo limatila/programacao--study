@@ -67,3 +67,8 @@ class AbilityCategory(SQLModel, table=True):
     __table_args__ = (UniqueConstraint("name"), )
 
 #! new classes: need to add then in models/__init__.py
+
+
+if __name__ == "__main__":
+    from pokedex.dependencies import get_engine, DB_ENGINE_CHOICE
+    SQLModel.metadata.create_all(get_engine(DB_ENGINE_CHOICE))

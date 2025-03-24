@@ -7,8 +7,8 @@ from pokedex.dependencies import get_engine, DB_ENGINE_CHOICE
 if __name__ == "__main__":
     engine = get_engine(DB_ENGINE_CHOICE)
 
-    #Create tables by defined models.py
-    SQLModel.metadata.create_all(engine)
+    #* if needed: Create tables by defined models.py
+    # SQLModel.metadata.create_all(engine)
     
     #adding first 4 pokemons
     with Session(engine) as session:
