@@ -29,6 +29,26 @@ def binarySearchRecursive(numbers: list[int] | int, entry: int) -> int:
         
     return compute()
 
+def binarySearchIterative(numbers: list[int] | int, entry: int):
+    """Returns index of a given entry inside a list of numbers, on iterative execution
+
+    Args:
+        numbers (list[int] | int): either a list of numbers, or a max value to generate a list of range(numbers)
+        entry (int): number to be searched for its index
+
+    Returns:
+        int: index found of entry
+    """
+
+    #converting int to a usable list
+    if not isinstance(numbers, list):
+        numbers = list(range(numbers))
+    else: numbers = sorted(numbers)
+    # print( numbers[len(numbers) // 2] ) #verify middle
+
+    #TODO implement
+    ...
+
 if __name__ == "__main__":
     print(binarySearchRecursive(1024, 371))
     print(binarySearchRecursive(list(range(2 ** 8)), 192))
